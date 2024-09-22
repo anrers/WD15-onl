@@ -89,5 +89,4 @@ function numberSquare($number)
         return "корень квадратный из числа  $number: " . sqrt($number);
     }
 }
-
 numberSquare(21);
