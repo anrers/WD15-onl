@@ -44,3 +44,17 @@ echo $b .PHP_EOL;
 $var = 10;
 
 echo ++$var .PHP_EOL;
+
+//9th task
+$string1 = "Как дела";
+$string2 = "Медведь?";
+$result = $string1 . " " . $string2;
+
+echo $result .PHP_EOL;
+
+//10th task
+$string = "12";
+$int = 18;
+$result = $string + $int;
+
+echo $result .PHP_EOL;
