@@ -44,12 +44,21 @@ function getStrokeLength(string $stroke): int
  */
 function getArrayArithmeticMean(array $array): int|float
 {
-    $numericArray = array_filter($array,  fn($item) => is_numeric($item));
-
-    if (!is_array($array) || !$array || $array !== $numericArray) {
+    if (!$array || $array !== getNumericArray($array)) {
         return 0;
     }
     return array_sum($array) / count($array);
+}
+
+/**
+ * Get array collecting only numeric values from given array.
+ *
+ * @param $array array to filter
+ * @return array collecting only numeric values
+ */
+function getNumericArray($array)
+{
+    return array_filter($array,  fn($item) => is_numeric($item));
 }
 
 /**
@@ -154,7 +163,7 @@ function getNumberSquareRoot(int|float $number): mixed
  */
 function arraySortASC(&$numbers)
 {
-    usort($numbers, function ($a, $b) {
+    usort($numbers, function ($a, $b) { //instead of can be used standard php function: sort($numbers)
         return $a - $b;
     });
 }
@@ -165,7 +174,7 @@ function arraySortASC(&$numbers)
  */
 function arraySortDESC(&$numbers)
 {
-    usort($numbers, function ($a, $b) {
+    usort($numbers, function ($a, $b) { //instead of can be used standard php function: rsort($numbers)
         return $b - $a;
     });
 }
