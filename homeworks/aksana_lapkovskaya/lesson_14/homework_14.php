@@ -23,14 +23,17 @@ print_r(stringLength("Some random text"));
 <?php
 
 //task3
-function averageSum(...$numbers)
+
+$numbersArray = [8, 9, 10, 11, 12, 13, 14, 15];
+
+function averageSum(array $numbersArray): float
 {
-    $count = count($numbers);
-    $sum = array_sum($numbers);
+    $count = count($numbersArray);
+    $sum = array_sum($numbersArray);
     return $sum / $count;
 }
 
-print_r(averageSum(8, 9, 10, 11, 12, 13, 14, 15));
+print_r(averageSum($numbersArray));
 ?>
 
 <?php
@@ -40,11 +43,11 @@ function numberCheck($numberOne, $numberTwo)
 {
     if ($numberOne > $numberTwo) {
         return "$numberOne is bigger than $numberTwo";
-    } elseif ($numberOne < $numberTwo) {
-        return "$numberOne is smaller than $numberTwo";
-    } else {
-        return "$numberOne is equal to $numberTwo";
     }
+    if ($numberOne < $numberTwo) {
+        return "$numberOne is smaller than $numberTwo";
+    }
+    return "$numberOne is equal to $numberTwo";
 }
 
 print_r(numberCheck(4, 5));
