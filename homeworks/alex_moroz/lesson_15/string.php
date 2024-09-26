@@ -30,8 +30,7 @@ var_dump(preg_match($regex, $stroke));
 //<!--15.-->
 echo "<p>Обработка HTML-тегов. Удалите все HTML-теги из строки</p>";
 $stroke = "<p>Hello, <b>world</b>!</p>";
-$regex = "#<.{0,2}>+#";
-$result = preg_replace($regex, "", $stroke); //заменяет все совпадения (как preg_match_all)
+$result = strip_tags($stroke);
 echo $result;
 
 //14
