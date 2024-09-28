@@ -69,15 +69,12 @@ deleteProductById( $products, 5 );
 print_r($products);
 // 7. Усложнить функцию добавления, добавить обновление полей товара если товар с id уже есть, если нет то добавить новый
 function addProductsById(&$products, $id, $name, $price, $sort = 100, $quantity = 0) {
-    $index = array_search($id, $products);
+    $index = array_search($id, array_column($products, 'id'));
     if ($index !== false) {
-        $products[$index] = [
-            'id' => $id,
-            'name' => $name,
-            'price' => $price,
-            'sort' => $sort,
-            'quantity' => $quantity
-        ];
+        $products[$index]['name'] = $name;
+        $products[$index]['price'] = $price;
+        $products[$index]['sort'] = $sort;
+        $products[$index]['quantity'] = $quantity;
     } else {
         $products[] = [
             'id' => $id,
@@ -165,11 +162,7 @@ var_dump(sortValue($fruitPrices)) . PHP_EOL;
 // У вас есть массив чисел. Напишите функцию, которая принимает этот массив и колбек функцию в качестве аргументов. 
 // Функция должна применить колбек к каждому элементу массива и вернуть новый массив, содержащий результаты применения колбека к каждому элементу.
 function applyCallback($arrayNum, $callback) {
-    $resultArray = [];
-    foreach ($arrayNum as $value) {
-        $resultArray[] = $callback($value);
-    };
-    return $resultArray;
+    return array_map($callback, $arrayNum);;
 };
 $arrayNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 $callback = function($num) {
@@ -200,4 +193,4 @@ $string = "Hello World!";
 echo strtolower($string) . PHP_EOL;
 // Разбиение строки на подстроки. Разбейте строку "apple,orange,banana" на массив из трех элементов.
 $string = "apple,orange,banana";
-var_dump(str_getcsv($string)) . PHP_EOL;
+var_dump(explode(",", $string)) . PHP_EOL;
