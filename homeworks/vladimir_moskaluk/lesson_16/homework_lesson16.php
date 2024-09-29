@@ -6,9 +6,11 @@
 //4. Содержит минимум 2 символа из набора символов ?:%!()*+=_
 //3. Имеет миниму 1 заглавную букву
 //4. Не содержит пробелов
-$password = 'fdgdF1=+g';
-$verification = '#^(?=\S{8,16})(?=.*[A-Z])(?=.*\d)(?=(.*[?:%!()*+=_]){2,})\S*$#';
-var_dump (preg_match($verification, $password));
+function verification ($password)
+{
+    $pattern = '#^(?=\S{8,16})(?=.*[A-Z])(?=.*\d)(?=(.*[?:%!()*+=_]){2,})\S*$#';
+    return preg_match($pattern, $password);
+}
 
 
 
