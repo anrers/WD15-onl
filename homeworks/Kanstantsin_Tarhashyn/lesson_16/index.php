@@ -7,7 +7,7 @@ function passwordCheck ($password) {
         return "Password should be between 8 and 16 characters";
     }
 
-    if (!preg_match("#[a-zA-z]#", $password) || !preg_match("#[0-9]#", $password)) {
+    if (!preg_match("#[a-zA-Z]#", $password) || !preg_match("#[0-9]#", $password)) {
         return "Password should contain both letters and numbers";
     }
 
