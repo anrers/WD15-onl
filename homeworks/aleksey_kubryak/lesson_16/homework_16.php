@@ -5,7 +5,7 @@
 // 4. Содержит минимум 2 символа из набора символов ?!:%()*+=_ (?=.*[!?:%()*+=_]{2,})
 // 3. Имеет миниму 1 заглавную букву (?=.*[A-Z])
 function passwordVerification($password) {
-    $test = "/^(?=.*[A-Z])(?=.*[?!:%()*+=_]{2,})(?=.*[0-9])(?=.*[a-z]).\S{8,16}$/";
+    $test = "/^(?=.*[A-Z])(?=(?:[^?!:%()*+=_]*[?!:%()*+=_]){2})(?=.*[0-9])(?=.*[a-z]).\S{8,16}$/";
     return preg_match($test, $password);
 }
-echo passwordVerification('cAadfadfasdf0?=');
+echo passwordVerification('4%loGin_4234');
