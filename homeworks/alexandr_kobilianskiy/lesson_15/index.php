@@ -92,7 +92,7 @@ $callBackFunction = function ($val) {
     return $val ** 2;
 };
 
-function wellLet_sTry($arr, $callBackFunction): array
+function wellLetsTry($arr, $callBackFunction): array
 {
     $result = [];
     for ($i = 0; $i < count($arr); $i++) {
@@ -102,7 +102,7 @@ function wellLet_sTry($arr, $callBackFunction): array
     return $result;
 }
 
-$result2 = wellLet_sTry($arrayNum, $callBackFunction);
+$result2 = wellLetsTry($arrayNum, $callBackFunction);
 var_dump($result2);
 echo "<br>";
 echo "<br>";
@@ -137,7 +137,7 @@ $helloWorld = "Hello World!";
 $patsStr = "World";
 if (stripos($helloWorld, $patsStr) !== false) {
     echo "Подстрока $patsStr содержится в строке $helloWorld <br>";
-} else echo "Подстрока $patsStr не содержится в строке $helloWorld <br>";
+} else {echo "Подстрока $patsStr не содержится в строке $helloWorld <br>";}
 echo "<br>";
 
 echo "<b>Задача 14. </b>Замена подстроки. Замените все вхождения подстроки \"world\" 
