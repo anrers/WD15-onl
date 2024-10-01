@@ -8,7 +8,7 @@
 //4. Не содержит пробелов
 function verification ($password)
 {
-       $pattern = '#^(?=\S{8,16})(?=.*[A-Z])(?=.*\d)(?=(.*[?:%!()*+=_]){2,})\S{8,16}$#';
+    $pattern = '#^(?=\S{8,16})(?=.*[A-Z])(?=.*\d)(?=(.*[?:%!()*+=_]){2,})\S*$#';
     return preg_match($pattern, $password);
 }
 
