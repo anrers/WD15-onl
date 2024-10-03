@@ -131,19 +131,15 @@ finishTaskExecution();
 //7. * При выводе элементов из предыдущего задания покрасьте фон элементов ниже определенной цены в отличный от других цвет.
 $task = "7. При выводе элементов из предыдущего задания покрасьте фон элементов с ценой ниже 40 в желтый цвет.";
 
-$hyperLinkStartOpenTag = "<a href='#'";
-$color = " style='background-color: yellow'";
-$hyperLinkStartCloseTag = ">";
-$hyperLinkEnd = "</a>";
-
 startTaskExecution($task);
 foreach ($array as $element) {
     if (is_array($element)) {
+        $style = $element['price'] < 40 ? "yellow" : "white";
+        echo "<div style='background-color: $style;'>";
         echo "<h2>{$element['title']}</h2>";
         echo "<p>{$element['description']}</p>";
-        $hyperLinkStart = $hyperLinkStartOpenTag . (($element['price'] < 40) ? $color : "") . $hyperLinkStartCloseTag;
-        $hyperLink = $hyperLinkStart . $element['price'] . $hyperLinkEnd;
-        echo $hyperLink;
+        echo "<a href='#'>{$element['price']}</a>";
+        echo "</div>";
     }
 }
 finishTaskExecution();
@@ -175,23 +171,13 @@ finishTaskExecution();
 //9.	Создайте цикл, который выводит числа то 0 до 100 в HTML-элементах div; окраска HTML-элементов должна чередоваться («зебра»).
 $task = "9. Вывести числа то 0 до 100 в HTML-элементах div; окраска HTML-элементов должна чередоваться («зебра»).";
 
-$oddNumberColor = "lightgray";
-$evenNumberColor = "yellow";
-$blockStartOpenTag = "<div style='background-color: ";
-$blockStartCloseTag = "'>";
-$blockEnd = "</div>";
 
 startTaskExecution($task);
 for ($i = 0; $i <= 100; $i++) {
-    $blockStart = $blockStartOpenTag . fillColor($i, $oddNumberColor, $evenNumberColor) . $blockStartCloseTag;
-    echo $blockStart . $i . $blockEnd; //could be overwritten in one stroke, just for simplify reading
+    $color = (isIndexOdd($i)) ? "lightgray" : "yellow";
+    echo "<div style='background-color: " . $color . "'>". $i. "</div>";
 }
 finishTaskExecution();
-
-function fillColor($index, $oddNumberColor, $evenNumberColor)
-{
-    return (isIndexOdd($index)) ? $oddNumberColor : $evenNumberColor;
-}
 
 //Additional functions
 function isIndexOdd($var): bool
