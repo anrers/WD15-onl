@@ -14,24 +14,34 @@ function examinationPassword($password)
 {
     if(strlen($password) >= 8 && strlen($password) <= 16){
         $resultLen = "";
-    } else {$resultLen = "Длинна пароля не соответствует. <br>";}
+    } else {
+        $resultLen = "Длинна пароля не соответствует. <br>";}
     if(preg_match("#[a-zA-Z0-9]#", $password)){
         $resultW = "";
-    } else {$resultW = "Пароль должен содержать буквы и цифры. <br>";}
+    } else {$resultW = "Пароль должен содержать буквы и цифры. <br>";
+    }
     if (preg_match("#[\?:%!\(\)*+=_]{2,}#", $password)){
         $resultSym = "";
-    } else {$resultSym = "Пароль должен содержать минимум 2 символа из набора символов ?:%!()*+=_  <br>";}
+    } else {
+        $resultSym = "Пароль должен содержать минимум 2 символа из набора символов ?:%!()*+=_  <br>";
+    }
     if(preg_match("#[A-Z]#", $password)){
         $resultUp = "";
-    } else {$resultUp = "Пароль должен содержать заглавные буквы. <br>";}
+    } else {
+        $resultUp = "Пароль должен содержать заглавные буквы. <br>";
+    }
     if (!preg_match("# #", $password)){
         $resultSpace = "";
-    } else {$resultSpace = "Не должно быть пробелов. <br>";}
+    } else {
+        $resultSpace = "Не должно быть пробелов. <br>";
+    }
 
     $resultAll = $resultLen.$resultUp.$resultSym.$resultW.$resultSpace;
     if(empty($resultAll)){
         return "Пароль соответствует нашим строгим требованиям";
-    } else {return $resultLen.$resultUp.$resultSym.$resultW.$resultSpace;}
+    } else {
+        return $resultLen.$resultUp.$resultSym.$resultW.$resultSpace;
+    }
 };
 
 echo examinationPassword($password);
