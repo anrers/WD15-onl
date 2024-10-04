@@ -4,7 +4,7 @@ for ($i = 1; $i <= 100; $i++) {
     echo $i . ' ';
 }
 // Напишите PHP цикл, который выводит ненумерованный список из 10 пунктов. 
-echo "<ul>\n";
+echo "<ul>";
 for ($i = 1; $i <= 10; $i++) {
     echo "<li>Пункт $i</li>" . PHP_EOL;
 }
@@ -40,11 +40,11 @@ $arrayStrings = [
     'циклом',
     'внутри',
 ];
-echo "<div>\n";
+echo "<div>";
 foreach ($arrayStrings as $string) {
     echo $string . ' ';
 }
-echo "\n</div>";
+echo "</div>";
 // * Создайте массив, каждый элемент которого тоже массив с ключами title, description, price. 
 // Выведите все элементы этого массива, так, чтобы заголовки были в HTML-элементе h2, описания в p, а цена в гиперсылке. 
 $array = [
@@ -60,18 +60,12 @@ foreach ($array as $value) {
 // * При выводе элементов из предыдущего задания покрасьте фон элементов ниже определенной цены в отличный от других цвет.
 $priceLimit = 2;
 foreach ($array as $value) {
-    if ($value['price'] < $priceLimit) {
-        $backgroundColor = 'style="background-color: ivory;"';
-        echo "<div $backgroundColor>" . PHP_EOL;
-        echo "<h2>{$value["title"]}</h2>" . PHP_EOL;
-        echo "<p>{$value["description"]}</p>" . PHP_EOL;
-        echo "<a href='#'>{$value["price"]}</a>" . PHP_EOL;
-        echo "</div>" . PHP_EOL;
-    } else {
-        echo "<h2>{$value["title"]}</h2>" . PHP_EOL;
-        echo "<p>{$value["description"]}</p>" . PHP_EOL;
-        echo "<a href='#'>{$value["price"]}</a>" . PHP_EOL;
-    }
+    $backgroundColor = $value['price'] < $priceLimit ? 'style="background-color: ivory;"' : '';
+    echo "<div $backgroundColor>" . PHP_EOL;
+    echo "<h2>{$value['title']}</h2>" . PHP_EOL;
+    echo "<p>{$value['description']}</p>" . PHP_EOL;
+    echo "<a href='#'>{$value['price']}</a>" . PHP_EOL;
+    echo "</div>" . PHP_EOL;
 };
 // Создайте масcив из 50 случайных чисел от 0 до 100. Найти все числа меньшие 72 и поместить их в отдельный массив
 $randomNum = [];
@@ -84,10 +78,9 @@ $lessThen72 = array_filter($randomNum, function($num) {
     return $num < 72;
 });
 // Создайте цикл, который выводит числа то 0 до 100 в HTML-элементах div; окраска HTML-элементов должна чередоваться («зебра»).
-echo "<div>\n";
+echo "<div>";
 for ($i = 0; $i <= 100; $i++) {
-    echo ($i % 2 == 0) 
-    ? ("<p style='background-color: ivory;'></p>" . PHP_EOL) 
-    : ("<p style='background-color: #4285B4;'></p>" . PHP_EOL);
+    $bgColor = ($i % 2 == 0) ? 'ivory' : '#4285B4';
+    echo "<p style='background-color: $bgColor;'></p>" . PHP_EOL;
 };
 echo "</div>";
