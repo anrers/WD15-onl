@@ -85,7 +85,8 @@ print_r($filteredNumbers);
 // task9
 echo "<div>";
 for ($i = 0; $i <= 100; $i++) {
-    $color = $i % 2 == 0 ? "style='background-color: black; color: white;'" : "style='background-color: white; color: black;'";
-    echo "<div $color>$i</div>";
+    $bgColor = $i % 2 == 0 ? 'black' : 'white';
+    $textColor = $i % 2 == 0 ? 'white' : 'black';
+    echo "<div style='background-color: $bgColor; color: $textColor;'>$i</div>";
 }
 echo "</div>";
