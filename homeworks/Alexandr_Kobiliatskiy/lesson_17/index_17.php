@@ -86,9 +86,9 @@
         foreach ($productArr as $value) {
             $arrVal = array_values($value);
             ?>
-            <h2 class="mb-0"><?=$arrVal[0]?></h2>
-            <p class="mb-0"><?=$arrVal[1]?></p>
-            <a class="link-offset-3 mb-0" href="#"><?=$arrVal[2]?></a>
+            <h2 class="mb-0"><?=$arrVal['title']?></h2>
+            <p class="mb-0"><?=$arrVal['description']?></p>
+            <a class="link-offset-3 mb-0" href="#"><?=$arrVal['price']?></a>
         <?php
         }
         ?>
@@ -104,9 +104,9 @@
                 $arrVal = array_values($value);
                 ?>
                 <div class="container text-white" style='background-color: <?=$colorBeggar?>'>
-                    <h2 class="mb-0"><?=$arrVal[0]?></h2>
-                    <p class="mb-0"><?=$arrVal[1]?></p>
-                    <a class="link-offset-3 mb-0 text-white" href="#"><?=$arrVal[2]?></a>
+                    <h2 class="mb-0"><?=$arrVal['title']?></h2>
+                    <p class="mb-0"><?=$arrVal['description']?></p>
+                    <a class="link-offset-3 mb-0 text-white" href="#"><?=$arrVal['price']?></a>
                 </div>
                 <br>   
                 <?php
