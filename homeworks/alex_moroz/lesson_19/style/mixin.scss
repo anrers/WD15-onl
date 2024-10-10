@@ -1,0 +1,13 @@
+@mixin font($font-size : 18px, $weight : 400, $line-height : 24px, $color : black)
+{
+  font: {
+    size: $font-size;
+    weight: $weight;
+  }
+  line-height: $line-height;
+  color: $color;
+}
+
+@mixin animation($property: all, $duration: .3s, $type: linear) {
+  transition: $property $duration $type;
+}
