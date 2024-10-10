@@ -1,0 +1,74 @@
+@import '_reset';
+@import 'vars';
+@import 'mixin';
+
+.payment-form {
+  margin-top: 80px;
+}
+
+.header {
+  @include font(22px, 600, 26px);
+  margin-bottom: 30px;
+}
+
+.details {
+margin-bottom: 80px;
+display: grid;
+grid-template-rows: repeat(2, 1fr);
+gap: 20px;
+
+&__payment {
+grid-template-columns: repeat(4, 1fr);
+
+  .details__item_union_first_row_columns {
+    grid-column: 1 / 5;
+  }
+
+  .details__item_union_card_number_columns {
+    grid-column: 1 / 3;
+  }
+}
+
+  &__billing {
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 30px;
+}
+}
+
+.button-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+
+  .button_align-left {
+    grid-column: 2 / 3;
+  }
+
+  button {
+    text-align: center;
+    width: 100%;
+    background-color: $button-color;
+    color: $button-text-color;
+    border-radius: 5px;
+    padding: 20px;
+    border: none;
+    cursor: pointer;
+    @include animation();
+  
+    &:hover {
+      background-color: $button-hover-color;
+    }
+  
+    &:active {
+      box-shadow: inset 0px 0px 20px $button-active-shadow-color;
+      background-color: $button-active-color;
+    }
+  }
+}
+  
+  .form__wrapper {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 15px;
+    margin: 0 auto;
+  }
