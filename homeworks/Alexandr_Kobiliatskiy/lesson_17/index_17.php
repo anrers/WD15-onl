@@ -84,11 +84,10 @@
     <div class="container bg-success-subtle">
         <?php
         foreach ($productArr as $value) {
-            $arrVal = array_values($value);
             ?>
-            <h2 class="mb-0"><?=$arrVal['title']?></h2>
-            <p class="mb-0"><?=$arrVal['description']?></p>
-            <a class="link-offset-3 mb-0" href="#"><?=$arrVal['price']?></a>
+            <h2 class="mb-0"><?=$value['title']?></h2>
+            <p class="mb-0"><?=$value['description']?></p>
+            <a class="link-offset-3 mb-0" href="#"><?=$value['price']?></a>
         <?php
         }
         ?>
@@ -101,12 +100,11 @@
         <?php
             foreach ($productArr as $value) {
                 $value['price'] < 2000000 ? $colorBeggar = 'red' : $colorBeggar = 'green';
-                $arrVal = array_values($value);
                 ?>
                 <div class="container text-white" style='background-color: <?=$colorBeggar?>'>
-                    <h2 class="mb-0"><?=$arrVal['title']?></h2>
-                    <p class="mb-0"><?=$arrVal['description']?></p>
-                    <a class="link-offset-3 mb-0 text-white" href="#"><?=$arrVal['price']?></a>
+                    <h2 class="mb-0"><?=$value['title']?></h2>
+                    <p class="mb-0"><?=$value['description']?></p>
+                    <a class="link-offset-3 mb-0 text-white" href="#"><?=$value['price']?></a>
                 </div>
                 <br>   
                 <?php
