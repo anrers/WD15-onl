@@ -31,19 +31,28 @@ header("location: " . $page);
 function validateUserDataFields($userData, $formErrors): array
 {
     $errorsArray = [];
+
     foreach ($formErrors as $key => $value) {
+
+        //check required field is presented and is filled
         if (empty($userData[$key]) && $value['required'] || !$userData) {
             addError($errorsArray, $key, 'required', "Поле должно быть заполнено.");
-        } else {
-            if (mb_strlen($userData[$key]) < $value['minLength'] || mb_strlen($userData[$key]) > $value['maxLength']) {
-                addError($errorsArray, $key, 'length', "Длина поля должна быть от " . $value['minLength'] . " до " . $value['maxLength'] . " букв.");
+            continue;
+        }
+
+        //check length
+        if (mb_strlen($userData[$key]) < $value['minLength'] || mb_strlen($userData[$key]) > $value['maxLength']) {
+            addError($errorsArray, $key, 'length', "Длина поля должна быть от " . $value['minLength'] . " до " . $value['maxLength'] . " букв.");
+        }
+
+        //check pattern match
+        if (!preg_match($value['pattern'], htmlspecialchars($userData[$key], ENT_QUOTES, 'UTF-8'))) {
+            if ($key != "email") {
+                addError($errorsArray, $key, 'pattern', "В поле должны быть введены только буквы.");
+                continue;
             }
-            $regex = $value['pattern'];
-            if (!preg_match($regex, htmlspecialchars($userData[$key], ENT_QUOTES,'UTF-8'))) {
-                if ($key != "email") {
-                    addError($errorsArray, $key, 'pattern', "В поле должны быть введены только буквы.");
-                } else {
-                    addError($errorsArray, $key, 'pattern', " Email: 
+
+            addError($errorsArray, $key, 'pattern', " Email: 
                         <ul>
                             <li> <b>не должен</b> начинаться cо знака \"@ \"</li>
                             <li> <b>не должно</b> быть пробелов</li>
@@ -52,10 +61,9 @@ function validateUserDataFields($userData, $formErrors): array
                             <li> после знака \"@\" <b>должны</b> быть только латинские буквы и точка.</li>
                             <li> домен <b>должен</b> быть от 2 до 6 символов.</li>
                         </ul>");
-                }
-            }
         }
     }
+
     return $errorsArray;
 }
 
