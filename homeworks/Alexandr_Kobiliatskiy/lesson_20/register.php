@@ -6,9 +6,9 @@ if (!empty($_POST['exampleInputName']) and !empty($_POST['exampleInputSurname'])
     } else {
         $_SESSION['result'] = 0;
     }
-    header("location: https://homework-lesson-20/index_20-1.php");
+    header("location: https://homework-lesson-20/index_20.php");
     die;
 } else {
     $_SESSION['result'] = 0;
-    header("location: https://homework-lesson-20/index_20-1.php");
+    header("location: https://homework-lesson-20/index_20.php");
 }

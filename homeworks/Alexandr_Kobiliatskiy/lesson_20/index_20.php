@@ -17,7 +17,7 @@
 <body>
 <div class="container-fluid bg-body-secondary p-4">
     <div class="container bg-dark-subtle p-3 rounded-2">
-        <form action="logic/register-1.php" method="post">
+        <form action="register.php" method="post">
             <div class="mb-3">
                 <label for="exampleInputName" class="form-label">Имя</label>
                 <input type="text" class="form-control" id="exampleInputName" aria-describedby="namelHelp"
