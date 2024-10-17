@@ -15,10 +15,12 @@
 
     //Напишите PHP цикл, который выводит ненумерованный список из 10 пунктов.
     echo "Задание 2" . PHP_EOL;
+    echo "<ul>";
     $l = 0;
     while ($l++ < 10) {
         echo "<li>$l-й пункт</li>" . PHP_EOL;
     }
+    echo "</ul>";
     //Создайте массив из 100 случайных чисел.
     echo "Задание 3" . PHP_EOL;
     $arrWithRandom = [];
@@ -33,9 +35,9 @@
         echo $arrWithRandom[$i] . PHP_EOL;
         $i = ++$i;
     }
-    echo "Задание 4, Вариант For" . PHP_EOL;
-    for ($i = 0; $i < 100; $i++) {
-        echo $arrWithRandom[$i] . PHP_EOL;
+    echo "Задание 4, Вариант Foreach" . PHP_EOL;
+    foreach ($arrWithRandom as $num) {
+    echo $num . PHP_EOL;
     }
 
 
@@ -65,16 +67,10 @@
             'price' => 200
         ]
     ];
-    foreach ($newArr as $key => $value) {
-        foreach ($value as $k => $v) {
-            if ($k == 'title') {
-                echo "<h2>$v</h2>" . PHP_EOL;
-            } elseif ($k == 'description') {
-                echo "<p>$v</p>" . PHP_EOL;
-            } else {
-                echo "<a>$v</a>" . PHP_EOL;
-            }
-        }
+    foreach ($newArr as $key) {
+        echo "<h2>{$key['title']}</h2>";
+        echo "<p>{$key['description']}</p>";
+        echo "<a href='#'>{$key['price']}</a>";
     }
     //При выводе элементов из предыдущего задания покрасьте фон элементов ниже определенной цены в отличный от других цвет
     echo "Задание 7" . PHP_EOL;
@@ -103,8 +99,10 @@
     }
     var_dump($arrWithRandomValues) . PHP_EOL;
 
-    for ($i = 0; $arrWithRandomValues[$i] < 72; $i++) {
-        $newArrWithRandomValues[] = $arrWithRandomValues[$i];
+    foreach  ($arrWithRandomValues as $val) {
+        if ($val < 72) {
+            $newArrWithRandomValues[] = $val;
+        }
     }
     var_dump($newArrWithRandomValues);
     // 9.	Создайте цикл, который выводит числа то 0 до 100 в HTML-элементах div; окраска HTML-элементов должна чередоваться («зебра»).
