@@ -31,7 +31,7 @@ while ($line = fgets($fileData)) {
 <!--    Форма должна содержать поля "Имя", "Фамилия" и "Email". После записи данных в файл, выведите сообщение об успешной записи данных.-->
     <h2> 2. Записать данные из формы в файл "data.txt". Вывести сообщение об успешной записи данных. </h2>
 
-<?php $isFormedFilledCorrectly = isset($_GET['success']) ?? $_GET['success'] === true;
+<?php $isFormedFilledCorrectly = isset($_GET['success']) && $_GET['success'] == true;
 
 if (!$isFormedFilledCorrectly) {
     $errors = $_SESSION["validationErrors"] ?? null;

@@ -10,12 +10,3 @@ function mapped_implode($array, $separator = ', ', $innerSeparator = ': '): stri
         )
     );
 }
-
-function mapped_implode2($array, $separator = ', ', $innerSeparator = ': '): string
-{
-    $resultArray = [];
-    foreach ($array as $key => $value) {
-        $resultArray[] = implode($innerSeparator, [$key, $value]);
-    }
-    return implode($separator, $resultArray);
-}
