@@ -12,17 +12,17 @@
         <div>
             <label for="firstName">First name:</label><br>
             <input type="text" id="firstName" name="firstName" value=""
-                pattern="^[A-Za-zÀ-ÖØ-öø-ÿ]+(?:['-][A-Za-zÀ-ÖØ-öø-ÿ]+)*$">
+                pattern="#^[A-Za-zÀ-ÖØ-öø-ÿ]+(?:['-][A-Za-zÀ-ÖØ-öø-ÿ]+)*$#">
         </div><br>
         <div>
             <label for="lastName">Last name:</label><br>
             <input type="text" id="lastName" name="lastName" value=""
-                pattern="^[A-Za-zÀ-ÖØ-öø-ÿ]+(?:['-][A-Za-zÀ-ÖØ-öø-ÿ]+)*(?:\s[A-Za-zÀ-ÖØ-öø-ÿ]+(?:['-][A-Za-zÀ-ÖØ-öø-ÿ]+)*)*$">
+                pattern="#^[A-Za-zÀ-ÖØ-öø-ÿ]+(?:['-][A-Za-zÀ-ÖØ-öø-ÿ]+)*(?:\s[A-Za-zÀ-ÖØ-öø-ÿ]+(?:['-][A-Za-zÀ-ÖØ-öø-ÿ]+)*)*$#">
         </div><br>
         <div>
             <label for="email">Email:</label><br>
             <input type="email" id="email" name="email" value=""
-                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                pattern="#^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$#">
         </div><br>
         <div>
             <label for="formApproval">Please approve the form</label>
