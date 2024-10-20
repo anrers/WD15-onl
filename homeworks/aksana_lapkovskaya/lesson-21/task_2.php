@@ -1,44 +1,55 @@
 <?php
+function validateField($field, $fieldName, $minLength = 2) {
+    if (empty($field)) {
+        return "$fieldName is required.";
+    } else {
+        $sanitizedField = htmlspecialchars(trim($field));
+        if (strlen($sanitizedField) < $minLength) {
+            return "$fieldName must be at least $minLength characters long.";
+        }
+    }
+    return null;
+}
+
+function validateEmail($email) {
+    if (empty($email)) {
+        return 'Email is required.';
+    } else {
+        $sanitizedEmail = filter_var(trim($email), FILTER_SANITIZE_EMAIL);
+        if (!filter_var($sanitizedEmail, FILTER_VALIDATE_EMAIL)) {
+            return 'Invalid email format.';
+        }
+    }
+    return null;
+}
+
+function saveDataToFile($firstName, $lastName, $email, $fileName = "data.txt") {
+    $file = fopen($fileName, "a");
+    fwrite($file, "$firstName,$lastName,$email\n");
+    fclose($file);
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errors = [];
 
-    if (empty($_POST['first_name'])) {
-        $errors[] = 'First name is required.';
-    } else {
-        $first_name = htmlspecialchars(trim($_POST['first_name']));
-        if (strlen($first_name) < 2) {
-            $errors[] = 'First name must be at least 2 characters long.';
-        }
-    }
+    $firstNameError = validateField($_POST['first_name'], 'First name');
+    $lastNameError = validateField($_POST['last_name'], 'Last name');
+    $emailError = validateEmail($_POST['email']);
 
-    if (empty($_POST['last_name'])) {
-        $errors[] = 'Last name is required.';
-    } else {
-        $last_name = htmlspecialchars(trim($_POST['last_name']));
-        if (strlen($last_name) < 2) {
-            $errors[] = 'Last name must be at least 2 characters long.';
-        }
-    }
-
-    if (empty($_POST['email'])) {
-        $errors[] = 'Email is required.';
-    } else {
-        $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errors[] = 'Invalid email format.';
-        }
-    }
+    if ($firstNameError) $errors[] = $firstNameError;
+    if ($lastNameError) $errors[] = $lastNameError;
+    if ($emailError) $errors[] = $emailError;
 
     if (!isset($_POST['agreement'])) {
         $errors[] = 'You must agree to the terms and conditions.';
     }
 
     if (empty($errors)) {
-        $file = fopen("data.txt", "a");
+        $firstName = htmlspecialchars(trim($_POST['first_name']));
+        $lastName = htmlspecialchars(trim($_POST['last_name']));
+        $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
 
-        fwrite($file, "$first_name,$last_name,$email\n");
-
-        fclose($file);
+        saveDataToFile($firstName, $lastName, $email);
 
         echo "Data successfully written to data.txt!";
     } else {
