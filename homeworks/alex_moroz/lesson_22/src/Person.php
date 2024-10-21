@@ -48,7 +48,7 @@ class Person
         $this->sex = $sex;
     }
 
-    function isAdult(): bool {
+    public function isAdult(): bool {
         return $this->getAge() >= 18;
     }
 }
