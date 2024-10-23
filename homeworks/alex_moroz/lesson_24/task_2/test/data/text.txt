@@ -1,0 +1,4 @@
+str_word_count (function count function name as 3 words, can be differed from word)
+Counts the number of words inside string.
+If the optional format is not specified, then the return value will be an integer representing the number of words found.
+In the event the format is specified, the return value will be an array, content of which is dependent on the format.
