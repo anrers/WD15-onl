@@ -1,11 +1,13 @@
 <?php
 
 require_once 'Permission.php';
+
 class Role
 {
     private array $permissions;
+
     public function __construct(
-        private string  $name,
+        private string $name,
     )
     {
     }
@@ -14,16 +16,20 @@ class Role
     {
         return $this->name;
     }
-    public function getPermissions(): array {
+
+    public function getPermissions(): array
+    {
         return $this->permissions;
     }
+
     public function addPermissions($permission): void
     {
-        $this->permissions[]= $permission;
+        $this->permissions[] = $permission;
     }
+
     public function removePermissions($permission): void
     {
-       unset($this->permissions[array_search($permission,$this->permissions)]);
+        unset($this->permissions[array_search($permission, $this->permissions)]);
     }
 }
 

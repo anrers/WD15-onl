@@ -53,12 +53,12 @@ class Vehicle
 
     public function start()
     {
-        echo "Запуск двигателя" .PHP_EOL;
+        echo "Запуск двигателя" . PHP_EOL;
     }
 
     public function stop()
     {
-        echo "Остановка двигателя" .PHP_EOL;
+        echo "Остановка двигателя" . PHP_EOL;
     }
 
     public function vehicleInfo()

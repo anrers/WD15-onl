@@ -36,6 +36,6 @@ $marketingDepEmployee = new Employee('Marketing', 'asa2va@gmail.com', '123', $ma
 
 $accessCheck = new AccessControl($usersRoles, $permissions);
 
-echo ($accessCheck->checkAccess($itDepEmployee, $secondAction) ? 'Доступ предоставлен' : 'Доступ заблокирован'). PHP_EOL;
-echo ($accessCheck->checkAccess($salesDepEmployee, $secondAction) ? 'Доступ предоставлен' : 'Доступ заблокирован'). PHP_EOL;
-echo ($accessCheck->checkAccess($marketingDepEmployee, $secondAction) ? 'Доступ предоставлен' : 'Доступ заблокирован'). PHP_EOL;
+echo ($accessCheck->checkAccess($itDepEmployee, $secondAction) ? 'Доступ предоставлен' : 'Доступ заблокирован') . PHP_EOL;
+echo ($accessCheck->checkAccess($salesDepEmployee, $secondAction) ? 'Доступ предоставлен' : 'Доступ заблокирован') . PHP_EOL;
+echo ($accessCheck->checkAccess($marketingDepEmployee, $secondAction) ? 'Доступ предоставлен' : 'Доступ заблокирован') . PHP_EOL;
