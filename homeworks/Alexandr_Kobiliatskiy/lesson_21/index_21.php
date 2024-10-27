@@ -56,7 +56,6 @@
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                            name="exampleInputEmail" required>
                     <div id="emailHelp" class="form-text">Мы никогда никому не передадим вашу электронную почту.
-                        Наверное...
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Отправить</button>
