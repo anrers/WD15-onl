@@ -35,14 +35,13 @@
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                        name="exampleInputEmail" required>
                 <div id="emailHelp" class="form-text">Мы никогда никому не передадим вашу электронную почту.
-                    Наверное...
                 </div>
             </div>
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1" name="exampleCheck">
                 <label class="form-check-label" for="exampleCheck">Я согласен попрощаться с конфиденциальностью</label>
             </div>
-            <button type="submit" class="btn btn-primary">Отправить</button>
+            <button type="submit" class="btn btn-primary">Отправить </button>
         </form>
     </div>
 
