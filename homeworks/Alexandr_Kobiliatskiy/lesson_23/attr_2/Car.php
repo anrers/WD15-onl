@@ -1,0 +1,32 @@
+<?php
+require_once 'C:\OSPanel\home\homework-23\attraction_2\Vehicle.php';
+
+class Car extends Vehicle
+{
+    public function __construct
+    (
+        string $name,
+        string $model,
+        string $color,
+        int $wheelCount,
+        int $maxSpeed,
+
+        public string $typeOfBodies,
+        public int $airbagCount,
+    )
+    {
+        parent::__construct
+        (
+            $name,
+            $model,
+            $color,
+            $wheelCount,
+            $maxSpeed,
+        );
+    }
+
+    public function getAll()
+    {
+        return "$this->name, $this->model, $this->color, $this->wheelCount, $this->maxSpeed, $this->typeOfBodies, $this->airbagCount";
+    }
+}
