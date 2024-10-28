@@ -6,18 +6,13 @@ use Interfaces\Products\ProductInterface;
 
 abstract class AbstractProduct implements ProductInterface
 {
-    private string $id;
-    private string $name;
-    private float $price;
     private int $benefit = 20;
 
     public function __construct(
-        string $id,
-        string $name,
-        float $price,
+        private string $id,
+        private string $name,
+        private float $price,
     ) {
-        $this->id = $id;
-        $this->name = $name;
         if ($price <= 0 ) {
             echo "Price cant be less than 0. For current " . get_class($this) . " with id={" . $id . "} price automatically set to 0.";
             $price = 0;

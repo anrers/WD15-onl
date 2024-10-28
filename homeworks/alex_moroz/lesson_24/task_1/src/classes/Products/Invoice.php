@@ -4,15 +4,12 @@ namespace Products;
 
 class Invoice extends Product
 {
-    private string $customer;
     private array $products;
 
     public function __construct(
-        string $id,
-        string $customer
+        private string $id,
+        private string $customer
     ) {
-        $this->setId($id);
-        $this->customer = $customer;
     }
 
     public function calculateProfit(): float
