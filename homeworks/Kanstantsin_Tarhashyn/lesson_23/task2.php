@@ -1,119 +1,137 @@
 <?php
 
-class Vehicle {
+class Vehicle 
+{
     public function __construct(
         public $make,
         public $model,
         public $year,
         public $isRunning = false,
-    ){}
+    ) {}
 
-    public function start() {
+    public function start()
+    {
         $this->isRunning = true;
         echo "{$this->make} {$this->model} is now running.\n";
     }
 
-    public function stop() {
+    public function stop()
+    {
         $this->isRunning = false;
         echo "{$this->make} {$this->model} has stopped.\n";
     }
 }
 
-class Car extends Vehicle {
+class Car extends Vehicle
+{
     public function __construct(
         public $make,
         public $model,
         public $year,
         public $doors,
         public $maxSpeed,
-    ){
+    ) {
         parent::__construct($make, $model, $year);
     }
 
-    public function getDoors() {
+    public function getDoors()
+    {
         return $this->doors;
     }
 
-    public function getMaxSpeed() {
+    public function getMaxSpeed()
+    {
         return $this->maxSpeed;
     }
 }
 
-class Motorcycle extends Vehicle {
+class Motorcycle extends Vehicle 
+{
     public function __construct(
         public $make,
         public $model,
         public $year,
         public $type,
         public $maxSpeed,
-    ){
+    ) {
         parent::__construct($make, $model, $year);
     }
 
-    public function getType() {
+    public function getType()
+    {
         return $this->type;
     }
 
-    public function getMaxSpeed() {
+    public function getMaxSpeed()
+    {
         return $this->maxSpeed;
     }
 }
 
-class Truck extends Vehicle {
+class Truck extends Vehicle
+{
     public function __construct(
         public $make,
         public $model,
         public $year,
         public $capacity,
         public $axles,
-    ){
+    ) {
         parent::__construct($make, $model, $year);
     }
 
-    public function getCapacity() {
+    public function getCapacity()
+    {
         return $this->capacity;
     }
 
-    public function getAxles() {
+    public function getAxles()
+    {
         return $this->axles;
     }
 }
 
-class Bus extends Vehicle {
+class Bus extends Vehicle 
+{
     public function __construct(
         public $make,
         public $model,
         public $year,
         public $seatingCapacity,
         public $routeNumber,
-    ){
+    ) {
         parent::__construct($make, $model, $year);
     }
 
-    public function getSeatingCapacity() {
+    public function getSeatingCapacity()
+    {
         return $this->seatingCapacity;
     }
 
-    public function getRouteNumber() {
+    public function getRouteNumber()
+    {
         return $this->routeNumber;
     }
 }
 
-class Bicycle extends Vehicle {
+class Bicycle extends Vehicle
+{
     public function __construct(
         public $make,
         public $model,
         public $year,
         public $gearCount,
-    ){
+    ) {
         parent::__construct($make, $model, $year);
     }
 
-    public function brake() {
+    public function brake()
+    {
         echo "{$this->make} {$this->model} is braking.\n";
     }
 
-    public function getGearCount() {
+    public function getGearCount()
+    {
         return $this->gearCount;
     }
 }

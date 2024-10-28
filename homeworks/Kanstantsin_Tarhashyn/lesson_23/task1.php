@@ -1,101 +1,113 @@
 <?php
 
-class Employee  {
+class Employee
+{
     public function __construct(
         public $name,
         public $email,
         public $password,
         public $department,
         public $role
-    ){}
+    ) {}
 
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
-    public function getPassword() {
+    public function getPassword()
+    {
         return $this->password;
     }
 
-    public function getDepartment() {
+    public function getDepartment()
+    {
         return $this->department;
     }
 
-    public function getRole() {
+    public function getRole()
+    {
         return $this->role;
     }
 }
 
-class Department {
+class Department
+{
     public function __construct(
         public $name,
-    ){}
+    ) {}
 
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 }
 
-class Permission {
+class Permission 
+{
     public function __construct(
         public $id,
         public $name,
-    ){}
+    ) {}
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 }
 
-class Role {
+class Role
+{
     public $permissions = [];
 
     public function __construct(
         public $name,
-    ){}
+    ) {}
 
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function getPermissions() {
+    public function getPermissions()
+    {
         return $this->permissions;
     }
 
-    public function addPermission($permission) {
-        if (!in_array($permission, $this->permissions, true)) {
-            $this->permissions[] = $permission;
-        } 
+    public function addPermission($permission)
+    {
+        $this->permissions[$permission->getId()] = $permission;
     }
 
-    public function removePermission($permission) {
-        $index = array_search($permission, $this->permissions, true);
-
-        if ($index !== false) {
-            unset($this->permissions[$index]);
-            $this->permissions = array_values($this->permissions);
-        }
+    public function removePermission($permission)
+    {
+        unset($this->permissions[$permission->getId()]);
     }
 }
 
-class AccessControl {
+class AccessControl
+{
     public function __construct(
         public $roles = [],
         public $permissions = [],
-    ){}
+    ) {}
 
-    public function checkAccess($employee, $permission) {
+    public function checkAccess($employee, $permission)
+    {
         $role = $employee->getRole();
 
-        foreach ($role->getPermissions() as $perm) {
+        foreach ($role->getPermissions() as $perm)
+        {
             if ($perm->getName() === $permission->getName()) {
                 return true;
             }
@@ -113,9 +125,13 @@ $adminUser = new Role ('Admin');
 $adminUser->addPermission($refundPermission);
 $adminUser->addPermission($newSalePermission);
 $adminUser->addPermission($checkoutPermission);
+$adminUser->removePermission($newSalePermission);
+#var_dump($adminUser->getPermissions());
 
 $subUser = new Role ('Sub-user');
 $subUser->addPermission($checkoutPermission);
+$subUser->addPermission($refundPermission);
+$subUser->removePermission($checkoutPermission);
 
 $hrDepartment = new Department ('HR');
 $qaDepartment = new Department ('QA');
@@ -147,4 +163,5 @@ echo "Does {$qaPerson->getName()} from {$qaDepartment->getName()} department hav
 echo "Does {$devPerson->getName()} from {$devDepartment->getName()} department have permissions to perform Refund? " . ($accessControl->checkAccess($devPerson, $refundPermission) ? 'Yes' : 'No') . "\n";
 echo "Does {$devPerson->getName()} from {$devDepartment->getName()} department have permissions to perform New Sale? " . ($accessControl->checkAccess($devPerson, $newSalePermission) ? 'Yes' : 'No') . "\n";
 echo "Does {$devPerson->getName()} from {$devDepartment->getName()} department have permissions to perform Check Out? " . ($accessControl->checkAccess($devPerson, $checkoutPermission) ? 'Yes' : 'No') . "\n";
+
 
