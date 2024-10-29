@@ -3,19 +3,28 @@ require_once 'C:\OSPanel\home\homework-23\attr_1\Permission.php';
 
 class Role
 {
-    public $rolesNameOnly =['Dominant male', 'Manager', 'Chief accountant', 
-        'Accountant', 'Head of HR Department', 'HR', 'Head of warehouse', 'Storekeeper', 'Head of garage', 'Mechanic',
-        'Head of IT Department', 'Unhappy of IT Department'];
+    public $rolesNameOnly =[
+        'Dominant male', 
+        'Manager', 
+        'Chief accountant', 
+        'Accountant', 
+        'Head of HR Department', 
+        'HR', 
+        'Head of warehouse', 
+        'Storekeeper', 
+        'Head of garage', 
+        'Mechanic',
+        'Head of IT Department', 
+        'Unhappy of IT Department'
+    ];
 
-    public function __construct
-    (
+    public function __construct(
         public int $id,
         public string $name,
         public array $permissions,
 
-    )
-    {
-        if(!in_Array($this->name, $this->rolesNameOnly)) {
+    ) {
+        if (!in_Array ($this->name, $this->rolesNameOnly)) {
             echo "Введите правильное название отдела";
             die;
         }
@@ -40,12 +49,12 @@ class Role
 
     public function addPermission($objectPermission)
     {
-        array_push($this->permissions, $objectPermission);
+        array_push ($this->permissions, $objectPermission);
     }
 
     public function removePermission($objectPermission)
     {
-       unset($this->permissions[array_search($objectPermission, $this->permissions)]);
+       unset($this->permissions[array_search ($objectPermission, $this->permissions)]);
     }
 }
 

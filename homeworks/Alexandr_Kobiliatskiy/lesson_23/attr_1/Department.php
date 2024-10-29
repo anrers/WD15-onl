@@ -1,14 +1,10 @@
 <?php
 class Department
 {
-    public function __construct
-    (
+    public function __construct(
         protected string $id,
         protected string $name,
-    )
-    {
-
-    }
+    ) {}
 
     public function getId() 
     {

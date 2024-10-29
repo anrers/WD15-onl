@@ -2,8 +2,7 @@
 require_once 'C:\OSPanel\home\homework-23\attraction_2\Vehicle.php';
 class Motorcycle extends Vehicle
 {
-    public function __construct
-    (
+    public function __construct(
         string $name,
         string $model,
         string $color,
@@ -12,10 +11,8 @@ class Motorcycle extends Vehicle
 
         public int $weight,
         public string $type,
-    )
-    {
-        parent::__construct
-        (
+    ) {
+        parent::__construct(
             $name,
             $model,
             $color,

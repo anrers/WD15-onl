@@ -1,17 +1,13 @@
 <?php
 class Vehicle 
 {
-    public function __construct
-    (
+    public function __construct(
         public string $name,
         public string $model,
         public string $color,
         public int $wheelCount,
         public int $maxSpeed,
-    )
-    {
-
-    }
+    ) {}
 
     public function getAll()
     {
