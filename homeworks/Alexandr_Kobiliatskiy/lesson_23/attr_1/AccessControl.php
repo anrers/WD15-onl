@@ -33,7 +33,7 @@ class AccessControl
                     $permissionObjecn = $PermissionObjects; //Нашли объект разрешения
             }
         }
-        if(in_Array ($permissionObjecn, $roleObject->permissions)) {
+        if (in_Array ($permissionObjecn, $roleObject->permissions)) {
             return true;
         } else {
             return false;
