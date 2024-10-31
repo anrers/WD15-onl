@@ -13,7 +13,7 @@ class Cart
 
     public function addProductToCart(Product $product): void
     {
-        if (array_search($product, $this->products)) {
+        if (isset($this->products[$product->getId()])) {
             $this->changeProductQuantityInCart($product, $product->getQuantity() * 2);
             echo 'Product with id {' . $product->getId() . '} already added. Quantity increased by product quantity value.';
             return;
@@ -29,16 +29,15 @@ class Cart
             return;
         }
 
-        if (array_search($product, $this->products)) {
+        if (isset($this->products[$product->getId()])) {
             $this->products[$product->getId()]->setQuantity($quantity);
         }
     }
 
     public function removeProductFromCart(Product $product): void
     {
-        if (array_search($product, $this->products)) {
-            unset($this->products[array_search($product, $this->products)]);
-            $this->products = array_values($this->products);
+        if (isset($this->products[$product->getId()])) {
+            unset($this->products[$product->getId()]);
             return;
         }
 

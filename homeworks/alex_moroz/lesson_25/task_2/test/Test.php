@@ -12,10 +12,10 @@ $author_1 = new Author(1, 'Corelli');
 $author_2 = new Author(2, 'Keyes');
 $author_3 = new Author(3, 'McEwan');
 
-$book_1 = new Book('The Sorrows of Satan', $author_1->getId(), true);
-$book_2 = new Book('Flowers for Algernon', $author_2->getId(), true);
-$book_3 = new Book('The Minds of Billy Milligan', $author_2->getId(), false);
-$book_4 = new Book('Atonement', $author_3->getId(), true);
+$book_1 = new Book(1,'The Sorrows of Satan', $author_1->getId(), true);
+$book_2 = new Book(2,'Flowers for Algernon', $author_2->getId(), true);
+$book_3 = new Book(3,'The Minds of Billy Milligan', $author_2->getId(), false);
+$book_4 = new Book(4,'Atonement', $author_3->getId(), true);
 $library = new Library();
 
 assert(0 == count($library->getBooks()));
