@@ -4,22 +4,28 @@ require_once 'Order.php';
 
 class Invoice extends AbstactProduct
 {
-    private string $invoiceId;
-    private string $customer;
-    private AbstactProduct $product;
-    private $products = [];
-
-    public function __construct($invoiceId, $customer, AbstactProduct $product)
-    {
-        parent::__construct($product->id, $product->name, $product->price);
-        $this->invoiceId = $invoiceId;
-        $this->customer = $customer;
+    public function __construct(
+        int $id,
+        string $name,
+        float $price,
+        private int $invoiceId, 
+        private string $customer,
+        private array $products,
+        private AbstactProduct $product,
+    ) {
+        parent::__construct($id, $name, $price);
     }
+
 
     public function addProduct(AbstactProduct $product, $quantity)
     {
-        $this->products[] = ['product' => $product, 'quantity' => $quantity];
-        var_dump($this->products);
+        $this->products[$product->getId()] = ['id' => $product->getId(),'product' => $product, 'quantity' => $quantity];
+        print_r($this->products[$product->getId()]);
+    }
+
+    public function getProduct()
+    {
+        return $this->products;
     }
 
     public function calculateProfit()

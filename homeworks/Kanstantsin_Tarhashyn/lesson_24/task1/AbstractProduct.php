@@ -14,4 +14,9 @@ abstract class AbstactProduct
     }
 
     abstract public function calculateProfit();
+
+    public function getId()
+    {
+        return $this->id;
+    }
 }
