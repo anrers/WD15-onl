@@ -6,21 +6,19 @@ class Cart
 
     public function addProduct(Product $product)
     {
-        foreach ($this->products as $existingProduct) {
-            if ($existingProduct->getName() === $product->getName()) {
-                $existingProduct->setQuantity($existingProduct->getQuantity() + $product->getQuantity());
-                return;
-            }
+        if (isset($this->products[$product->getName()])) {
+            $existingProduct = $this->products[$product->getName()];
+            $existingProduct->setQuantity($existingProduct->getQuantity() + $product->getQuantity());
+            return;
         }
+
         $this->products[$product->getName()] = $product;
     }
 
     public function removeProduct($productName)
     {
-        foreach ($this->products as $index => $product)
-        {
-            if ($product->getName() === $productName)
-            {
+        foreach ($this->products as $index => $product) {
+            if ($product->getName() === $productName) {
                 unset($this->products[$index]);
                 $this->products = array_values($this->products);
                 return;
@@ -28,23 +26,18 @@ class Cart
         }
     }
 
-    public function updateProductQunatity($productName, $quantity)
+    public function updateProductQunatity(Product $product, $quantity)
     {
-        foreach ($this->products as $product)
-        {
-            if ($product->getName() === $productName)
-            {
-                $product->setQuantity($quantity);
-                return;
-            }
+        if ($this->products[$product->getName()]) {
+            $product->setQuantity($quantity);
+            return;
         }
     }
 
     public function getTotalPrice()
     {
         $total = 0;
-        foreach ($this->products as $product)
-        {
+        foreach ($this->products as $product) {
             $total += $product->getTotalPrice();
         }
         return $total;

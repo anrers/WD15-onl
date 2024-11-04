@@ -6,12 +6,18 @@ class Book
         private string $title,
         private int $author_id,
         private bool $is_available,
+        private int $id
     ) {
     }
 
     public function getTitle()
     {
         return $this->title;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     public function getAuthorId()

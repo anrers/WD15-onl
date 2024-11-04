@@ -5,16 +5,24 @@ require_once 'Library.php';
 
 $author1 = new Author(1, "Greene");
 $author2 = new Author(2, "Rolling");
+$author3 = new Author(3, "Tolkien");
 
-$book1 = new Book("The Laws of Human Nature", 1, true);
-$book2 = new Book("Harry Potter 1", 1, false);
-$book3 = new Book("Harry Potter 2", 2, true);
+$book1 = new Book("The Laws of Human Nature", 1, true, 1);
+$book2 = new Book("Harry Potter 1", 2, false, 2);
+$book3 = new Book("Harry Potter 2", 2, true, 3);
+$book4 = new Book("The Lord of the Rings", 3, true, 4);
 
 $library = new Library();
 $library->addBook($book1);
+$library->addBook($book4);
 $library->addBook($book2);
 $library->addBook($book3);
+print_r($library->getBooks());
 
+$library->removeBook($book2->getId());
+print_r($library->getBooks());
+
+$library->removeBook($book3->getId());
 print_r($library->getBooks());
 
 print_r($library->getAvailableBooks());

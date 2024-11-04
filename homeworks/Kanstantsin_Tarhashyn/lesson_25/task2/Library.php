@@ -8,19 +8,14 @@ class Library
 
     public function addBook(Book $book)
     {
-        $this->books[] = $book;
+        $this->books[$book->getId()] = $book;
     }
 
-    public function removeBook(Book $book)
+    public function removeBook($bookId)
     {
-        foreach ($this->books as $index => $b)
-        {
-            if ($b === $book)
-            {
-                unset($this->books[$index]);
-                $this->books = array_values($this->books);
-                return;
-            }
+        if (isset($this->books[$bookId])) {
+            unset($this->books[$bookId]);
+            return;
         }
     }
 
@@ -32,11 +27,9 @@ class Library
     public function getAvailableBooks()
     {
         $availableBooks = [];
-        foreach ($this->books as $book)
-        {
-            if ($book->isAvailable())
-            {
-                $availableBooks[] = $book;
+        foreach ($this->books as $book) {
+            if ($book->isAvailable()) {
+                $availableBooks[$book->getId()] = $book;
             }
         }
         return $availableBooks;
@@ -44,10 +37,8 @@ class Library
 
     public function getBookByTitle($title)
     {
-        foreach ($this->books as $book)
-        {
-            if ($book->getTitle() === $title)
-            {
+        foreach ($this->books as $book) {
+            if ($book->getTitle() === $title) {
                 return $book;
             }
         }
@@ -57,10 +48,8 @@ class Library
     public function getBooksByAuthor(Author $author)
     {
         $authorBooks = [];
-        foreach ($this->books as $book)
-        {
-            if ($book->getAuthorId() === $author->getId())
-            {
+        foreach ($this->books as $book) {
+            if ($book->getAuthorId() === $author->getId()) {
                 $authorBooks[] = $book;
             }
         }
