@@ -1,6 +1,6 @@
 <?php
-require_once 'C:\OSPanel\home\homework-24\attr_24_1\Order.php';
-require_once 'C:\OSPanel\home\homework-24\attr_24_1\Invoice.php';
+require_once 'Order.php';
+require_once 'Invoice.php';
 
 //Насоздаем экземпляров класса Order
 $orderOne = new Order(1, 'shirt', 20.5, 1, 10);
@@ -14,10 +14,13 @@ $orders = [$orderOne, $orderTwo, $orderThree, $orderFore];
 $invoice = new Invoice(1, 'Alexandr', $orders);
 var_dump($invoice->calculateProfit());
 
-$invoice->removeProduct($orderFore);
+$invoice->removeProduct(); //В новом варианте если не добавляли, то и удалять нечего....
 var_dump($invoice->calculateProfit());
 
 $invoice->addProduct($orderFore);
+var_dump($invoice->calculateProfit());
+
+$invoice->removeProduct();
 var_dump($invoice->calculateProfit());
 
 //Все работает

@@ -1,6 +1,6 @@
 <?php
-require_once 'C:\OSPanel\home\homework-24\attr_24_1\Product.php';
-//Из-за того, что класс класс Product абстрактный свойство id продукта не используется, name и product одно и тоже....
+require_once 'Product.php';
+//Из-за того, что класс Product абстрактный, свойство id продукта не используется, name и product одно и тоже....
 
 class Order extends Product
 {
@@ -14,11 +14,13 @@ class Order extends Product
         parent::__construct($id, $name, $price);
     }
 
-    public function calculateProfit() {
+    public function calculateProfit(): float|int
+    {
         return $this->price * $this->quantity;
     }
 
-    public function quantityChange($newQuantity) {
+    public function quantityChange($newQuantity): void
+    {
         $this->quantity = $newQuantity;
     }
 }

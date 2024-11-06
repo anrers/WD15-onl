@@ -1,5 +1,5 @@
 <?php
-require_once 'C:\OSPanel\home\homework-24\attr_24_1\Product.php';
+require_once 'Product.php';
 
 class Invoice extends Product
 {
@@ -18,15 +18,21 @@ class Invoice extends Product
         return $summ;
     }
 
-    public function addProduct($productObject) {
-        $this->products[] = $productObject;
+    public function addProduct($productObject): void
+    {
+        //$this->products[] = $productObject; //Это решение мне нравится больше потому что при нескольких добавлениях будет перезапись
+        $this->products['addedProduct'] = $productObject;
     }
 
-    public function removeProduct($productObject) {
-            unset($this->products[array_search($productObject, $this->products)]);
+    //public function removeProduct($productObject): void
+    public function removeProduct(): void
+    {
+            //unset($this->products[array_search($productObject, $this->products)]);
+        unset($this->products['addedProduct']);
     }
 
-    public function changeCustomer($newCustomer) {
+    public function changeCustomer($newCustomer): void
+    {
         $this->customer = $newCustomer;
     }
 }
