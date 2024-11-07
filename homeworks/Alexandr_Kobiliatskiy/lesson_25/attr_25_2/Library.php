@@ -1,31 +1,39 @@
 <?php
-require_once 'C:\OSPanel\home\homework-25\attr_25_2\dbLibrary.php';
+
+//require_once 'dbLibrary.php';
+//require_once 'Book.php';
+//require_once 'Author.php';
+
+global $books, $authors;
+require_once 'C:\Users\admin\WD15-onl\homeworks\Alexandr_Kobiliatskiy\lesson_25\attr_25_2\Book.php';
+require_once 'C:\Users\admin\WD15-onl\homeworks\Alexandr_Kobiliatskiy\lesson_25\attr_25_2\Author.php';
+require_once 'C:\Users\admin\WD15-onl\homeworks\Alexandr_Kobiliatskiy\lesson_25\attr_25_2\dbLibrary.php';
 class Library
 {
     public function __construct(
         public array $bookArray,
-        public array $autorArray,
+        public array $authorArray,
     ) {}
 
-        public function addBook(Book $book) {
+        public function addBook(Book $book): void
+        {
             $this->bookArray[] = $book;
         }
-        public function removeBook(string $bookName, string $autorName) {
-            foreach ($this->bookArray as $book) {
-                if ($book->title == $bookName) {
-                    foreach ($this->autorArray as $autor) {
-                        if ($autor->lastName == $autorName) {
-                            unset($this->bookArray[array_search($book, $this->bookArray)]);
-                        }
-                    }
-                    
+        public function removeBook(Book $book): void
+        {
+            foreach ($this->bookArray as $element) {
+                if ($element === $book) {
+                    unset($this->bookArray[array_search($element, $this->bookArray)]);
                 }
             }
         }
-        public function getBooks() {
+
+        public function getBooks(): array
+        {
             return $this->bookArray;
         }
-        public function getAvailableBooks() {
+        public function getAvailableBooks(): array
+        {
             $availableBooks = [];
             foreach ($this->bookArray as $book) {
                 if ($book->isAvailabe == 1) {
@@ -34,7 +42,7 @@ class Library
             }
             return $availableBooks;
         }
-        public function getBookByTitle($title) {
+        public function getBookByTitle(string $title) {
             foreach ($this->bookArray as $book) {
                 if ($book->title == $title) {
                     return $book;
@@ -42,31 +50,35 @@ class Library
             }
         }
 
-        public function getBooksByAuthor($author) {
-            $idAutor = 0;
-            $autorBooks = [];
-            foreach ($this->autorArray as $autor) {
-                if ($autor->lastName == $author) {
-                    $idAutor = $autor->id;
+        public function getBooksByAuthor(string $author): array
+        {
+            $idAuthor = 0;
+            $authorBooks = [];
+            foreach ($this->authorArray as $author) {
+                if ($author->lastName == $author) {
+                    $idAuthor = $author->id;
                 }
             }
             foreach ($this->bookArray as $book) {
-                if ($book->autorId == $idAutor) {
-                    $autorBooks[] = $book;
+                if ($book->authorId == $idAuthor) {
+                    $authorBooks[] = $book;
                 }
             }
-            return $autorBooks;
+            return $authorBooks;
         }
 }
 
-// $bublioteca = new Library($boocs, $autors);
-
-// $bublioteca->addBook(new Book(7, "Сказка о царе Салтане часть 2", 3, 1));
-// var_dump($bublioteca);
-
-// $bublioteca->removeBook("Сказка о царе Салтане часть 2", "Александр Сергеевич Пушкин");
-// var_dump($bublioteca->bookArray);
-
-// var_dump($bublioteca->getAvailableBooks()); 
-// var_dump($bublioteca->getBooksByAuthor('Михаил Юрьевич Лермонтов')); 
+//$library = new Library($books, $authors);
+//
+//$saltan = new Book(7, "Сказка о царе Салтане часть 2", 3, 1);
+//
+// $library->addBook($saltan);
+// var_dump($library);
+//
+// $library->removeBook($saltan);
+//
+// var_dump($library->bookArray);
+//
+// var_dump($library->getAvailableBooks());
+// var_dump($library->getBooksByAuthor('Михаил Юрьевич Лермонтов'));
 

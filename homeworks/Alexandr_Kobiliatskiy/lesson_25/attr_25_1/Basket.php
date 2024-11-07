@@ -4,26 +4,29 @@ require_once 'db.php';
 class Basket
 {
     public function __construct(
-        public array $arrayProducts,
+        public array $productList,
     ) {}
 
-    public function addProduct(Product $arrayProducts) {
-        $this->arrayProducts[] = $arrayProducts;
+    public function addProduct(Product $productList): void
+    {
+        $this->productList[] = $productList;
     }
 
 
-    public function changeQuantityBasket(string $nameProduct, int $quantityProduct) {
-        foreach ($this->arrayProducts as $arrProd) {
+    public function changeQuantityBasket(string $nameProduct, int $quantityProduct): void
+    {
+        foreach ($this->productList as $arrProd) {
             if ($arrProd->getName() == $nameProduct) {
                 $arrProd->changeQuantity($quantityProduct);
             }
         }
     }
 
-    public function removeProduct(string $nameProduct) {
-        foreach ($this->arrayProducts as $arrProd) {
+    public function removeProduct(string $nameProduct): void
+    {
+        foreach ($this->productList as $arrProd) {
             if ($arrProd->getName() == $nameProduct) {
-                unset($this->arrayProducts[array_search($arrProd, $this->arrayProducts)]);
+                unset($this->productList[array_search($arrProd, $this->productList)]);
             }
         }
     }

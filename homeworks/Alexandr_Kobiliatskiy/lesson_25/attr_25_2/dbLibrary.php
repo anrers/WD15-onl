@@ -1,8 +1,8 @@
 <?php
-require_once 'C:\OSPanel\home\homework-25\attr_25_2\Book.php';
-require_once 'C:\OSPanel\home\homework-25\attr_25_2\Author.php';
+require_once 'Book.php';
+require_once 'Author.php';
 
-$boocs = [
+$books = [
     new Book(1, "Герой нашего времени", 1, 1),
     new Book(2, "Демон", 1, 1),
     new Book(3, "Война и мир", 2, 0),
@@ -12,7 +12,7 @@ $boocs = [
 ];
 
 
-$autors = [
+$authors = [
     new Author(1, 'Михаил Юрьевич Лермонтов'),
     new Author(2, 'Лев Николаевич Толстой'),
     new Author(3, 'Александр Сергеевич Пушкин'),

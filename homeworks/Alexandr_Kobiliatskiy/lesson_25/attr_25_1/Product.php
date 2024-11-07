@@ -10,40 +10,49 @@ class Product
         protected int $quantity,
     ) {}
 
-    public function getID() {
+    public function getID(): int
+    {
         return $this->id;
     }
 
-    public function getName() {
+    public function getName(): string
+    {
         return $this->name;
     }
 
-    public function getPrice() {
+    public function getPrice(): float
+    {
         return $this->price;
     }
 
-    public function getDescription() {
+    public function getDescription(): string
+    {
         return $this->description;
     }
 
-    public function getQuantity() {
+    public function getQuantity(): int
+    {
         return $this->quantity;
     }
 
 
-    public function changeName(string $val) {
+    public function changeName(string $val): void
+    {
         $this->name = $val;
     }
 
-    public function changeDescription(string $val) {
+    public function changeDescription(string $val): void
+    {
         $this->description = $val;
     }
 
-    public function changeQuantity(int $val) {
+    public function changeQuantity(int $val): void
+    {
         $this->quantity = $val;
     }
 
-    public function changePrice(int $val) {
+    public function changePrice(int $val): void
+    {
         $this->price = $val;
     }
 }
