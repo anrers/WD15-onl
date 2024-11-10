@@ -13,16 +13,13 @@ class Library
 
     public function addBook(Book $book): void
     {
-        $this->books[] = $book;
+        $this->books[$book->getId()] = $book;
     }
 
-    public function removeBook(Book $book): void
+    public function removeBook(int $id): void
     {
-        foreach ($this->books as $key => $value) {
-            if ($value->getTitle() == $book->getTitle()) {
-                unset($this->books[$key]);
-                return;
-            }
+        if (isset($this->books[$id])) {
+            unset($this->books[$id]);
         }
     }
 
@@ -42,7 +39,7 @@ class Library
         return $availableBooks;
     }
 
-    public function getBookByTitle($title)
+    public function getBookByTitle(string $title)
     {
         foreach ($this->books as $book) {
             if ($book->getTitle() == $title) {
@@ -52,7 +49,7 @@ class Library
         return "Книга не найдена";
     }
 
-    public function getBooksByAuthor($author): string
+    public function getBooksByAuthor(string $author): string
     {
         foreach ($this->books as $book) {
             if ($book->getAuthor() == $author) {

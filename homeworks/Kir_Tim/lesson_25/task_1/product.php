@@ -31,7 +31,7 @@ class Product
         return $this->price;
     }
 
-    public function setQuantity($quantity)
+    public function setQuantity(int $quantity)
     {
         if ($quantity <= 0) {
             return "Количество должно быть больше нуля";

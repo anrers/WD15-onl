@@ -5,8 +5,7 @@ class Order
 {
     public function __construct(
         protected array $products
-    )
-    {
+    ){
     }
 
     public function addProduct(Product $product)
@@ -22,14 +21,14 @@ class Order
         }
     }
 
-    public function removeProduct($productName): void
+    public function removeProduct(string $productName): void
     {
         if (isset($this->products[$productName])) {
             unset($this->products[$productName]);
         }
     }
 
-    public function updateProductQuantity($productName, $quantity): void
+    public function updateProductQuantity(string $productName,int $quantity): void
     {
         if (isset($this->products[$productName])) {
             $this->products[$productName]->setQuantity($quantity);

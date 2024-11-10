@@ -6,8 +6,8 @@ class Book
         public string $title,
         public int    $author_id,
         public bool   $is_available,
-    )
-    {
+        public int    $id
+    ) {
     }
 
     public function getTitle(): string
@@ -23,5 +23,9 @@ class Book
     public function getAuthorId(): int
     {
         return $this->author_id;
+    }
+    public function getId()
+    {
+        return $this->id;
     }
 }
