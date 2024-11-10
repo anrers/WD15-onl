@@ -8,8 +8,7 @@ class Invoice extends AbstractProduct
         protected int    $id,
         protected string $customer,
         protected array  $products,
-    )
-    {
+    ){
     }
 
     public function addProduct($order)

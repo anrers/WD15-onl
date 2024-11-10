@@ -14,7 +14,6 @@ class Product extends AbstractProduct
 
     public function calculateProfit()
     {
-        parent::calculateProfit();
     }
 
     public function getPrice()
