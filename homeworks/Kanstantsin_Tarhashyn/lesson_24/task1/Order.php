@@ -7,7 +7,7 @@ class Order extends AbstactProduct
     private AbstactProduct $product;
     private int $quantity;
 
-    public function __construct($orderId, AbstactProduct $product, $quantity)
+    public function __construct(int $orderId, AbstactProduct $product, int $quantity)
     {
         parent::__construct($product->id, $product->name, $product->price);
         $this->orderId = $orderId;

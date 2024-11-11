@@ -8,7 +8,7 @@ class VideoDocument implements DocumentInterface
     private string $description;
     private int $duration;
 
-    public function __construct($title, $description, $duration)
+    public function __construct(string $title, string $description, int $duration)
     {
         $this->title = $title;
         $this->description = $description;

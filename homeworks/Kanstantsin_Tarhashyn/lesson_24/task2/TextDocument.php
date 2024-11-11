@@ -7,7 +7,7 @@ class TextDocument implements DocumentInterface
     private string $description;
     private int $wordCount;
 
-    public function __construct($title, $description, $wordCount)
+    public function __construct(string $title, string $description, int $wordCount)
     {
         $this->title = $title;
         $this->description = $description;
