@@ -10,26 +10,30 @@ class ImageDocument implements DocumentInterface
         if (!pathinfo($this->linc, PATHINFO_EXTENSION) == 'jpg') {
             echo "Этот файл не изображение";
             die;
-        }   
+        }
     }
 
-    public function getTitle() {
+    public function getTitle(): string
+    {
         return "Для работы с такими файлами нужна сторонняя библиотека";  
-    } 
-    public function getDescription() {
+    }
+
+    public function getDescription(): string
+    {
         return "Этот файл - изображение";
     } 
 
-    public function process() {
+    public function process(): string
+    {
         if (pathinfo($this->linc, PATHINFO_EXTENSION) == 'jpg') {
             return "Этот файл может быть обработан этим классом";
         } else {
-            echo "Этот файл не может быть обработан этим классом";
-        }   
-        
-    } 
+            return "Этот файл не может быть обработан этим классом";
+        }
+    }
  
-    public function getInfo() {
+    public function getInfo(): array
+    {
         $this->file = fopen($this->linc, 'r');
         $info = [
             "Тип файла:" . pathinfo($this->linc, PATHINFO_EXTENSION),
@@ -40,7 +44,8 @@ class ImageDocument implements DocumentInterface
         return $info;
     }
 
-    public function getDimensions() {
+    public function getDimensions(): string
+    {
         return "Когда мы научимся работать с изображениями в PHP эта функция будет выводить размеры изображения";
     }
 }

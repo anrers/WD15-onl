@@ -13,10 +13,12 @@ class VideoDocument implements DocumentInterface
         }   
     }
 
-    public function getTitle() {
+    public function getTitle(): string
+    {
         return "Для работы с такими файлами нужна сторонняя библиотека";  
     } 
-    public function getDescription() {
+    public function getDescription(): string
+    {
         return "Это видеофайл";
     } 
 
@@ -29,7 +31,8 @@ class VideoDocument implements DocumentInterface
         
     } 
  
-    public function getInfo() {
+    public function getInfo(): array
+    {
         $this->file = fopen($this->linc, 'r');
         $info = [
             "Тип файла:" . pathinfo($this->linc, PATHINFO_EXTENSION),
@@ -40,7 +43,8 @@ class VideoDocument implements DocumentInterface
         return $info;
     }
 
-    public function getDuration() {
+    public function getDuration(): string
+    {
         return "Когда мы научимся работать с видеофайлами в PHP эта функция будет выводить длительность";
     }
 }

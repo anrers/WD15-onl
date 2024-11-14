@@ -13,13 +13,15 @@ class TextDocument implements DocumentInterface
         }   
     }
 
-    public function getTitle() {
+    public function getTitle(): false|string
+    {
         $this->file = fopen($this->linc, 'r');
         $title = fgets($this->file);
         fclose($this->file);
         return $title;  
     } 
-    public function getDescription() {
+    public function getDescription(): string
+    {
         return "Это текстовый файл";
     } 
     public function process() {
@@ -30,7 +32,8 @@ class TextDocument implements DocumentInterface
         }   
         
     } 
-    public function getInfo() {
+    public function getInfo(): array
+    {
         $this->file = fopen($this->linc, 'r');
         $title = fgets($this->file);
         $info = [
@@ -42,7 +45,8 @@ class TextDocument implements DocumentInterface
         return $info;
     }
 
-    public function getWordCount() {
+    public function getWordCount(): int
+    {
         $text = file_get_contents($this->linc);
         $text = str_replace(array("\r", "\n"), ' ', $text);
         $array = explode(" ", $text);
