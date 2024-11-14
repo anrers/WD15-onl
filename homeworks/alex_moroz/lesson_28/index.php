@@ -1,6 +1,10 @@
 <?php
 
-require_once 'bootstrap.php';
+require_once 'bootstrap.php'
+
+/**
+ * @var $studentService {@link \Service\StudentServiceImpl}
+ */
 ?>
 <html lang="en">
 <head>
@@ -32,7 +36,41 @@ require_once 'bootstrap.php';
     <button name="save" type="submit">Сохранить</button>
 </form>
 
-<h2>Студенты</h2>
+<h2>Все студенты</h2>
+<table>
+    <tr>
+        <th>Имя</th>
+        <th>Возраст</th>
+    </tr>
+    <?php
+    $students = $studentService->getAllStudents();
+
+    foreach ($students as $student) { ?>
+        <tr>
+            <td><?= $student["name"] ?></td>
+            <td><?= $student["email"] ?></td>
+        </tr>
+        <?php
+    } ?>
+</table>
+<h2>Зачисленные студенты</h2>
+<table>
+    <tr>
+        <th>Имя</th>
+        <th>Возраст</th>
+    </tr>
+    <?php
+    $enrolledStudents = $studentService->getEnrolledStudents();
+
+    foreach ($enrolledStudents as $enrolledStudent) { ?>
+        <tr>
+            <td><?= $enrolledStudent["name"] ?></td>
+            <td><?= $enrolledStudent["email"] ?></td>
+        </tr>
+        <?php
+    } ?>
+</table>
+<h2>Студенты к зачислению</h2>
 <form action='action/fillEnrollment.php' method='post'>
     <table>
         <tr>
@@ -40,22 +78,21 @@ require_once 'bootstrap.php';
             <th>Возраст</th>
         </tr>
         <?php
-        $students = $studentService->getAllStudents();
+        $notEnrolledStudents = $studentService->getNotEnrolledStudents();
 
-        foreach ($students as $student) { ?>
+        foreach ($notEnrolledStudents as $notEnrolledStudent) { ?>
             <tr>
-                <td><?= $student["name"] ?></td>
-                <td><?= $student["email"] ?></td>
+                <td><?= $notEnrolledStudent["name"] ?></td>
+                <td><?= $notEnrolledStudent["email"] ?></td>
             </tr>
             <?php
         } ?>
     </table>
     <?php
-    if (count($students) > 5) {
-        $student_ids = array_map(fn($student) => $student['id'], $students);
-        $student_ids = implode(',', array_map(fn($student_id) => sprintf("(%s)", $student_id), $student_ids))?>
-        <input type='hidden' name='studentsIds' value='<?= $student_ids ?>'/>
+    if (count($notEnrolledStudents) > 4) {
+        $studentIds = array_map(fn($notEnrolledStudents) => $notEnrolledStudents['id'], $notEnrolledStudents);?>
+        <input type='hidden' name='studentsIds' value='<?= json_encode($studentIds); ?>'/>
         <button name="fill" type="submit">Зачислить</button>
-    <?php
+        <?php
     } ?>
 </form>

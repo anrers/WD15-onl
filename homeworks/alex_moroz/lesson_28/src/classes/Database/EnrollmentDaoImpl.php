@@ -13,9 +13,9 @@ class EnrollmentDaoImpl implements EnrollmentDao
         $this->executeQuery($query, '');
     }
 
-    public function fillEnrollments(string $student_ids)
+    public function fillEnrollments(array $studentIds)
     {
-        $query = sprintf("INSERT INTO enrollments (student_id) VALUES %s", $student_ids);
+        $query = "INSERT INTO enrollments (student_id) VALUES ('" . implode("'), ('", $studentIds) . "')";
         $this->executeQuery($query);
     }
 

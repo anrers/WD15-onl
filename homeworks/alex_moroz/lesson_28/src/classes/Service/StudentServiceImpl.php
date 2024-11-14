@@ -12,7 +12,7 @@ class StudentServiceImpl implements StudentService
     ) {
     }
 
-    public function save(string $name, string $email)
+    public function save(string $name, string $email): ?Student
     {
         $result = $this->studentDao->saveStudent($name, $email);
         if (!empty($result)) {
@@ -27,5 +27,15 @@ class StudentServiceImpl implements StudentService
     public function getAllStudents()
     {
         return $this->studentDao->findAllStudents();
+    }
+
+    public function getEnrolledStudents()
+    {
+        return $this->studentDao->findEnrolledStudents();
+    }
+
+    public function getNotEnrolledStudents()
+    {
+        return $this->studentDao->findNotEnrolledStudents();
     }
 }
