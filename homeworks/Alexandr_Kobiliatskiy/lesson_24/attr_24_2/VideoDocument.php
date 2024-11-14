@@ -16,17 +16,19 @@ class VideoDocument implements DocumentInterface
     public function getTitle(): string
     {
         return "Для работы с такими файлами нужна сторонняя библиотека";  
-    } 
+    }
+
     public function getDescription(): string
     {
         return "Это видеофайл";
     } 
 
-    public function process() {
+    public function process(): string
+    {
         if (pathinfo($this->linc, PATHINFO_EXTENSION) == 'mp4') {
             return "Этот файл может быть обработан этим классом";
         } else {
-            echo "Этот файл не может быть обработан этим классом";
+            return "Этот файл не может быть обработан этим классом";
         }   
         
     } 
