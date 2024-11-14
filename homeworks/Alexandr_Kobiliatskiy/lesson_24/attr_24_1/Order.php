@@ -14,7 +14,7 @@ class Order extends Product
         parent::__construct($id, $name, $price);
     }
 
-    public function calculateProfit(): float|int
+    public function calculateProfit(): float
     {
         return $this->price * $this->quantity;
     }

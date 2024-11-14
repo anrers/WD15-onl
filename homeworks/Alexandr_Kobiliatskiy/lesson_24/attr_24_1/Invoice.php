@@ -9,7 +9,8 @@ class Invoice extends Product
         public array $products,
     ) {}
 
-    public function calculateProfit() {
+    public function calculateProfit(): float|int
+    {
         $summ = 0;
         foreach ($this->products as $product) {
             $summProduct = $product->price * $product->quantity;
@@ -20,15 +21,13 @@ class Invoice extends Product
 
     public function addProduct($productObject): void
     {
-        //$this->products[] = $productObject; //Это решение мне нравится больше потому что при нескольких добавлениях будет перезапись
-        $this->products['addedProduct'] = $productObject;
+        $this->products[$productObject->id] = $productObject;
     }
 
     //public function removeProduct($productObject): void
-    public function removeProduct(): void
+    public function removeProduct(int $id): void
     {
-            //unset($this->products[array_search($productObject, $this->products)]);
-        unset($this->products['addedProduct']);
+        unset($this->products[$id]);
     }
 
     public function changeCustomer($newCustomer): void
