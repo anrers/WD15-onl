@@ -7,9 +7,9 @@ class Basket
         public array $productList,
     ) {}
 
-    public function addProduct(Product $productList): void
+    public function addProduct(Product $product): void
     {
-        $this->productList[] = $productList;
+        $this->productList[$product->getID()] = $product;
     }
 
 
@@ -22,6 +22,11 @@ class Basket
         }
     }
 
+    public function changeQuantityBasketForId(int $idProduct, int $quantityProduct): void
+    {
+        $this->productList[$idProduct]->changeQuantity($quantityProduct); //Здесь закончил, не проверял
+    }
+
     public function removeProduct(string $nameProduct): void
     {
         foreach ($this->productList as $arrProd) {
@@ -29,6 +34,11 @@ class Basket
                 unset($this->productList[array_search($arrProd, $this->productList)]);
             }
         }
+    }
+
+    public function removeProductForId(int $idProduct): void
+    {
+        unset($this->productList[$idProduct]); //Здесь закончил, не проверял
     }
 }
 
