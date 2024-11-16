@@ -1,13 +1,11 @@
 <?php
 
-//require_once 'dbLibrary.php';
-//require_once 'Book.php';
-//require_once 'Author.php';
+require_once 'dbLibrary.php';
+require_once 'Book.php';
+require_once 'Author.php';
 
 global $books, $authors;
-require_once 'C:\Users\admin\WD15-onl\homeworks\Alexandr_Kobiliatskiy\lesson_25\attr_25_2\Book.php';
-require_once 'C:\Users\admin\WD15-onl\homeworks\Alexandr_Kobiliatskiy\lesson_25\attr_25_2\Author.php';
-require_once 'C:\Users\admin\WD15-onl\homeworks\Alexandr_Kobiliatskiy\lesson_25\attr_25_2\dbLibrary.php';
+
 class Library
 {
     public function __construct(
@@ -17,15 +15,11 @@ class Library
 
         public function addBook(Book $book): void
         {
-            $this->bookArray[] = $book;
+            $this->bookArray[$book->id] = $book;
         }
         public function removeBook(Book $book): void
         {
-            foreach ($this->bookArray as $element) {
-                if ($element === $book) {
-                    unset($this->bookArray[array_search($element, $this->bookArray)]);
-                }
-            }
+            unset($this->bookArray[$book->id]);
         }
 
         public function getBooks(): array
@@ -42,12 +36,15 @@ class Library
             }
             return $availableBooks;
         }
-        public function getBookByTitle(string $title) {
+        public function getBookByTitle(string $title): array
+        {
+            $selectedTitleBooks = [];
             foreach ($this->bookArray as $book) {
                 if ($book->title == $title) {
-                    return $book;
+                    $selectedTitleBooks[$book->id] = $book;
                 }
             }
+            return $selectedTitleBooks;
         }
 
         public function getBooksByAuthor(string $author): array
@@ -68,17 +65,5 @@ class Library
         }
 }
 
-//$library = new Library($books, $authors);
-//
-//$saltan = new Book(7, "Сказка о царе Салтане часть 2", 3, 1);
-//
-// $library->addBook($saltan);
-// var_dump($library);
-//
-// $library->removeBook($saltan);
-//
-// var_dump($library->bookArray);
-//
-// var_dump($library->getAvailableBooks());
-// var_dump($library->getBooksByAuthor('Михаил Юрьевич Лермонтов'));
+
 

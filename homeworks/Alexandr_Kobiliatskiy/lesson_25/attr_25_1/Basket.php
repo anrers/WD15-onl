@@ -1,4 +1,5 @@
 <?php
+global $products; //Как-то не уловил когда оно стало требовать делать так. Раньше не требовало....
 require_once 'db.php';
 
 class Basket
@@ -13,41 +14,26 @@ class Basket
     }
 
 
-    public function changeQuantityBasket(string $nameProduct, int $quantityProduct): void
-    {
-        foreach ($this->productList as $arrProd) {
-            if ($arrProd->getName() == $nameProduct) {
-                $arrProd->changeQuantity($quantityProduct);
-            }
-        }
-    }
-
     public function changeQuantityBasketForId(int $idProduct, int $quantityProduct): void
     {
-        $this->productList[$idProduct]->changeQuantity($quantityProduct); //Здесь закончил, не проверял
-    }
-
-    public function removeProduct(string $nameProduct): void
-    {
-        foreach ($this->productList as $arrProd) {
-            if ($arrProd->getName() == $nameProduct) {
-                unset($this->productList[array_search($arrProd, $this->productList)]);
-            }
-        }
+        $this->productList[$idProduct]->changeQuantity($quantityProduct);
     }
 
     public function removeProductForId(int $idProduct): void
     {
-        unset($this->productList[$idProduct]); //Здесь закончил, не проверял
+        unset($this->productList[$idProduct]);
     }
 }
 
-// $oneBasket = new Basket($products);
 
-// $oneBasket->addProduct(new Product(7, 'Кроссовки', 120, "Хорошие беговые кроссовки", 1));
-// var_dump($oneBasket);
-// $oneBasket->changeQuantityBasket('Кроссовки', 50);
-// var_dump($oneBasket);
+//$oneBasket = new Basket($products);
+//
+//$oneBasket->addProduct(new Product(7, 'Кроссовки', 120, "Хорошие беговые кроссовки", 1));
+//var_dump($oneBasket);
+//$oneBasket->changeQuantityBasketForId(7, 50);
+//var_dump($oneBasket);
+//
+//$oneBasket->removeProductForId(4);
+//var_dump($oneBasket);
 
-// $oneBasket->removeProduct('Джинсы');
-// var_dump($oneBasket);
+//Работает

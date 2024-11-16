@@ -2,9 +2,9 @@
 class Book
 {
     public function __construct(
-        public int $id,
+        public int    $id,
         public string $title,
-        public int $authorId,
-        public int $isAvailabe,
+        public int    $authorId,
+        public int    $isAvailable,
     ) {}
 }
