@@ -1,5 +1,5 @@
 <?php
- $conn = new mysqli("MySql-8.2", "root", "", "study");
+ $conn = new mysqli("MySql-5.7", "root", "", "study");
  if ($conn->connect_error){
      die ("Ошибка: " . $conn->connect_error);
  }
