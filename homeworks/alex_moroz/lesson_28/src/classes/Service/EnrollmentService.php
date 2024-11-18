@@ -4,5 +4,5 @@ namespace Service;
 
 interface EnrollmentService
 {
-    public function fillEnrollments(array $studentIds);
+    public function fillEnrollments(array $studentIds): void;
 }

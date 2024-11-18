@@ -4,5 +4,5 @@ namespace Database;
 
 interface EnrollmentDao
 {
-    public function fillEnrollments(array $studentIds);
+    public function fillEnrollments(array $studentIds): void;
 }
