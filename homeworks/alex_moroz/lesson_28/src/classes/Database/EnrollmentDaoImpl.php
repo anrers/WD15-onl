@@ -10,16 +10,16 @@ class EnrollmentDaoImpl implements EnrollmentDao
     id INT NOT NULL AUTO_INCREMENT , 
     student_id INT NOT NULL , 
     PRIMARY KEY (id))';
-        $this->executeQuery($query, '');
+        $this->executeQuery($query);
     }
 
-    public function fillEnrollments(array $studentIds)
+    public function fillEnrollments(array $studentIds): void
     {
         $query = "INSERT INTO enrollments (student_id) VALUES ('" . implode("'), ('", $studentIds) . "')";
         $this->executeQuery($query);
     }
 
-    private function executeQuery(string $query)
+    private function executeQuery(string $query): void
     {
         $connection = DatabaseConnection::getConnection()->connect();
         $connection->query($query);

@@ -11,9 +11,9 @@ class EnrollmentServiceImpl implements EnrollmentService
     ) {
     }
 
-    public function fillEnrollments(array $studentIds)
+    public function fillEnrollments(array $studentIds): void
     {
-        return $this->enrollmentDao->fillEnrollments($studentIds);
+        $this->enrollmentDao->fillEnrollments($studentIds);
     }
 
 }

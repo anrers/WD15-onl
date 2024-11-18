@@ -1,5 +1,5 @@
 <?php
-function validateStudentData()
+function validateStudentData(): array
 {
     $name = htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8');
     $email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');

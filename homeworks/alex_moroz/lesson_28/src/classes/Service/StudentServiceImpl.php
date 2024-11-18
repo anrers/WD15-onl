@@ -24,17 +24,17 @@ class StudentServiceImpl implements StudentService
         return null;
     }
 
-    public function getAllStudents()
+    public function getAllStudents(): array
     {
         return $this->studentDao->findAllStudents();
     }
 
-    public function getEnrolledStudents()
+    public function getEnrolledStudents(): array
     {
         return $this->studentDao->findEnrolledStudents();
     }
 
-    public function getNotEnrolledStudents()
+    public function getNotEnrolledStudents(): array
     {
         return $this->studentDao->findNotEnrolledStudents();
     }

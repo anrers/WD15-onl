@@ -1,6 +1,9 @@
 <?php
 require_once '../bootstrap.php';
 require_once 'validateStudentData.php';
+/**
+ * @var $studentService {@link \Service\StudentService}
+ */
 
 $errors = validateStudentData();
 if (empty($errors)) {
