@@ -12,20 +12,20 @@ require_once 'index.php';
 //приведите решение для приведения таблицы к 2НФ.
 
 //Приведение ко второй форме
-$sqlCreateTableAuthor = "CREATE TABLE Authors (id INTEGER AUTO_INCREMENT PRIMARY KEY, Full_name VARCHAR(500))";
-$sqlCreateTableGenre = "CREATE TABLE Genries (id INTEGER AUTO_INCREMENT PRIMARY KEY, Name VARCHAR(250))";
-$sqlCreateTablePublishing = "CREATE TABLE Publishing (id INTEGER AUTO_INCREMENT PRIMARY KEY, Name VARCHAR(250), Adress VARCHAR(250), Phone VARCHAR(250), Email VARCHAR(250))";
+$sqlCreateTableAuthor = "CREATE TABLE Authors (id INTEGER AUTO_INCREMENT PRIMARY KEY, full_name VARCHAR(500))";
+$sqlCreateTableGenre = "CREATE TABLE Genries (id INTEGER AUTO_INCREMENT PRIMARY KEY, name VARCHAR(250))";
+$sqlCreateTablePublishing = "CREATE TABLE Publishing (id INTEGER AUTO_INCREMENT PRIMARY KEY, name VARCHAR(250), adress VARCHAR(250), phone VARCHAR(250), email VARCHAR(250))";
 
 $sqlCreateTableBooks = "CREATE TABLE Books (
     id INTEGER AUTO_INCREMENT PRIMARY KEY, 
-    Boors_name VARCHAR(500),
-    Author_id INTEGER,
-    Genre_id INTEGER,
-    Publishing_id INTEGER,
-    Year_published INTEGER,
-    FOREIGN KEY (Author_id) REFERENCES Authors (id) ON DELETE SET NULL,
-    FOREIGN KEY (Genre_id) REFERENCES Genries (id) ON DELETE SET NULL,
-    FOREIGN KEY (Publishing_id) REFERENCES Publishing (id) ON DELETE SET NULL)";
+    boors_name VARCHAR(500),
+    author_id INTEGER,
+    genre_id INTEGER,
+    publishing_id INTEGER,
+    year_published INTEGER,
+    FOREIGN KEY (author_id) REFERENCES Authors (id) ON DELETE SET NULL,
+    FOREIGN KEY (genre_id) REFERENCES Genries (id) ON DELETE SET NULL,
+    FOREIGN KEY (publishing_id) REFERENCES Publishing (id) ON DELETE SET NULL)";
 
 
 
@@ -37,17 +37,17 @@ $sqlCreateTableBooks = "CREATE TABLE Books (
 // Ответ: Имя клиента лишнее.... Банк заменить на столбец с внешним ключом
 
 //Приведение ко второй форме
-$sqlCreateTableBanks = "CREATE TABLE Banks (id INTEGER AUTO_INCREMENT PRIMARY KEY, Name VARCHAR(250), Adress VARCHAR(250), Phone VARCHAR(250), Email VARCHAR(250))";
-$sqlCreateTableClients = "CREATE TABLE Clients (id INTEGER AUTO_INCREMENT PRIMARY KEY, Name VARCHAR(250), Adress VARCHAR(250), Phone VARCHAR(250), Email VARCHAR(250))";
+$sqlCreateTableBanks = "CREATE TABLE Banks (id INTEGER AUTO_INCREMENT PRIMARY KEY, name VARCHAR(250), adress VARCHAR(250), phone VARCHAR(250), email VARCHAR(250))";
+$sqlCreateTableClients = "CREATE TABLE Clients (id INTEGER AUTO_INCREMENT PRIMARY KEY, name VARCHAR(250), adress VARCHAR(250), phone VARCHAR(250), email VARCHAR(250))";
 
 $sqlCreateTableBooks = "CREATE TABLE Transactions (
     id INTEGER AUTO_INCREMENT PRIMARY KEY, 
-    Client_id INTEGER,
-    Account_number INTEGER,
-    Bank_id INTEGER,
-    Summ DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (Client_id) REFERENCES Clients (id) ON DELETE SET NULL,
-    FOREIGN KEY (Bank_id) REFERENCES Banks (id) ON DELETE SET NULL)";
+    client_id INTEGER,
+    account_number INTEGER,
+    bank_id INTEGER,
+    summ DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (client_id) REFERENCES Clients (id) ON DELETE SET NULL,
+    FOREIGN KEY (bank_id) REFERENCES Banks (id) ON DELETE SET NULL)";
 
 
 //Рассмотрим таблицу с информацией о продажах, которая включает
@@ -58,13 +58,15 @@ $sqlCreateTableBooks = "CREATE TABLE Transactions (
 //Ответ: "Название продукта", "Описание продукта" и "Имя клиента" в этой таблице лишние
 
 //Приведение ко второй форме
-$sqlCreateTableProducts = "CREATE TABLE Products (id INTEGER AUTO_INCREMENT PRIMARY KEY, Name VARCHAR(250), Description VARCHAR(500))";
-$sqlCreateTableClients = "CREATE TABLE Clients (id INTEGER AUTO_INCREMENT PRIMARY KEY, Name VARCHAR(250), Adress VARCHAR(250), Phone VARCHAR(250), Email VARCHAR(250))";
+$sqlCreateTableProducts = "CREATE TABLE Products (id INTEGER AUTO_INCREMENT PRIMARY KEY, name VARCHAR(250), description VARCHAR(500))";
+$sqlCreateTableClients = "CREATE TABLE Clients (id INTEGER AUTO_INCREMENT PRIMARY KEY, name VARCHAR(250), adress VARCHAR(250), phone VARCHAR(250), email VARCHAR(250))";
 
-$sqlCreateTableSalies = "CREATE TABLE Salies (
+$sqlCreateTableSales = "CREATE TABLE Sales (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
-    Product_id INTEGER, 
-    Client_id INTEGER,
-    Summ DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (Client_id) REFERENCES Clients (id) ON DELETE SET NULL,
-    FOREIGN KEY (Product_id) REFERENCES Products (id) ON DELETE SET NULL)";
+    sales_number INTEGER, 
+    product_id INTEGER, 
+    client_id INTEGER,
+    summ DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (client_id) REFERENCES Clients (id) ON DELETE SET NULL,
+    FOREIGN KEY (product_id) REFERENCES Products (id) ON DELETE SET NULL)";
+//sales_number одинаковый для всех продуктов, в рамках одной покупки.
