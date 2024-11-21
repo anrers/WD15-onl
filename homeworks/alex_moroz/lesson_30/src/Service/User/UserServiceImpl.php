@@ -2,7 +2,8 @@
 
 namespace Service\User;
 
-use Exception as Exception;
+use ErrorException;
+use Exception;
 use Model\User\User;
 use Repository\User\UserRepository;
 
@@ -10,53 +11,29 @@ class UserServiceImpl implements UserService
 {
     public function __construct(
         private UserRepository $userRepository,
-    ) {
-    }
+    ) {}
 
-    public function save(string $name, int $age, string $email, int $gender): void
-    {
-        try {
-            $this->userRepository->saveUser($name, $age, $email, $gender);
-        } catch (Exception $exception) {
-            echo $exception->getMessage();
-            throw new Exception($exception->getMessage());
-        }
+    public function save(string $name, int $age, string $email, int $gender): void {
+        $this->userRepository->saveUser($name, $age, $email, $gender);
     }
 
     public function getUserByEmail(string $email): ?User
     {
-        try {
-            return $this->userRepository->findUserByEmail($email);
-        } catch (Exception $exception) {
-            throw new Exception($exception->getMessage());
-        }
+        return $this->userRepository->findUserByEmail($email); //ошибки, будут проброшены выше
     }
 
     public function update(array $userData): void
     {
-        try {
-            $this->userRepository->updateUser($userData);
-        } catch (Exception $exception) {
-            throw new Exception($exception->getMessage());
-        }
+        $this->userRepository->updateUser($userData); //ошибки, будут проброшены выше
     }
 
     public function remove(string $userId): void
     {
-        try {
-            $this->userRepository->removeUser($userId);
-        } catch (Exception $exception) {
-            throw new Exception($exception->getMessage());
-        }
+        $this->userRepository->removeUser($userId); //ошибки, будут проброшены выше
     }
 
     public function getAllUsers(): array
     {
-        try {
-            return $this->userRepository->findAllUsers();
-        } catch (Exception $exception) {
-            echo $exception->getMessage();
-            throw new Exception("Ошибка запроса: получение всех пользователей невозможно.");
-        }
+        return $this->userRepository->findAllUsers(); //ошибки, будут проброшены выше
     }
 }

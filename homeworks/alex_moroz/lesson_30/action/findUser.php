@@ -13,7 +13,8 @@ if (isset($_POST["email"])) {
         if (!$user) {
             $_SESSION["isFound"] = false;
         }
-    } catch (Exception $e) {
+    } catch (Exception $exception) {
+        echo $exception->getMessage(); //логирование ошибки
         $_SESSION["searchError"] = "Ошибка при поиске пользователя с email = {$_POST["email"]}";
     }
 }

@@ -82,8 +82,7 @@ CREATE TABLE IF NOT EXISTS users (
         try {
             return $this->executeQuery($query, operationType: 'READ');
         } catch (PDOException $exception) {
-            echo "Can't read Users: " . $exception->getMessage();
-            throw new Exception("Can't read Users.");
+            throw new Exception("Can't read Users. Error: " . $exception->getMessage());
         }
     }
 

@@ -8,7 +8,8 @@ require_once '../bootstrap.php';
 if (isset($_POST["id"])) {
     try {
         $userService->remove($_POST["id"]);
-    } catch (Exception $e) {
+    } catch (Exception $exception) {
+        echo $exception->getMessage(); //логирование ошибки
         $_SESSION["deleteError"] = "Ошибка при удалении пользователя с id = {$_POST["id"]}";
     }
 }

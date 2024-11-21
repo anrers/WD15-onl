@@ -20,8 +20,9 @@ if (isset($_POST["id"])) {
             ]);
             header("Location: ../index.php");
             return;
-        } catch (Exception $e) {
-            $errors[] = "Пользователь не обновлен. Ошибка: " . $e->getMessage();
+        } catch (Exception $exception) {
+            echo $exception->getMessage(); //логирование ошибки
+            $errors[] = "Пользователь не обновлен. Ошибка: " . $exception->getMessage();
         }
     }
 

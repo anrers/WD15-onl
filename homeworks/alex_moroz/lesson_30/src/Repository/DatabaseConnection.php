@@ -5,15 +5,11 @@ namespace Repository;
 use PDO;
 use PDOException;
 
-DatabaseConnection::getConnection()->connect();
-
-final class DatabaseConnection
+class DatabaseConnection
 {
     private static ?DatabaseConnection $connection = null;
 
-    protected function __construct()
-    {
-    }
+    protected function __construct() {}
 
     public function connect(): PDO
     {
@@ -33,8 +29,8 @@ final class DatabaseConnection
 
     public static function getConnection(): ?DatabaseConnection
     {
-        if (null === DatabaseConnection::$connection) {
-            DatabaseConnection::$connection = new self();
+        if (null === static::$connection) {
+            static::$connection = new self();
         }
 
         return DatabaseConnection::$connection;

@@ -13,7 +13,7 @@ if (empty($errors)) {
         header("Location: ../index.php");
         return;
     } catch (Exception $exception) {
-        echo $exception->getMessage();
+        echo $exception->getMessage(); //логирование ошибки
         $errors[] = "Невозможно сохранить пользователя с email = {" . $_POST["email"] . "}";
     }
 }
