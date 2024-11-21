@@ -1,0 +1,20 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    font-size:15px;
+}
+
+input {
+    max-width: 350px;
+}
+
+div {
+    margin: 10px;
+}
