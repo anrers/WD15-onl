@@ -3,19 +3,20 @@ require_once 'User.php';
 
 $conn = new PDO('mysql:host=mysql-5.7;dbname=study', 'root', '');
 
-$tatya = new User('Elena', 'lena@mail.ru', $conn);
+$elena = new User('Elena', 'lena@mail.ru', $conn);
 
-$tatya->create();
-$tatya->read();
 
-var_dump($tatya->objectId);
-$tatya->read();
+$elena->create();
+$elena->read();
 
-$tatya->update('Fekla', 'fekla@mail.ru');
-$tatya->read();
+var_dump($elena->objectId);
+$elena->read();
 
-$tatya->delete();
-$tatya->read();
+$elena->update('Fekla', 'fekla@mail.ru');
+$elena->read();
+
+$elena->delete();
+$elena->read();
 
 
 

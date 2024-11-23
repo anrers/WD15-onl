@@ -23,21 +23,19 @@ class User
     {
         $update = $this->conn->prepare("UPDATE students SET name = '$name', email = '$email' WHERE id = :id");
         $update->execute([':id' => $this->objectId]);
-
     }
 
-    public function read(): void
+    public function read(): false|string
     {
         $read = $this->conn->prepare("SELECT * FROM students  WHERE id = :id");
         $read->execute([':id' => $this->objectId]);
-        echo json_encode($read->fetch(PDO::FETCH_ASSOC));
-
+        echo json_encode($read->fetch(PDO::FETCH_ASSOC)); //Это для проверки работы
+        return json_encode($read->fetch(PDO::FETCH_ASSOC));
     }
 
     public function delete(): void
     {
         $delete = $this->conn->prepare("DELETE FROM students WHERE id = :id");
         $delete->execute([':id' => $this->objectId]);
-
     }
 }
