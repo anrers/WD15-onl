@@ -16,18 +16,41 @@ $connection->query("
 ");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
+    $name = trim($_POST['name']);
+    $email = trim($_POST['email']);
 
-    addStudentToDb($name, $email);
+    if (studentExists($name, $email)) {
+        echo "Student with this email or name already exists. No action taken.\n";
+    } else {
+        addStudentToDb($name, $email);
+    }
+}
+
+function studentExists(string $name, string $email)
+{
+    global $connection;
+
+    $query = $connection->prepare("SELECT COUNT(*) FROM students WHERE name = ? OR email = ?");
+    $query->bind_param("ss", $name, $email);
+    $query->execute();
+
+    $query->bind_result($count);
+    $query->fetch();
+    $query->close();
+
+    return $count > 0;
 }
 
 function addStudentToDb(string $name, string $email)
 {
     global $connection;
-    $connection->query("INSERT INTO students (name, email) VALUES ('$name', '$email')");
 
-    echo "Student added successfully!";
+    $query = $connection->prepare("INSERT INTO students (name, email) VALUES (?, ?)");
+    $query->bind_param("ss", $name, $email);
+    $query->execute();
+    $query->close();
+
+    echo "Student added successfully!\n";
 }
 
 function getStudents()

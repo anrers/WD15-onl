@@ -22,21 +22,40 @@ $connection->query("
     )
 ");
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['student_ids'])) { 
-    $student_ids = $_POST['student_ids'];
-    print_r($_POST);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['studentIds'])) { 
+    $studentIds = $_POST['studentIds'];
 
     $result = $connection->prepare("INSERT INTO enrollments (student_id) VALUES(?)");
 
-    foreach ($student_ids as $student_id) {
-        $result->bind_param("i", $student_id);
-        $result->execute();
+    foreach ($studentIds as $studentId) {
+        if (studentExists($studentId)) {
+            echo "Student with this id was already enrolled!";
+        } else {
+            $result->bind_param("i", $studentId);
+            $result->execute();
+
+            echo "Selected students have been enrolled!";
+        }
     }
 
     $result->close();
-    echo "Selected students have been enrolled!";
 } else {
     echo "No students selected for enrollment.";
+}
+
+function studentExists (int $studentId)
+{
+    global $connection;
+
+    $query = $connection->prepare("SELECT COUNT(*) FROM enrollments WHERE student_id = ?");
+    $query->bind_param("i", $studentId);
+    $query->execute();
+
+    $query->bind_result($count);
+    $query->fetch();
+    $query->close();
+    
+    return $count > 0;
 }
 
 $connection->close();
