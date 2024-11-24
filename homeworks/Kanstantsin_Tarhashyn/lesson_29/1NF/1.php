@@ -8,7 +8,7 @@ $connection = new mysqli(
 );
 
 $sql = "
-CREATE TABLE IF NOT EXISTS Clients (
+CREATE TABLE IF NOT EXISTS clients (
     id INT AUTO_INCREMENT PRIMARY KEY,
     full_name VARCHAR(100) NOT NULL,
     address VARCHAR(250),
