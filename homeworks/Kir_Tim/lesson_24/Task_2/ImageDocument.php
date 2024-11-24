@@ -9,21 +9,20 @@ class ImageDocument implements DocumentInterface
         private string $description,
         private int    $width,
         private int    $height
-    )
-    {
+    ) {
     }
 
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
 
-    public function getDimensions()
+    public function getDimensions(): array
     {
         return [
             $this->width,
@@ -31,12 +30,12 @@ class ImageDocument implements DocumentInterface
         ];
     }
 
-    public function process()
+    public function process(): void
     {
         echo "Обработка изображения";
     }
 
-    public function getInfo()
+    public function getInfo(): array
     {
         return [
             'title' => $this->title,

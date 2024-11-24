@@ -7,16 +7,11 @@ class Invoice extends AbstractProduct
     public function __construct(
         protected int    $id,
         protected string $customer,
-        protected array  $products,
-    ){
+        protected array  $products = [],
+    ) {
     }
 
-    public function addProduct($order)
-    {
-        $this->products[] = $order;
-    }
-
-    public function changeCustomer($customer)
+    public function changeCustomer(string $customer)
     {
         $this->customer = $customer;
     }

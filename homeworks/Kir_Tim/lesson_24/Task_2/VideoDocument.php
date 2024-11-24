@@ -8,32 +8,31 @@ class VideoDocument implements DocumentInterface
         private string $title,
         private string $description,
         private int    $duration
-    )
-    {
+    ) {
 
     }
 
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
 
-    public function getDuration()
+    public function getDuration(): int
     {
         return $this->duration;
     }
 
-    public function process()
+    public function process(): void
     {
         echo "Обработка видео";
     }
 
-    public function getInfo()
+    public function getInfo(): array
     {
         return [
             'title' => $this->title,

@@ -8,15 +8,15 @@ class Product extends AbstractProduct
         protected int    $id,
         protected string $name,
         protected int    $price
-    )
-    {
+    ) {
     }
 
-    public function calculateProfit()
+    public function calculateProfit(): int
     {
+        return $this->price;
     }
 
-    public function getPrice()
+    public function getPrice(): int
     {
         return $this->price;
     }

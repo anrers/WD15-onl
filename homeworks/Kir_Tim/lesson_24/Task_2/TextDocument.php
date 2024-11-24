@@ -8,31 +8,30 @@ class TextDocument implements DocumentInterface
         private string $title,
         private string $description,
         private string $count
-    )
-    {
+    ) {
     }
 
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
 
-    public function getWordCount()
+    public function getWordCount(): int
     {
         return str_word_count($this->count);
     }
 
-    public function process()
+    public function process(): void
     {
         echo "Обработка текста";
     }
 
-    public function getInfo()
+    public function getInfo(): array
     {
         return [
             'title' => $this->title,

@@ -2,5 +2,5 @@
 
 abstract class AbstractProduct
 {
-    abstract public function calculateProfit();
+    abstract function calculateProfit();
 }
