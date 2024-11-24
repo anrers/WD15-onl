@@ -15,10 +15,13 @@ $connection->query("
     )
 ");
 
-
+//$students = $connection->query("
+//    SELECT students.ID FROM students, enrollments WHERE enrollments.STUDENTS_ID <> students.ID; // В таблице должна быть хотя бы одна запись со STUDENTS_ID
+//    ");
 $students = $connection->query("
-    SELECT students.ID FROM students, enrollments WHERE enrollments.STUDENTS_ID <> students.ID; // В таблице должна быть хотя бы одна запись со STUDENTS_ID
-    ");
+   SELECT students.ID FROM students NATURAL LEFT JOIN enrollments WHERE enrollments.STUDENTS_ID IS NULL
+");
+
 foreach ($students as $student => $ID) {
     foreach ($ID as $stId) {
         $connection->query("
