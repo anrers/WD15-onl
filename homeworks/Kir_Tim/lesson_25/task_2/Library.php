@@ -7,8 +7,7 @@ class Library
 {
     public function __construct(
         public array $books
-    )
-    {
+    ) {
     }
 
     public function addBook(Book $book): void
@@ -39,23 +38,23 @@ class Library
         return $availableBooks;
     }
 
-    public function getBookByTitle(string $title)
+    public function getBookByTitle(string $title): ?Book
     {
         foreach ($this->books as $book) {
             if ($book->getTitle() == $title) {
                 return $book;
             }
         }
-        return "Книга не найдена";
+        return null;
     }
 
-    public function getBooksByAuthor(string $author): string
+    public function getBooksByAuthor(string $author): ?Book
     {
         foreach ($this->books as $book) {
             if ($book->getAuthor() == $author) {
                 return $book;
             }
         }
-        return "Книга не найдена";
+        return null;
     }
 }

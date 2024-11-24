@@ -5,10 +5,10 @@ class Order
 {
     public function __construct(
         protected array $products
-    ){
+    ) {
     }
 
-    public function addProduct(Product $product)
+    public function addProduct(Product $product): void
     {
         $productName = $product->getName();
         $quantity = $product->getQuantity();
