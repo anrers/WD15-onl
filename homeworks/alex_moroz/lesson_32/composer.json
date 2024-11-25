@@ -1,0 +1,7 @@
+{
+    "name": "morozav/lesson_32",
+    "require": {},
+    "autoload": {
+        "files": ["password/passwordGenerator.php"]
+    }
+}
