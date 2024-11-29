@@ -11,13 +11,18 @@ $sqlQueries = [
         id INT AUTO_INCREMENT PRIMARY KEY,
         client_id INT,
         amount DECIMAL(10, 2),
-        FOREIGN KEY (client_id) REFERENCES clients(client_id) ON DELETE CASCADE
+        FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE
     )",
     "CREATE TABLE IF NOT EXISTS clients (
-        client_id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(255),
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(100),
         account_number VARCHAR(20),
-        bank VARCHAR(255)
+        bank_id INT NOT NULL,
+        FOREIGN KEY (bank_id) REFERENCES banks(id) ON DELETE CASCADE
+    )",
+    "CREATE TABLE IF NOT EXISTS banks (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        name VARCHAR(100) NOT NULL
     )"
 ];
 

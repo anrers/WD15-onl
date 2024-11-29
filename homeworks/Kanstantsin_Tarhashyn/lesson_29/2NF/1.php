@@ -8,27 +8,27 @@ $connection = new mysqli(
 
 $sqlQueries = [
     "CREATE TABLE IF NOT EXISTS books (
-        author_id INT AUTO_INCREMENT PRIMARY KEY,
+        id INT AUTO_INCREMENT PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
         author_id INT,
         genre_id INT,
         publisher_id INT,
         year INT,
-        FOREIGN KEY (author_id) REFERENCES authors(author_id) ON DELETE SET NULL,
-        FOREIGN KEY (genre_id) REFERENCES genres(genre_id) ON DELETE SET NULL,
-        FOREIGN KEY (publisher_id) REFERENCES publishers(publisher_id) ON DELETE SET NULL
+        FOREIGN KEY (author_id) REFERENCES authors(id) ON DELETE SET NULL,
+        FOREIGN KEY (genre_id) REFERENCES genres(id) ON DELETE SET NULL,
+        FOREIGN KEY (publisher_id) REFERENCES publishers(id) ON DELETE SET NULL
     )",
     "CREATE TABLE IF NOT EXISTS authors (
-        author_id INT AUTO_INCREMENT PRIMARY KEY,
+        id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(100) NOT NULL
     )",
     "CREATE TABLE IF NOT EXISTS genres (
-        genre_id INT AUTO_INCREMENT PRIMARY KEY,
+        id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(50) NOT NULL
     )",
     "CREATE TABLE IF NOT EXISTS publishers (
-       publisher_id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(255) NOT NULL
+       id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(100) NOT NULL
     )"
 ];
 

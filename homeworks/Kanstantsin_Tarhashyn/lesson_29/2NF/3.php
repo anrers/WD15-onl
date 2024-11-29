@@ -12,16 +12,16 @@ $sqlQueries = [
         product_id INT,
         client_id INT,
         sale_amount DECIMAL(10, 2),
-        FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE,
-        FOREIGN KEY (client_id) REFERENCES clients(client_id) ON DELETE CASCADE
+        FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
+        FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE
     )",
     "CREATE TABLE IF NOT EXISTS products (
-        product_id INT AUTO_INCREMENT PRIMARY KEY,
+        id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(100),
         description VARCHAR(200)
     )",
     "CREATE TABLE IF NOT EXISTS clients (
-        client_id INT AUTO_INCREMENT PRIMARY KEY,
+        id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(100)
     )"
 ];

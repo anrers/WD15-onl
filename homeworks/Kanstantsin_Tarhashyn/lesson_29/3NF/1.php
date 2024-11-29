@@ -11,13 +11,18 @@ $sqlQueries = [
     "CREATE TABLE IF NOT EXISTS students (
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(100) NOT NULL,
-        class VARCHAR(50) NOT NULL,
+        class_id INT NOT NULL,
         teacher_id INT,
-        FOREIGN KEY (teacher_id) REFERENCES teachers(teacher_id) ON DELETE SET NULL
+        FOREIGN KEY (teacher_id) REFERENCES teachers(id) ON DELETE SET NULL,
+        FOREIGN KEY (class_id) REFERENCES classes(id) ON DELETE CASCADE
     )",
     "CREATE TABLE IF NOT EXISTS teachers (
-        teacher_id INT AUTO_INCREMENT PRIMARY KEY,
+        id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(100) NOT NULL
+    )",
+    "CREATE TABLE IF NOT EXISTS classes (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        name VARCHAR(50) NOT NULL
     )"
 ];
 
