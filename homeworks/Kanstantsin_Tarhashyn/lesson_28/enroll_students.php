@@ -7,7 +7,12 @@ $connection = new mysqli(
     database: "study",
 );
 
-$result = $connection->query("SELECT id, name FROM students");
+$result = $connection->query("
+    SELECT s.id, s.name 
+    FROM students s
+    LEFT JOIN enrollments e ON s.id = e.student_id
+    WHERE e.student_id IS NULL
+");
 
 $students = [];
 while ($row = $result->fetch_assoc()) {
