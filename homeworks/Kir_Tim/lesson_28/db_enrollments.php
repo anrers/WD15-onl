@@ -22,10 +22,18 @@ $students = $connection->query("
    SELECT students.ID FROM students NATURAL LEFT JOIN enrollments WHERE enrollments.STUDENTS_ID IS NULL
 ");
 
-foreach ($students as $student => $ID) {
-    foreach ($ID as $stId) {
-        $connection->query("
-INSERT INTO enrollments (STUDENTS_ID) VALUE ('$stId')
-   ");
-    }
+//foreach ($students as $student => $ID) {
+//    foreach ($ID as $stId) {
+//        $connection->query("
+//INSERT INTO enrollments (STUDENTS_ID) VALUE ('$stId')
+//   ");
+//    }
+//}
+$values = [];
+foreach ($students as $student) {
+    $values[] = "('$student')";
 }
+$valuesStr = implode(',', $values);
+$connection->query("
+INSERT INTO enrollments (STUDENTS_ID) VALUES ('$valuesStr')
+");
