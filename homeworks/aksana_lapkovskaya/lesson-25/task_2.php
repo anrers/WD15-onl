@@ -1,78 +1,78 @@
 <?php
 
 class Book {
-    private $title;
-    private $author_id;
-    private $is_available;
+    private int $id;
+    private string $title;
+    private int $author_id;
+    private bool $is_available;
 
-    public function __construct($title, $author_id, $is_available = true) {
+    public function __construct(int $id, string $title, int $author_id, bool $is_available = true) {
+        $this->id = $id;
         $this->title = $title;
         $this->author_id = $author_id;
         $this->is_available = $is_available;
     }
 
-    public function getTitle() {
+    public function getId(): int {
+        return $this->id;
+    }
+
+    public function getTitle(): string {
         return $this->title;
     }
 
-    public function getAuthorId() {
+    public function getAuthorId(): int {
         return $this->author_id;
     }
 
-    public function isAvailable() {
+    public function isAvailable(): bool {
         return $this->is_available;
     }
 
-    public function setAvailability($is_available) {
+    public function setAvailability(bool $is_available): void {
         $this->is_available = $is_available;
     }
 }
 
 class Author {
-    private $id;
-    private $last_name;
+    private int $id;
+    private string $last_name;
 
-    public function __construct($id, $last_name) {
+    public function __construct(int $id, string $last_name) {
         $this->id = $id;
         $this->last_name = $last_name;
     }
 
-    public function getId() {
+    public function getId(): int {
         return $this->id;
     }
 
-    public function getLastName() {
+    public function getLastName(): string {
         return $this->last_name;
     }
 }
 
 class Library {
-    private $books = [];
+    /** @var array<int, Book> $books Array of books, keyed by their unique IDs */
+    private array $books = [];
 
-    public function addBook(Book $book) {
-        $this->books[] = $book;
+    public function addBook(Book $book): void {
+        $this->books[$book->getId()] = $book;
     }
 
-    public function removeBook(Book $book) {
-        foreach ($this->books as $key => $b) {
-            if ($b === $book) {
-                unset($this->books[$key]);
-            }
-        }
-        $this->books = array_values($this->books);
+    public function removeBook(Book $book): void {
+        unset($this->books[$book->getId()]);
     }
 
-    public function getBooks() {
+    public function getBooks(): array {
         return $this->books;
     }
 
-    public function getAvailableBooks() {
-        return array_filter($this->books, function ($book) {
-            return $book->isAvailable();
-        });
+    public function getAvailableBooks(): array {
+        return array_filter($this->books, fn(Book $book) => $book->isAvailable());
     }
 
-    public function getBookByTitle($title) {
+    public function getBookByTitle(string $title): ?Book {
         foreach ($this->books as $book) {
             if ($book->getTitle() === $title) {
                 return $book;
@@ -81,19 +81,17 @@ class Library {
         return null;
     }
 
-    public function getBooksByAuthor(Author $author) {
-        return array_filter($this->books, function ($book) use ($author) {
-            return $book->getAuthorId() === $author->getId();
-        });
+    public function getBooksByAuthor(Author $author): array {
+        return array_filter($this->books, fn(Book $book) => $book->getAuthorId() === $author->getId());
     }
 }
 
 $author1 = new Author(1, "Rowling");
 $author2 = new Author(2, "Austen");
 
-$book1 = new Book("Harry Potter and The Goblet of Fire", $author1->getId(), true);
-$book2 = new Book("Harry Potter and the Chamber of Secrets", $author1->getId(), false);
-$book3 = new Book("Pride and Prejudice", $author2->getId(), true);
+$book1 = new Book(1, "Harry Potter and The Goblet of Fire", $author1->getId(), true);
+$book2 = new Book(2, "Harry Potter and the Chamber of Secrets", $author1->getId(), false);
+$book3 = new Book(3, "Pride and Prejudice", $author2->getId(), true);
 
 $library = new Library();
 $library->addBook($book1);
