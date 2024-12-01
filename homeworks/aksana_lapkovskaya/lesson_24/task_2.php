@@ -1,36 +1,36 @@
 <?php
 
 interface DocumentInterface {
-    public function getTitle();
-    public function getDescription();
-    public function process();
-    public function getInfo();
+    public function getTitle(): string;
+    public function getDescription(): string;
+    public function process(): void;
+    public function getInfo(): array;
 }
 
 class TextDocument implements DocumentInterface {
-    private $title;
-    private $description;
-    private $content;
+    private string $title;
+    private string $description;
+    private string $content;
 
-    public function __construct($title, $description, $content) {
+    public function __construct(string $title, string $description, string $content) {
         $this->title = $title;
         $this->description = $description;
         $this->content = $content;
     }
 
-    public function getTitle() {
+    public function getTitle(): string {
         return $this->title;
     }
 
-    public function getDescription() {
+    public function getDescription(): string {
         return $this->description;
     }
 
-    public function process() {
+    public function process(): void {
         echo "Processing Text Document...\n";
     }
 
-    public function getInfo() {
+    public function getInfo(): array {
         return [
             'title' => $this->title,
             'description' => $this->description,
@@ -38,37 +38,37 @@ class TextDocument implements DocumentInterface {
         ];
     }
 
-    public function getWordCount() {
+    public function getWordCount(): int {
         return str_word_count($this->content);
     }
 }
 
 class ImageDocument implements DocumentInterface {
-    private $title;
-    private $description;
-    private $width;
-    private $height;
+    private string $title;
+    private string $description;
+    private int $width;
+    private int $height;
 
-    public function __construct($title, $description, $width, $height) {
+    public function __construct(string $title, string $description, int $width, int $height) {
         $this->title = $title;
         $this->description = $description;
         $this->width = $width;
         $this->height = $height;
     }
 
-    public function getTitle() {
+    public function getTitle(): string {
         return $this->title;
     }
 
-    public function getDescription() {
+    public function getDescription(): string {
         return $this->description;
     }
 
-    public function process() {
+    public function process(): void {
         echo "Processing Image Document...\n";
     }
 
-    public function getInfo() {
+    public function getInfo(): array {
         return [
             'title' => $this->title,
             'description' => $this->description,
@@ -76,35 +76,35 @@ class ImageDocument implements DocumentInterface {
         ];
     }
 
-    public function getDimensions() {
+    public function getDimensions(): string {
         return "{$this->width}x{$this->height}";
     }
 }
 
 class VideoDocument implements DocumentInterface {
-    private $title;
-    private $description;
-    private $duration;
+    private string $title;
+    private string $description;
+    private string $duration;
 
-    public function __construct($title, $description, $duration) {
+    public function __construct(string $title, string $description, string $duration) {
         $this->title = $title;
         $this->description = $description;
         $this->duration = $duration;
     }
 
-    public function getTitle() {
+    public function getTitle(): string {
         return $this->title;
     }
 
-    public function getDescription() {
+    public function getDescription(): string {
         return $this->description;
     }
 
-    public function process() {
+    public function process(): void {
         echo "Processing Video Document...\n";
     }
 
-    public function getInfo() {
+    public function getInfo(): array {
         return [
             'title' => $this->title,
             'description' => $this->description,
@@ -112,7 +112,7 @@ class VideoDocument implements DocumentInterface {
         ];
     }
 
-    public function getDuration() {
+    public function getDuration(): string {
         return $this->duration;
     }
 }
@@ -133,4 +133,5 @@ print_r($imageDoc->getInfo());
 
 echo "Video Document Info: ";
 print_r($videoDoc->getInfo());
+
 ?>
