@@ -2,16 +2,16 @@
 
 class User
 {
-    private $connection;
-    private $name;
-    private $email;
+    private PDO $connection;
+    private string $name;
+    private string $email;
 
     public function __construct(PDO $connection)
     {
         $this->connection = $connection;
     }
 
-    public function createUser($name, $email): false|string
+    public function createUser(string $name, string $email): false|string
     {
         $preCreate = $this->connection->prepare(
             "INSERT INTO users (name, email) VALUES (:name, :email)"
@@ -20,7 +20,7 @@ class User
         return $this->connection->lastInsertId(); //Получение последнего айдишника
     }
 
-    public function read($id): ?User
+    public function read(int $id): ?User
     {
         $preRead = $this->connection->prepare(
             "SELECT * FROM users WHERE id = :id"
@@ -37,7 +37,7 @@ class User
         return null;
     }
 
-    public function update($id, $name, $email): bool
+    public function update(int $id, string $name, string $email): bool
     {
         $updatePrepare = $this->connection->prepare(
             "UPDATE users SET name = :name, email = :email WHERE id = :id"
@@ -45,7 +45,7 @@ class User
         return $updatePrepare->execute([':id' => $id, ':name' => $name, ':email' => $email]);
     }
 
-    public function delete($id): bool
+    public function delete(int $id): bool
     {
         $deletePrepare = $this->connection->prepare(
             "DELETE FROM users WHERE id = :id"
