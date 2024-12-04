@@ -3,14 +3,16 @@
 class User
 {
     private $connection;
-    private $tableName = 'users';
+    private string $tableName = 'users';
+    private string $name;
+    private string $email;
 
-    public function __construct($db)
+    public function __construct(PDO $connection)
     {
-        $this->connection = $db;
+        $this->connection = $connection;
     }
 
-    public function create($name, $email)
+    public function create(string $name, string $email)
     {
         $query = "INSERT INTO " .$this->tableName . " (name, email) VALUES (:name, :email)";
         $result = $this->connection->prepare($query);
@@ -18,17 +20,22 @@ class User
         $result->bindParam(':name', $name);
         $result->bindParam(':email', $email);
 
-        if ($result->execute()) {
-            return true;
-        }
-        return false;
-    }
-    public function read() {
-        $query = "SELECT * FROM " . $this->tableName;
-        $result = $this->connection->prepare($query);
         $result->execute();
+        return $this->connection->lastInsertId();
+    }
+    public function read(int $id) {
+        $query = "SELECT * FROM " . $this->tableName . " WHERE id = ?";
+        $result = $this->connection->prepare($query);
+        $result->execute([$id]);
+        $data = $result->fetch(PDO::FETCH_ASSOC);
 
-        return $result->fetchAll(PDO::FETCH_ASSOC);
+        if ($data) {
+            $user = new User($this->connection);
+            $user->name = $data['name'];
+            $user->email = $data['email'];
+            return $user;
+        }
+        return null;
     }
 
     public function update($id, $name, $email) {

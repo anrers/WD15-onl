@@ -8,10 +8,7 @@ $db = $database->getConnection();
 
 $user = new User($db);
 
-$user ->create("Hello Bye", "hello@bye.com");
-
-$users = $user->read();
-print_r($users);
+$user->create("Hello Bye", "hello@bye.com");
 
 $user->update(1, "Hello Goodbye", "hello@goodbye.com");
 

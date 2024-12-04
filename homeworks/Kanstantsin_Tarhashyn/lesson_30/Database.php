@@ -2,10 +2,10 @@
 
 class Database
 {
-    private $host = 'mysql-8.2';
-    private $dbName = 'study';
-    private $userName = 'root';
-    private $password = '';
+    private string $host = 'mysql-8.2';
+    private string $dbName = 'study';
+    private string $userName = 'root';
+    private string $password = '';
     public $connection;
 
     public function getConnection()
