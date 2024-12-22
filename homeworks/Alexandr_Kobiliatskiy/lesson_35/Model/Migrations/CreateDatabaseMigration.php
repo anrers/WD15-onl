@@ -12,12 +12,12 @@ class CreateDatabaseMigration
 
     public function createDataBase(): void
     {
-        $this->db->ConnectionToTheMySqlServer()->query("CREATE DATABASE IF NOT EXISTS `testMVC`");
+        $this->db->connectionToMySqlServer()->query("CREATE DATABASE IF NOT EXISTS `testMVC`");
     }
 
     public function dropDataBase(): void
     {
-        $this->db->ConnectionToTheMySqlServer()->query("DROP DATABASE IF EXISTS `testMVC`");
+        $this->db->connectionToMySqlServer()->query("DROP DATABASE IF EXISTS `testMVC`");
     }
 }
 

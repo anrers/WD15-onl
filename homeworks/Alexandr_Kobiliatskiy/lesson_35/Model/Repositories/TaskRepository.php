@@ -11,9 +11,7 @@ class TaskRepository
 {
     public function __construct(
         protected Database $db
-    )
-    {
-    }
+    ) {}
 
     /**
      * @return array<TaskModel>
@@ -66,9 +64,3 @@ class TaskRepository
         return $resultQuery->execute([$idForUpdate]);
     }
 }
-
-//    public function getById(int $id): TaskModel
-//    {
-//
-//    }
-//}

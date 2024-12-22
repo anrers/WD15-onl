@@ -7,7 +7,7 @@ use DateTime;
 use Model\Database;
 use Model\Models\TaskModel;
 use Model\Repositories\TaskRepository;
-use View\NewAddListView;
+use View\AddTaskView;
 use View\TaskListView;
 
 class HomeController
@@ -29,7 +29,7 @@ class HomeController
 
     public function createViewNewTask(): string
     {
-        $newTaskPage = new NewAddListView();
+        $newTaskPage = new AddTaskView();
         return $newTaskPage->render();
     }
 

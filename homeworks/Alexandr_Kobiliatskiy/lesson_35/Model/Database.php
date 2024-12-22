@@ -9,7 +9,7 @@ class Database
     protected static ?PDO $connToServer = null;
     protected static ?PDO $connection = null;
 
-    public function ConnectionToTheMySqlServer(): PDO
+    public function connectionToMySqlServer(): PDO
     {
         $connToServer = self::$connToServer;
         if (!$connToServer) {

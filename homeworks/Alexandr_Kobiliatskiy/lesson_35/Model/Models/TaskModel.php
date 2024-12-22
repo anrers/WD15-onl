@@ -14,6 +14,5 @@ class TaskModel
         public DateTime $createdAt,
         public ?string $description = null,
         public ?DateTime $executedAt = null,
-    ) {
-    }
+    ) {}
 }

@@ -2,7 +2,7 @@
 
 namespace View;
 
-class NewAddListView
+class AddTaskView
 {
     const string TEMPLATE = 'list';
 
