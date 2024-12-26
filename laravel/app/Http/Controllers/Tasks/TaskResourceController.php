@@ -6,9 +6,8 @@ use app\Contracts\Services\Tasks\TaskServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Tasks\CreateTaskRequest;
 use app\Services\Tasks\TaskService;
-use Illuminate\Database\Eloquent\Builder;
 
-class TaskController extends Controller
+class TaskResourceController extends Controller
 {
     protected TaskServiceInterface $taskService;
 
