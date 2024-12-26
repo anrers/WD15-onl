@@ -3,11 +3,13 @@
 namespace App\Models\Tasks;
 
 use App\Models\BaseModel;
+use App\Models\Tags\Tag;
 use Database\Factories\Tasks\TaskFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Carbon;
 
 /**
@@ -16,7 +18,7 @@ use Illuminate\Support\Carbon;
  * @property int $id
  * @property string $name
  * @property string|null $description
- * @property string $dueDate
+ * @property Carbon $dueDate
  * @property string|null $executedAt
  * @property int $status
  * @property Carbon|null $createdAt
@@ -51,5 +53,17 @@ class Task extends BaseModel
                 return (int) $statusValue;
             }
         );
+    }
+
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'dueDate' => 'datetime:Y-m-d',
+        ];
     }
 }
