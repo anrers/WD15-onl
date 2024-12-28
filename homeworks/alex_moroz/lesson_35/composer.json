@@ -1,0 +1,8 @@
+{
+    "name": "morozav/lesson_35",
+    "autoload": {
+        "psr-4": {
+            "Morozav\\Lesson35\\": "src/"
+        }
+    }
+}
