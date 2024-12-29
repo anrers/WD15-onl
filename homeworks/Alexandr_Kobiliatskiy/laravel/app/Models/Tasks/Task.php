@@ -3,10 +3,12 @@
 namespace App\Models\Tasks;
 
 use App\Models\BaseModel;
+use App\Models\Task\Subtask;
 use Database\Factories\Tasks\TaskFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
 /**
@@ -39,4 +41,9 @@ class Task extends BaseModel
 
     /** @use HasFactory<TaskFactory> */
     use HasFactory;
+
+    public function subtasks(): HasMany
+    {
+        return $this->hasMany(Subtask::class, 'task_id');
+    }
 }
