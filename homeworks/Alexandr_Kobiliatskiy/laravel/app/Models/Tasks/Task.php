@@ -37,8 +37,6 @@ use Illuminate\Support\Carbon;
 class Task extends BaseModel
 {
 
-
-
     /** @use HasFactory<TaskFactory> */
     use HasFactory;
 }

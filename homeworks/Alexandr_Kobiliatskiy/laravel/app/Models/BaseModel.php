@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 abstract class BaseModel extends Model
 {
-    const string CREATED_AT = 'createdAt';
-    const string UPDATED_AT = 'updatedAt';
+    const  CREATED_AT = 'createdAt';
+    const  UPDATED_AT = 'updatedAt';
 }

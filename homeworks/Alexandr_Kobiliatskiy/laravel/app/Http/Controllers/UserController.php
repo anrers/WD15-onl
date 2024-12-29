@@ -9,8 +9,8 @@ class UserController extends Controller
 {
     public function home()
     {
-        $data = User::query()->where('id', '=', 1)->get();
-        dd($data);
+        $data = User::all();
+        //dd($data);
         return $data;
     }
 }
