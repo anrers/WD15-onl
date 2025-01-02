@@ -1,0 +1,73 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", serif;
+}
+
+form {
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    max-width: 900px;
+    min-height: 100vh;
+    background-image: url("https://sun9-8.userapi.com/s/v1/ig2/fUvvyw_E6Y_SOYmTmdr-Zv30pybwnjtnII32KAH9sUFi4NuLCvczl78OL7BFYVboIUNhCAtNBbLfOtqA8I0h7oLk.jpg?quality=96&as=32x23,48x34,72x51,108x76,160x113,240x169,360x254,480x338,540x380,640x451,720x507,1080x761,1280x902,1380x972&from=bu&u=oXqZgFCyqaMTVC_WXe8QH1K0V0CS3tmjo6GehzBylFQ&cs=604x425");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+input {
+    padding: 10px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 10px;
+}
+
+label {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.1;
+    text-transform: uppercase;
+    padding-left: 10px;
+    background-color: rgba(143, 211, 255, 0.62);
+}
+
+textarea {
+    border: none;
+}
+
+button {
+    padding: 3px 10px;
+    border: none;
+    border-radius: 25px;
+    color: #ffffff;
+    background-color: rgb(7, 55, 209);
+    cursor: pointer;
+    box-shadow: 5px 5px 10px #020d18, inset -5px -5px 8px -4px #020d18, -5px -5px 10px rgba(26, 90, 151, 0.37), inset 5px 5px 8px -4px rgba(42, 102, 159, 0.42);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 300;
+    user-select: none;
+
+    transition: ease 0.4s;
+    text-transform: uppercase;
+
+}
+
+button:active {
+    box-shadow: 5px 5px 10px #020d18, inset -5px -5px 8px -4px #020d18, inset -6px -6px 8px 0 #3185d5, -5px -5px 10px #3185d5, inset 5px 5px 8px -4px #3185d5, inset 6px 6px 8px 0 #020d18;
+    text-shadow: #c5e3ff 1px 0 10px;
+}
