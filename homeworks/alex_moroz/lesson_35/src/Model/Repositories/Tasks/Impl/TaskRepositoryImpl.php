@@ -17,7 +17,7 @@ class TaskRepositoryImpl implements TaskRepository
     public function getAll(): array
     {
         $query = "SELECT * FROM tasks ORDER BY status, deadline";
-        $connection = DatabaseConnection::getConnection()->connect();
+        $connection = DatabaseConnection::getConnection();
         $statement = $connection->prepare($query);
         $statement->execute();
         $result = [];
@@ -30,7 +30,7 @@ class TaskRepositoryImpl implements TaskRepository
     public function getById(int $id): ?TaskModel
     {
         $query = "SELECT * FROM tasks WHERE id= ?";
-        $connection = DatabaseConnection::getConnection()->connect();
+        $connection = DatabaseConnection::getConnection();
         $statement = $connection->prepare($query);
         $statement->execute([$id]);
         return $statement->fetchObject(TaskModel::class);
@@ -39,7 +39,7 @@ class TaskRepositoryImpl implements TaskRepository
     public function update(array $taskData): bool
     {
         $query = "UPDATE tasks SET name = :name, description = :description WHERE id = :id";
-        $connection = DatabaseConnection::getConnection()->connect();
+        $connection = DatabaseConnection::getConnection();
 
         if (isset($taskData['deadline'])) {
             $index = strrpos($query, ":description") + mb_strlen(":description");
@@ -59,7 +59,7 @@ class TaskRepositoryImpl implements TaskRepository
     public function create(array $newTaskData): bool
     {
         $query = "INSERT INTO tasks (name, description, deadline) VALUES (?, ?, ?)";
-        $connection = DatabaseConnection::getConnection()->connect();
+        $connection = DatabaseConnection::getConnection();
         $statement = $connection->prepare($query);
         try {
             $statement->execute([
@@ -77,7 +77,7 @@ class TaskRepositoryImpl implements TaskRepository
     public function resolve(int $id): void
     {
         $query = "UPDATE tasks SET status = 1, executedAt = now() WHERE id = ?";
-        $connection = DatabaseConnection::getConnection()->connect();
+        $connection = DatabaseConnection::getConnection();
         $statement = $connection->prepare($query);
         $statement->execute([$id]);
     }

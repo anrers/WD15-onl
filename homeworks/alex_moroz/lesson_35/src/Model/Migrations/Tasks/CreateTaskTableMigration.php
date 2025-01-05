@@ -12,7 +12,7 @@ class CreateTaskTableMigration
 
     public function up(): void
     {
-        $this->db->connect()->query(
+        $this->db::getConnection()->query(
             "
 CREATE TABLE IF NOT EXISTS tasks (
     id INT NOT NULL AUTO_INCREMENT , 
@@ -28,6 +28,6 @@ CREATE TABLE IF NOT EXISTS tasks (
 
     public function down(): void
     {
-        $this->db->connect()->query("DROP TABLE IF EXISTS tasks;");
+        $this->db->getConnection()->query("DROP TABLE IF EXISTS tasks;");
     }
 }

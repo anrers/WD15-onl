@@ -7,35 +7,32 @@ use PDOException;
 
 class DatabaseConnection
 {
-    private static ?DatabaseConnection $connection = null;
+    private static ?PDO $connection = null;
 
     protected function __construct() {}
 
-    public function connect(): PDO
+    public static function getConnection(): ?PDO
     {
-        // чтение параметров в файле конфигурации ini
-        $params = parse_ini_file(__DIR__ . "/../../config/database.ini");
-        try {
-            return new PDO(
-                dsn: "mysql:host=" . $params['hostname'] . ";dbname="
-                . $params["database"] . ";charset=utf8",
-                username: $params["username"],
-                password: $params["password"],
-            );
-        } catch (PDOException $exception) {
-            echo "Database connection error: " . $exception->getMessage();
-            throw new PDOException(
-                "Database connection error: " . $exception->getMessage(),
-            );
-        }
-    }
+        $connection = self::$connection;
 
-    public static function getConnection(): ?DatabaseConnection
-    {
-        if (null === static::$connection) {
-            static::$connection = new self();
+        if (!$connection) {
+            $params = parse_ini_file(__DIR__ . "/../../config/database.ini");
+            try {
+                $connection = new PDO(
+                    dsn: "mysql:host=" . $params['hostname'] . ";dbname="
+                    . $params["database"] . ";charset=utf8",
+                    username: $params["username"],
+                    password: $params["password"],
+                );
+                self::$connection = $connection;
+            } catch (PDOException $exception) {
+                echo "Database connection error: " . $exception->getMessage();
+                throw new PDOException(
+                    "Database connection error: " . $exception->getMessage(),
+                );
+            }
         }
 
-        return DatabaseConnection::$connection;
+        return $connection;
     }
 }
