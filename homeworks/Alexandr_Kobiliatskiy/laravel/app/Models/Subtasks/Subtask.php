@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Models\Task;
+namespace App\Models\Subtasks;
 
 use App\Models\BaseModel;
 use App\Models\Tasks\Task;
-use Database\Factories\Task\SubtaskFactory;
+use Database\Factories\Subtask\SubtaskFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Subtask extends BaseModel

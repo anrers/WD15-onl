@@ -14,9 +14,9 @@ class TaskSeeder extends Seeder
      */
     public function run(): void
 //    {
-//        $newTasks = new Task();
-//        $newTasks->name = 'My Task';
-//        $newTasks->description = 'My Task';
+//        $newTasks = new Tasks();
+//        $newTasks->name = 'My Tasks';
+//        $newTasks->description = 'My Tasks';
 //        $newTasks->dueDate = Carbon::now();
 //        $newTasks->save();
 //    }

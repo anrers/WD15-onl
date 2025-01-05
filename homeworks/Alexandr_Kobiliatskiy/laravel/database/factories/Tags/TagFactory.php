@@ -1,13 +1,13 @@
 <?php
 
-namespace Database\Factories\Task;
+namespace Database\Factories\Tags;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Task\Subtask>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Tags\Tag>
  */
-class SubtaskFactory extends Factory
+class TagFactory extends Factory
 {
     /**
      * Define the model's default state.
