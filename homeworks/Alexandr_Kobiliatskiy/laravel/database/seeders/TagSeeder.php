@@ -2,17 +2,19 @@
 
 namespace Database\Seeders;
 
-use App\Models\Subtasks\Subtask;
+use App\Models\Tags\Tag;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class SubtaskSeeder extends Seeder
+class TagSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Subtask::factory()->count(25)->create();
+        $tag = new Tag();
+        $tag->name = 'Work';
+        $tag->save();
     }
 }
