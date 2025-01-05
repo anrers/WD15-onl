@@ -5,6 +5,8 @@
  */
 //dd($data);
 ?>
+
+
     <!doctype html>
 <html lang="en">
 <head>
@@ -12,20 +14,20 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Список задач</title>
+    <title>Список подзадач</title>
 </head>
 <body>
     <h1>Список задач</h1>
     <ul>
-        @foreach($data as $task)
+        @foreach($data as $subtask)
             <li>
-                {{$task->id}}
-                {{$task->name}}
+                {{$subtask->id}}
+                {{$subtask->name}}
             </li>
         @endforeach
     </ul>
     <button>
-        <a href="/tasks/create">Создать задачу</a>
+        <a href="/subtasks/create">Создать задачу</a>
     </button>
 </body>
 </html>

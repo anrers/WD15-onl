@@ -8,6 +8,15 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Прювет</h1>
+    <h1>Пользователи</h1>
+    <ul>
+        @foreach($data as $user)
+            <li>
+                {{$user->id}}
+                {{$user->name}}
+                {{$user->email}}
+            </li>
+        @endforeach
+    </ul>
 </body>
 </html>

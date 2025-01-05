@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subtasks', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->integer('taskId');
-            $table->timestamp('createdAt')->nullable();
-            $table->timestamp('updatedAt')->nullable();
-
-            //taskId, createdAt, updatedAt
+        Schema::create('tag_task', function (Blueprint $table) {
+            $table->integer('tag_id');
+            $table->integer('task_id');
+            $table->primary(['tag_id', 'task_id']);
         });
     }
 
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subtasks');
+        Schema::dropIfExists('tag_task');
     }
 };

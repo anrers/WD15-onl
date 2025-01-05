@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function home()
+    public function users()
     {
         $data = User::all();
-        //dd($data);
-        return $data;
+//        dd($data);
+        return view('users', compact('data'));
     }
 }
