@@ -111,7 +111,7 @@ use Model\Models\TaskModel;
             <td><?= $task->description ?? '' ?></td>
             <td><?= $task->dueDate->format('d-m-Y-H-i-s') ?></td>
             <td>
-                <input type="submit" style="background-color: <?= $background ?>;" id="<?= $task->id ?>"
+                <input value="Completed" type="submit" style="background-color: <?= $background ?>;" id="<?= $task->id ?>"
                        name="<?= $task->id ?>">
             </td>
             <?php
