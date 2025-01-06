@@ -26,13 +26,12 @@ class Router
                 }
             } else {
                 if ($routeUrl == $url) {
-                    $result =[
+                    $result = [
                         'controller' => $routeData['controller'],
-                        'method'     => $routeData['method'],
-                        'args'       => [],
+                        'method' => $routeData['method'],
+                        'args' => [],
                     ];
                     break;
-
                 }
             }
         }

@@ -7,6 +7,7 @@ use Exception;
 use Model\Database;
 use Model\Models\TaskModel;
 
+
 class TaskRepository
 {
     public function __construct(
@@ -36,12 +37,26 @@ class TaskRepository
         return $result;
     }
 
-    public function create(TaskModel $task): int
+    /**
+     * @param TaskModel $newTask
+     * @return bool
+     */
+    public function create(TaskModel $newTask): bool
     {
+        $dueDate = $newTask->dueDate->format('d-m-Y-H-i-s');
+        $createdAt = $newTask->createdAt->format('d-m-Y-H-i-s');
+        $executedAt = $newTask->executedAt->format('d-m-Y-H-i-s');
+        $dbResult = $this->db->connection()->prepare("INSERT INTO `tasks` ('id','name', 'dueDate', 'description', 'status', 'createdAt','executedAt')
+                        VALUES (?,?,?,?,?,?,?)");
+        return $dbResult->execute([$newTask->id, $newTask->name, $newTask->description, $dueDate, $executedAt, $newTask->status, $createdAt]);
     }
 
+    public function update(int $UpdatedId): void
+    {
+        $dbResult = $this->db->connection()->prepare("UPDATE `tasks` SET `status` = 1 WHERE `id` = ?");
+        $dbResult->execute([$UpdatedId]);
 
-
+    }
 
     /**
      * @throws Exception

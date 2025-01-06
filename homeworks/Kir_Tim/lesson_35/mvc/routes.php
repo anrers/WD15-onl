@@ -15,18 +15,18 @@ return [
         'regex' => '#/api/task/([1-9]+)#'
     ],
     '/create' => [
-        'UserController' => TaskController::class,
+        'controller' => TaskController::class,
         'method' => 'create',
-        'httpMethod' => 'GET',
+        'httpMethod' => 'POST',
     ],
     '/update' => [
-        'UserController' => TaskController::class,
+        'controller' => TaskController::class,
         'method' => 'updateTask',
         'httpMethod' => 'POST',
     ],
     '/create/task' => [
-        'UserController' => TaskController::class,
-        'method' => 'create',
+        'controller' => TaskController::class,
+        'method' => 'createNewTask',
         'httpMethod' => 'POST',
     ],
 ];

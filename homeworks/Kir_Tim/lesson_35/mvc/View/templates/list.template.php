@@ -58,7 +58,7 @@ use Model\Models\TaskModel;
             background-color: #f1f1f1;
         }
 
-        button {
+        input, button {
 
             color: white;
             border: none;
@@ -68,17 +68,17 @@ use Model\Models\TaskModel;
             font-size: 14px;
         }
 
-        button:hover {
+        input, button:hover {
             background-color: #574dcf;
         }
     </style>
 </head>
 <body>
-<form  method="post" action="/create">
-    <button style = background-color:#6c63ff; >Create new task</button>
+<form method="post" action="/create">
+    <button style=background-color:#6c63ff;>Create new task</button>
 </form>
-<form method="post" action="/update">
 
+<form method="POST" action="/update">
     <table>
         <thead>
         <tr>
@@ -90,7 +90,9 @@ use Model\Models\TaskModel;
         </tr>
 
         <?php
-        foreach ($tasks as $task):
+        foreach ($tasks
+
+        as $task):
 
         $background = '#6c63ff';
         if ($task->status == 1) {
@@ -108,12 +110,16 @@ use Model\Models\TaskModel;
             <td><?= $task->name ?></td>
             <td><?= $task->description ?? '' ?></td>
             <td><?= $task->dueDate->format('d-m-Y-H-i-s') ?></td>
-            <td><button style = "background-color: <?= $background ?>;" id = "<?= $task->id ?>">Completed</button></td>
-            <?php endforeach; ?>
+            <td>
+                <input type="submit" style="background-color: <?= $background ?>;" id="<?= $task->id ?>"
+                       name="<?= $task->id ?>">
+            </td>
+            <?php
+            endforeach; ?>
 
-                                </tr>
-                                </tbody>
-                                </table>
-                                </form>
-                                </body>
-                                </html>
+        </tr>
+        </tbody>
+    </table>
+</form>
+</body>
+</html>
