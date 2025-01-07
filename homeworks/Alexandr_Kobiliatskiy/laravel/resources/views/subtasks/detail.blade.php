@@ -3,7 +3,7 @@
  * @var Subtask $data
  */
 
-use App\Models\Subtask\Subtask;
+use App\Models\Subtasks\Subtask;
 ?>
 
     <!doctype html>
@@ -21,7 +21,7 @@ use App\Models\Subtask\Subtask;
 </div>
 
 <div>
-    Заголовок: {{$data->taskId}}
+    Номер задачи: {{$data->taskId}}
 </div>
 
 <div>

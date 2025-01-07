@@ -17,7 +17,7 @@
     <title>Список подзадач</title>
 </head>
 <body>
-    <h1>Список задач</h1>
+    <h1>Список подзадач</h1>
     <ul>
         @foreach($data as $subtask)
             <li>
@@ -27,7 +27,7 @@
         @endforeach
     </ul>
     <button>
-        <a href="/subtasks/create">Создать задачу</a>
+        <a href="/subtasks/create">Создать подзадачу</a>
     </button>
 </body>
 </html>

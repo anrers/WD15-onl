@@ -3,7 +3,7 @@
  * @var Subtask $subtask
  */
 
-use App\Models\Subtask\Subtask;
+use App\Models\Subtasks\Subtask;
 ?>
 
 
@@ -14,10 +14,10 @@ use App\Models\Subtask\Subtask;
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create task</title>
+    <title>Create subtask</title>
 </head>
 <body>
-<h1>Создаем задачи</h1>
+<h1>Редактируем подзадачи</h1>
 <form action="/subtask/{{$subtask->id}}" method="post">
     @method('PUT')
     @csrf
