@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Subtasks;
+namespace App\Http\Requests\Subtask;
 
 use App\Http\Requests\BaseRequest;
 use Illuminate\Contracts\Validation\ValidationRule;
 
 
-class CreateSubTaskRequest extends BaseRequest
+class CreateSubtaskRequest extends BaseRequest
 {
 
     /**
@@ -18,7 +18,7 @@ class CreateSubTaskRequest extends BaseRequest
     {
         return [
             'name' => 'required|string|max:255|unique:tasks,name|min:3',
-            'task_id' => 'required|integer|exists:tasks,id',
+            'taskId' => 'required|integer|exists:tasks,id',
             'description' => 'nullable|string|max:1000',
             'dueDate' => 'required',
         ];

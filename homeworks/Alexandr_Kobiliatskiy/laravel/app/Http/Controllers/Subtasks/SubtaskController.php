@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Subtasks;
 
 use App\Contracts\Services\Subtasks\SubTaskServiceInterface;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Subtasks\CreateSubTaskRequest;
+use App\Http\Requests\Subtask\CreateSubtaskRequest;
+
 use App\Services\Subtasks\SubTaskService;
 
 
@@ -35,7 +36,7 @@ class SubtaskController extends Controller
         return view('subtasks.create');
     }
 
-    public function store(CreateSubTaskRequest $request)
+    public function store(CreateSubtaskRequest $request)
     {
         $data = $request->validated();
         $subtask = $this->subTaskService->create($data);
@@ -49,7 +50,7 @@ class SubtaskController extends Controller
         return view('subtasks.edit', compact('subtask'));
     }
 
-    public function update(CreateSubTaskRequest $request)
+    public function update(CreateSubtaskRequest $request)
     {
         $data = $request->validated();
         $subtask = $this->subTaskService->create($data);

@@ -6,4 +6,5 @@ use App\Contracts\Services\EntityServiceInterface;
 
 interface SubTaskServiceInterface extends EntityServiceInterface
 {
+
 }
