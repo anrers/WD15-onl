@@ -18,7 +18,7 @@ use App\Models\Subtasks\Subtask;
 </head>
 <body>
 <h1>Редактируем подзадачи</h1>
-<form action="/subtask/{{$subtask->id}}" method="post">
+<form action="/subtasks/{{$subtask->id}}" method="post">
     @method('PUT')
     @csrf
     <div>

@@ -19,7 +19,7 @@ use App\Models\Tasks\Task;
 </head>
 <body>
 <h1>Создаем задачи</h1>
-<form action="/task/{{$task->id}}" method="post">
+<form action="/tasks/{{$task->id}}" method="post">
     @method('PUT')
     @csrf
     <div>
