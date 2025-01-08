@@ -19,7 +19,7 @@ use App\Models\Tags\Tag;
 </head>
 <body>
 <h1>Редактируем теги</h1>
-<form action="/tag/{{$tag->id}}" method="post">
+<form action="/tags/{{$tag->id}}" method="post">
     @method('PUT')
     @csrf
     <div>

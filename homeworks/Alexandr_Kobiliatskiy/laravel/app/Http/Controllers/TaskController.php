@@ -38,7 +38,8 @@ class TaskController extends Controller
     {
         $data = $request->validated();
         $task = $this->taskService->create($data);
-        return redirect('/task/' . $task->id);
+        //return redirect('/tasks/' . $task->id);
+        return redirect()->route('tasks.show', ['id' => $task->id]);
 
     }
 
@@ -52,14 +53,17 @@ class TaskController extends Controller
     {
         $data = $request->validated();
         $task = $this->taskService->create($data);
-        return redirect('/task/' . $task->id);
+        //return redirect('/tasks/' . $task->id);
+        return redirect()->route('tasks.show', ['id' => $task->id]);
     }
 
     public function destroy(int $id)
     {
         $this->taskService->delete($id);
-        return redirect('/tasks');
+        return redirect()->route('tasks.index');
     }
+
+
 
 
     public function attachTag(int $id, int $tagId): \Illuminate\Http\RedirectResponse
