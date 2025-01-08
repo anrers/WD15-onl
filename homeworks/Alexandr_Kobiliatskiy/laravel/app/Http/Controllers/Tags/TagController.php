@@ -38,8 +38,9 @@ class TagController extends Controller
     public function store(CreateTagRequest $request)
     {
         $data = $request->validated();
-        $task = $this->tagService->create($data);
-        return redirect('/tag/' . $task->id);
+        $tags = $this->tagService->create($data);
+        //return redirect('/tags/' . $task->id);
+        return redirect()->route('tags.show', ['id' => $tags->id]);
 
     }
 
@@ -52,14 +53,15 @@ class TagController extends Controller
     public function update(CreateTagRequest $request)
     {
         $data = $request->validated();
-        $tag = $this->tagService->create($data);
-        return redirect('/tag/' . $tag->id);
+        $tags = $this->tagService->create($data);
+        //return redirect('/tags/' . $tag->id);
+        return redirect()->route('tags.show', ['id' => $tags->id]);
     }
 
     public function destroy(int $id)
     {
         $this->tagService->delete($id);
-        return redirect('/tags');
+        return redirect()->route('tags.index');
     }
 
 }
