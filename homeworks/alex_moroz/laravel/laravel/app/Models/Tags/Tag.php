@@ -32,9 +32,4 @@ class Tag extends BaseModel
 {
     /** @use HasFactory<TagFactory> */
     use HasFactory;
-
-    public function tasks(): BelongsToMany
-    {
-        return $this->belongsToMany(Task::class, 'tag_task', 'taskId', 'tagId');
-    }
 }

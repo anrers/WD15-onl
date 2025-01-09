@@ -42,7 +42,7 @@ class TaskController extends Controller
         $data = $request->validated();
         $task = $this->taskService->create($data);
 
-        return redirect('/tasks/' . $task->id);
+        return redirect()->route('tasks.show', ['id' => $task->id]);
     }
 
     public function edit(int $id)
@@ -57,13 +57,13 @@ class TaskController extends Controller
         $data = $request->validated();
         $task = $this->taskService->update($id, $data);
 
-        return redirect('/tasks/' . $task->id);
+        return redirect()->route('tasks.show', ['id' => $task->id]);
     }
 
     public function destroy(int $id)
     {
         $this->taskService->delete($id);
-        return redirect('/tasks');
+        return redirect()->route('tasks.index');
     }
 
     public function attachTag(int $id, int $tagId): RedirectResponse
@@ -73,7 +73,7 @@ class TaskController extends Controller
          */
         $task = $this->taskService->getById($id);
         $task->tags()->attach($tagId);
-        return redirect()->back();
+        return redirect()->route('tasks.index');
     }
 
     public function getSubtasks(int $id)

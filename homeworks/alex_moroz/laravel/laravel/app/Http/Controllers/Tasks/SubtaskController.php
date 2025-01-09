@@ -46,7 +46,7 @@ class SubtaskController extends Controller
         $data = $request->validated();
         $subtask = $this->subtaskService->create($data);
 
-        return redirect('/subtasks/' . $subtask->id);
+        return redirect()->route('subtasks.show', ['id' => $subtask->id]);
     }
 
     public function edit(int $id)
@@ -61,12 +61,12 @@ class SubtaskController extends Controller
         $data = $request->validated();
         $subtask = $this->subtaskService->update($id, $data);
 
-        return redirect('/subtasks/' . $subtask->id);
+        return redirect()->route('subtasks.show', ['id' => $subtask->id]);
     }
 
     public function destroy(int $id)
     {
         $this->subtaskService->delete($id);
-        return redirect('/subtasks');
+        return redirect()->route('subtasks.index');
     }
 }
