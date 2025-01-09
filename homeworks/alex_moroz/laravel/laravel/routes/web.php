@@ -2,35 +2,44 @@
 
 use App\Http\Controllers\Tags\TagController;
 use App\Http\Controllers\Tasks\SubtaskController;
-use App\Http\Controllers\Tasks\TaskResourceController;
+use App\Http\Controllers\Tasks\TaskController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/tags/create', [TagController::class, 'create']);
-Route::post('/tags', [TagController::class, 'store']);
+$commonRoutes = function (): void {
+    Route::get('create', 'create')->name('create');
+    Route::post('', 'store')->name('store');
 
-Route::get('/tags', [TagController::class, 'index']);
-Route::get('/tags/{id}', [TagController::class, 'show']);
+    Route::get('', 'index')->name('index');
+    Route::get('{id}', 'show')->name('show');
 
-Route::get('/tags/{id}/edit', [TagController::class, 'edit']);
-Route::put('/tags/{id}', [TagController::class, 'update']);
+    Route::get('{id}/edit', 'edit')->name('edit');
+    Route::put('{id}', 'update')->name('update');
 
-Route::delete('/tags/{id}', [TagController::class, 'destroy']);
+    Route::delete('{id}', 'destroy')->name('destroy');
+};
 
-Route::resource('/tasks', TaskResourceController::class);
-Route::get('/tasks/{id}/subtasks', [TaskResourceController::class, 'getSubtasks']);
-Route::get('/tasks/{id}/tags/{tagId}', [TaskResourceController::class, 'attachTag']);
+Route::prefix('tags')
+    ->name('tags.')
+    ->controller(TagController::class)
+    ->group($commonRoutes);
 
-Route::get('/subtasks/create', [SubtaskController::class, 'create']);
-Route::post('/subtasks', [SubtaskController::class, 'store']);
 
-Route::get('/subtasks', [SubtaskController::class, 'index']);
-Route::get('/subtasks/{id}', [SubtaskController::class, 'show']);
+//Route::resource('/tasks', TaskResourceController::class);
 
-Route::get('/subtasks/{id}/edit', [SubtaskController::class, 'edit']);
-Route::put('/subtasks/{id}', [SubtaskController::class, 'update']);
+Route::prefix('tasks')
+    ->name('tasks.')
+    ->controller(TaskController::class)
+    ->group(function () {
+        Route::get('{id}/subtasks', 'getSubtasks')->name('getSubtasks');
+        Route::get('{id}/tags/{tagId}', 'attachTag')->name('attachTag');
+    })
+    ->group($commonRoutes);
 
-Route::delete('/subtasks/{id}', [SubtaskController::class, 'destroy']);
+Route::prefix('subtasks')
+    ->name('subtasks.')
+    ->controller(SubtaskController::class)
+    ->group($commonRoutes);

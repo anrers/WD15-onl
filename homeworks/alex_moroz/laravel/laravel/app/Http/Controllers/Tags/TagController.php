@@ -40,7 +40,7 @@ class TagController extends Controller
         $data = $request->validated();
         $tag = $this->tagService->create($data);
 
-        return redirect('/tags/' . $tag->id);
+        return redirect()->route('tags.show', ['id' => $tag->id]);
     }
 
     public function edit(int $id)
@@ -55,12 +55,12 @@ class TagController extends Controller
         $data = $request->validated();
         $tag = $this->tagService->update($id, $data);
 
-        return redirect('/tags/' . $tag->id);
+        return redirect()->route('tags.show', ['id' => $tag->id]);
     }
 
     public function destroy(int $id)
     {
         $this->tagService->delete($id);
-        return redirect('/tags');
+        return redirect()->route('tags.index');
     }
 }

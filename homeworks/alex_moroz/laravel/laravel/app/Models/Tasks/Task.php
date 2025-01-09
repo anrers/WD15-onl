@@ -8,6 +8,7 @@ use App\Models\User;
 use Database\Factories\Tasks\TaskFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -52,7 +53,7 @@ class Task extends BaseModel
 
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Tag::class, 'tag_task', 'tagId', 'taskId');
+        return $this->belongsToMany(Tag::class, 'tag_task', 'taskId', 'tagId');
     }
 
     public function subtasks(): HasMany
@@ -70,5 +71,17 @@ class Task extends BaseModel
         return [
             'dueDate' => 'datetime:Y-m-d',
         ];
+    }
+
+    protected function status(): Attribute
+    {
+        return new Attribute(
+            get: function ($statusValue) {
+                return (boolean)$statusValue;
+            },
+            set: function ($statusValue) {
+                return (int)$statusValue;
+            },
+        );
     }
 }
