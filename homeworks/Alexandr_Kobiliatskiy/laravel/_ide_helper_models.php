@@ -13,20 +13,20 @@
 
 namespace App\Models\Task{
 /**
- * 
+ *
  *
  * @property-read \App\Models\Tasks\Task|null $task
  * @method static \Database\Factories\Task\SubtaskFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Subtask newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Subtask newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Subtask query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|\App\Models\Tasks\Subtask newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|\App\Models\Tasks\Subtask newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|\App\Models\Tasks\Subtask query()
  */
 	class Subtask extends \Eloquent {}
 }
 
 namespace App\Models\Tasks{
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $name
@@ -49,7 +49,7 @@ namespace App\Models\Tasks{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Task whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Task whereUpdatedAt($value)
  * @mixin Eloquent
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Task\Subtask> $subtasks
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tasks\Subtask> $subtasks
  * @property-read int|null $subtasks_count
  */
 	class Task extends \Eloquent {}
@@ -57,7 +57,7 @@ namespace App\Models\Tasks{
 
 namespace App\Models{
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $name

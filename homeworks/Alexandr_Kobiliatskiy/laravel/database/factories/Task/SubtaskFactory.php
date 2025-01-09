@@ -5,7 +5,7 @@ namespace Database\Factories\Task;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Task\Subtask>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Tasks\Subtask>
  */
 class SubtaskFactory extends Factory
 {
