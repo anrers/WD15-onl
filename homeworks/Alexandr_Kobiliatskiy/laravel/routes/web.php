@@ -49,6 +49,8 @@ Route::prefix('tags')
     });
 
 
+Route::get('/test', [TaskController::class, 'test']);
+
 //Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
 //Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
 //Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');

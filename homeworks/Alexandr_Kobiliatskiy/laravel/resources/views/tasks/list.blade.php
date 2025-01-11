@@ -5,16 +5,9 @@
  */
 //dd($data);
 ?>
-    <!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Список задач</title>
-</head>
-<body>
+@section('title', 'Задачи')
+
+<x-layout.component>
     <h1>Список задач</h1>
     <ul>
         @foreach($data as $task)
@@ -27,8 +20,7 @@
     <button>
         <a href="/tasks/create">Создать задачу</a>
     </button>
-</body>
-</html>
+</x-layout.component>
 
 
 
