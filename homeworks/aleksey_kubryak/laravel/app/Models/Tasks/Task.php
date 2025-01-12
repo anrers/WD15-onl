@@ -15,12 +15,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- *
+ * 
  *
  * @property int $id
  * @property string $name
  * @property string|null $description
- * @property string $dueDate
+ * @property Carbon $dueDate
  * @property string|null $executedAt
  * @property int $status
  * @property Carbon|null $createdAt
@@ -70,5 +70,12 @@ class Task extends BaseModel
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'dueData' => 'datetime:Y-m-d',
+        ];
     }
 }

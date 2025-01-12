@@ -17,5 +17,10 @@ class TaskSeeder extends Seeder
         $newTask->name = 'My first task';
         $newTask->description = 'My first task description';
         $newTask->dueDate = Carbon::now();
+        $newTask->status = false;
+        $newTask->createdAt = Carbon::now();
+        $newTask->updatedAt = Carbon::now();
+
+        Task::factory()->count(10)->create();
     }
 }
