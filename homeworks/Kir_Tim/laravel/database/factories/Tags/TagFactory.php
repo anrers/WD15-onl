@@ -5,7 +5,7 @@ namespace Database\Factories\Tags;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\tags\Tag>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Tags\Tag>
  */
 class TagFactory extends Factory
 {

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Tasks;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Task\CreateTaskRequest;
-use App\Models\tags\Tag;
+use App\Models\Tags\Tag;
 use App\Models\Tasks\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;

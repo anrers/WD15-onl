@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\tags\Tag;
+use App\Models\Tags\Tag;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,8 +13,6 @@ class TagSeeder extends Seeder
      */
     public function run(): void
     {
-        $tag = new Tag();
-        $tag->name = 'Home';
-        $tag->save();
+        Tag::factory()->count(5)->create();
     }
 }
