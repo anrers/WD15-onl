@@ -1,0 +1,15 @@
+{
+    "name": "mvc/mvc",
+    "authors": [
+        {
+            "name": "Kir Tim",
+            "email": "kirilltimtk@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "": ""
+        }
+    }
+}
