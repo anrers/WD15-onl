@@ -9,7 +9,7 @@ use App\Models\Tasks\Task;
 use App\Services\Tasks\TaskService;
 use Illuminate\Http\RedirectResponse;
 
-class TaskController extends Controller
+class TaskResourceController extends Controller
 {
     protected TaskServiceInterface $taskService;
 
@@ -73,7 +73,8 @@ class TaskController extends Controller
          */
         $task = $this->taskService->getById($id);
         $task->tags()->attach($tagId);
-        return redirect()->back();
+        //return redirect()->back();
+        return redirect('/tasks');
     }
 
     public function getSubtasks(int $id)
