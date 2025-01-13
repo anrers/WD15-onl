@@ -1,0 +1,15 @@
+{
+    "name": "alsxndra/lesson_35",
+    "autoload": {
+        "psr-4": {
+            "": ""
+        }
+    },
+    "authors": [
+        {
+            "name": "Aleksandra Tahai",
+            "email": "alexsandra.tagay@gmail.com"
+        }
+    ],
+    "require": {}
+}
