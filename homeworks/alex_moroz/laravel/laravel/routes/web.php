@@ -27,7 +27,6 @@ Route::prefix('tags')
     ->controller(TagController::class)
     ->group($commonRoutes);
 
-
 //Route::resource('/tasks', TaskResourceController::class);
 
 Route::prefix('tasks')
