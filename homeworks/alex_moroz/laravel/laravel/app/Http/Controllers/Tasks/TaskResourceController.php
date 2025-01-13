@@ -9,7 +9,7 @@ use App\Models\Tasks\Task;
 use App\Services\Tasks\TaskService;
 use Illuminate\Http\RedirectResponse;
 
-class TaskController extends Controller
+class TaskResourceController extends Controller
 {
     protected TaskServiceInterface $taskService;
 
@@ -42,7 +42,7 @@ class TaskController extends Controller
         $data = $request->validated();
         $task = $this->taskService->create($data);
 
-        return redirect()->route('tasks.show', ['id' => $task->id]);
+        return redirect('/tasks/' . $task->id);
     }
 
     public function edit(int $id)
@@ -57,13 +57,13 @@ class TaskController extends Controller
         $data = $request->validated();
         $task = $this->taskService->update($id, $data);
 
-        return redirect()->route('tasks.show', ['id' => $task->id]);
+        return redirect('/tasks/' . $task->id);
     }
 
     public function destroy(int $id)
     {
         $this->taskService->delete($id);
-        return redirect()->route('tasks.index');
+        return redirect('/tasks');
     }
 
     public function attachTag(int $id, int $tagId): RedirectResponse
@@ -73,7 +73,8 @@ class TaskController extends Controller
          */
         $task = $this->taskService->getById($id);
         $task->tags()->attach($tagId);
-        return redirect()->route('tasks.index');
+        //return redirect()->back();
+        return redirect('/tasks');
     }
 
     public function getSubtasks(int $id)
