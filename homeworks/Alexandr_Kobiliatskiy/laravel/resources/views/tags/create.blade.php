@@ -2,31 +2,20 @@
 ?>
 <?php
 ?>
+@extends('components.layout.forCreate')
 
-    <!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create tags</title>
-</head>
-<body>
-<h1>Создаем теги</h1>
+@section('tittle', 'Создание тега')
+@section('create')
+
 <form action="/tags" method="post">
     @csrf
-    <div>
-        <label id="name">Название</label>
-        <input name="name" id="name">
+    <div class="mb-2">
+        <label id="name" class="form-label">Название</label>
+        <input name="name" id="name" class="form-control">
     </div>
-
     <div>
-        <button type="submit">Отправить</button>
+        <button type="submit" class="btn btn-primary">Отправить</button>
     </div>
-
-</form>
-</body>
-</html>
+@endsection
 
 

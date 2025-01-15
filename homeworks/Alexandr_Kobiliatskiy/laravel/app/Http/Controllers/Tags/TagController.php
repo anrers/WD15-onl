@@ -53,7 +53,7 @@ class TagController extends Controller
     public function update(CreateTagRequest $request)
     {
         $data = $request->validated();
-        $tags = $this->tagService->create($data);
+        $tags = $this->tagService->update($request->id, $data);;
         //return redirect('/tags/' . $tag->id);
         return redirect()->route('tags.show', ['id' => $tags->id]);
     }

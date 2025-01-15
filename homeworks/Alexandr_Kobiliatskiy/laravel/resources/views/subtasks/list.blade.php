@@ -5,19 +5,12 @@
  */
 //dd($data);
 ?>
+@extends('components.layout.forLists')
 
-
-    <!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Список подзадач</title>
-</head>
-<body>
-    <h1>Список подзадач</h1>
+@section('tittle', 'Список подзадач')
+@section('create', 'Создать подзадачу')
+@section('path', '/subtasks/create/')
+@section('listBody')
     <ul>
         @foreach($data as $subtask)
             <li>
@@ -26,11 +19,7 @@
             </li>
         @endforeach
     </ul>
-    <button>
-        <a href="/subtasks/create">Создать подзадачу</a>
-    </button>
-</body>
-</html>
+@endsection
 
 
 

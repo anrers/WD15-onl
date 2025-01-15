@@ -5,45 +5,33 @@
 
 use App\Models\Subtasks\Subtask;
 ?>
-
-
-    <!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create subtask</title>
-</head>
-<body>
-<h1>Редактируем подзадачи</h1>
+@extends('components.layout.forCreate')
+@section('tittle', 'Редактирование задачи')
+@section('create')
 <form action="/subtasks/{{$subtask->id}}" method="post">
     @method('PUT')
     @csrf
     <div>
-        <label id="name">Название</label>
-        <input name="name" id="name" value="{{$subtask->name}}">
+        <label id="name" class="form-label">Название</label>
+        <input name="name" id="name" class="form-control" value="{{$subtask->name}}">
     </div>
 
     <div>
-        <label id="taskId">Id задачи</label>
-        <input name="taskId" id="taskId" value="{{$subtask->taskId}}">
+        <label id="taskId" class="form-label">Id задачи</label>
+        <input name="taskId" id="taskId" class="form-control" value="{{$subtask->taskId}}">
     </div>
 
     <div>
-        <label id="desc">Описание</label>
-        <textarea name="description" id="desc">{{$subtask->description}}</textarea>
+        <label id="desc" class="form-label">Описание</label>
+        <textarea name="description" id="desc" class="form-control">{{$subtask->description}}</textarea>
     </div>
 
     <div>
-        <label id="dd">Срок исполнения</label>
-        <input name="dueDate" type="datetime-local" id="dd" value="{{$subtask->dueDate}}">
+        <label id="dd" class="form-label">Срок исполнения</label>
+        <input name="dueDate" type="datetime-local" id="dd" class="form-control" value="{{$subtask->dueDate}}">
     </div>
     <div>
-        <button type="submit">Отправить</button>
+        <button type="submit" class="btn btn-primary">Отправить</button>
     </div>
-
 </form>
-</body>
-</html>
+@endsection

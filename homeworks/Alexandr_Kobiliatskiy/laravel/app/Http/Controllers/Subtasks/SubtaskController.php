@@ -54,7 +54,7 @@ class SubtaskController extends Controller
     public function update(CreateSubtaskRequest $request)
     {
         $data = $request->validated();
-        $subtask = $this->subTaskService->create($data);
+        $subtask = $this->subTaskService->update($request->id, $data);
         //return redirect('/subtasks/' . $subtask->id);
         return redirect()->route('subtasks.show', ['id' => $subtask->id]);
     }

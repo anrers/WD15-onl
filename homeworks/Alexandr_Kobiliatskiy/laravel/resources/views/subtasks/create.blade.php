@@ -1,45 +1,36 @@
 <?php
 ?>
 
+@extends('components.layout.forCreate')
 
-    <!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create subtask</title>
-</head>
-<body>
-    <h1>Создаем подзадачи</h1>
+@section('tittle', 'Создание подзадачи')
+@section('create')
     <form action="/subtasks" method="post">
         @csrf
         <div>
-            <label id="name">Название</label>
-            <input name="name" id="name">
+            <label id="name" class="form-label">Название</label>
+            <input name="name" id="name" class="form-control">
         </div>
 
         <div>
-            <label id="taskId">Id задачи</label>
-            <input type="number" name="taskId" id="taskId">
+            <label id="taskId" class="form-label">Id задачи</label>
+            <input type="number" name="taskId" id="taskId" class="form-control">
         </div>
 
         <div>
-            <label id="desc">Описание</label>
-            <textarea name="description" id="desc"></textarea>
+            <label id="desc" class="form-label">Описание</label>
+            <textarea name="description" id="desc" class="form-control"></textarea>
         </div>
 
         <div>
-            <label id="dd">Срок исполнения</label>
-            <input name="dueDate" type="datetime-local" id="dd">
+            <label id="dd" class="form-label">Срок исполнения</label>
+            <input name="dueDate" type="datetime-local" id="dd" class="form-control">
         </div>
         <div>
-            <button type="submit">Отправить</button>
+            <button type="submit" class="btn btn-primary">Отправить</button>
         </div>
 
     </form>
-</body>
-</html>
+@endsection
 
 

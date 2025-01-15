@@ -52,8 +52,7 @@ class TaskController extends Controller
     public function update(CreateTaskRequest $request)
     {
         $data = $request->validated();
-        $task = $this->taskService->create($data);
-        //return redirect('/tasks/' . $task->id);
+        $task = $this->taskService->update($request->id, $data);
         return redirect()->route('tasks.show', ['id' => $task->id]);
     }
 

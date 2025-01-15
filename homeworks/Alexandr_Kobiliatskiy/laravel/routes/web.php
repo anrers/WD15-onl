@@ -78,3 +78,12 @@ Route::get('/test', [TaskController::class, 'test']);
 
 Route::get('/tasks/{id}/tags/{tagId}', [TaskController::class, 'attachTag']);
 
+Route::get('joblist', function () {
+    $jobs = DB::table("jobs")->get();
+    dd($jobs);
+});
+
+Route::get('job', function () {
+    \App\Jobs\VideoConvertJob::dispatch(['data'=>'data']);
+});
+
