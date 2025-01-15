@@ -5,21 +5,17 @@ use App\Http\Controllers\Tasks\SubtaskController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::controller(TaskController::class)->group(function(){
     Route::prefix('tasks')->group(function() {
-        Route::get('/', 'index');
+        Route::get('/', 'index')->name('tasks.index');
         Route::get('/create', 'create')->name('tasks.create');
-        Route::post('/', 'store');
+        Route::post('/', 'store')->name('tasks.store');
 
         Route::prefix('/{id}')->group(function() {
-            Route::get('/', 'show')->where('id', '[0-9]+');
-            Route::get('/edit', 'edit');
-            Route::put('/', 'update');
-            Route::delete('/', 'destroy');
+            Route::get('/', 'show')->name('tasks.show')->where('id', '[0-9]+');
+            Route::get('/edit', 'edit')->name('tasks.edit');
+            Route::put('/', 'update')->name('tasks.update');
+            Route::delete('/', 'destroy')->name('tasks.destroy');
         });
     });
 });

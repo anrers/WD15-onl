@@ -63,7 +63,7 @@
 </head>
 <body>
     <h1>Create task</h1>
-    <form action="/tasks" method="post">
+    <form action="{{ route('tasks.store') }}" method="post">
         @csrf
         <div>
             <label id="name">Заголовок:</label>
