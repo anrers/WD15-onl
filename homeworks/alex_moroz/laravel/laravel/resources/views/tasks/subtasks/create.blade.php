@@ -21,7 +21,7 @@ use Illuminate\Support\Collection;
         @csrf
         <div>
             <label id="name">Имя:</label>
-            <x-inputs.text :name="'name'" id="name"/>
+            <input type="text" name="name" id="name">
         </div>
 
         <div>

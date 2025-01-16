@@ -5,8 +5,10 @@ namespace App\Models\Tasks;
 use App\Models\BaseModel;
 use App\Models\Tags\Tag;
 use App\Models\User;
+use App\Observers\TaskObserver;
 use Database\Factories\Tasks\TaskFactory;
 use Eloquent;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
@@ -15,6 +17,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 /**
  *
@@ -44,12 +48,26 @@ use Illuminate\Support\Carbon;
  * @method static Builder<static>|Task whereStatus($value)
  * @method static Builder<static>|Task whereUpdatedAt($value)
  * @method static Builder<static>|Task whereUserId($value)
+ * @property string|null $slug
+ * @property-read Collection<int, Tag> $tags
+ * @property-read int|null $tags_count
+ * @method static Builder<static>|Task whereSlug($value)
  * @mixin Eloquent
  */
+#[ObservedBy([TaskObserver::class])]
 class Task extends BaseModel
 {
     /** @use HasFactory<TaskFactory> */
-    use HasFactory;
+    use HasFactory, HasSlug;
+
+    public function getSlugOptions(): SlugOptions // при сохранении модели, https://github.com/spatie/laravel-sluggable
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug')
+            ->usingSeparator('_')
+            ->skipGenerateWhen(fn() => isset($this->slug));
+    }
 
     public function tags(): BelongsToMany
     {

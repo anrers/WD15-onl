@@ -13,8 +13,8 @@ Web-client (nginx)
 1_client = 1_process
 
 Laravel Job (queue)
-Джоба а) задача, которая будет совершена на сервере (в фоне) без запроса пользователя.
-       б)- часть запроса, которая м.б. выполнена независимо от основного запроса. 
+Джоба  а) задача, которая будет совершена на сервере (в фоне) без запроса пользователя.
+       б) часть запроса, которая м.б. выполнена независимо от основного запроса. 
 (результат не нужен в данный момент или не требуется совсем). 
 
 Джобы должны имплементить Illuminate\Contracts\Queue\ShouldQueue и использовать трейт Illuminate\Foundation\Queue\Queueable;
@@ -44,10 +44,17 @@ use Queueable;
 Worker - отдельный процесс php (demon). 
 Для одной очереди м.б. несколько worker-ов, распределением занимается Laravel.
 
-
-Systemd (linux)  
-supervisor (laravel doc)
-
 php artisan queue:work
 php artisan make:job
 php artisan queue:work --queue=high,low
+
+Элементы:  
+задача -> 
+отправитель(dispatcher) -> 
+очередь (физически в DB - переопределить поведение QUEUE_CONNECTION) 
+-> воркер (worker) 
+
+
+Джобы на сервере
+Systemd (linux)  
+supervisor (laravel doc)

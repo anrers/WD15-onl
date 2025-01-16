@@ -9,12 +9,12 @@
         @csrf
         <div>
             <label id="name">Имя:</label>
-            <x-inputs.text :name="'name'" id="name"/>
+            <input type="text" name="name" id="name">
         </div>
 
         <div>
             <label id="description">Описание:</label>
-            <x-inputs.description :name="'description'" id="description"/>
+            <textarea name="description" id="description"></textarea>
         </div>
 
         <div>
