@@ -8,8 +8,8 @@
     <form action="/tags" method="post">
         @csrf
         <label for="name">Имя тега</label>
-        <x-inputs.text :name="'name'" id="name"/>
+        <input type="text" name="name" id="name">
 
         <button type="submit" value="create">Cоздать</button>
     </form>
-</x-layout.component>>
+</x-layout.component>
