@@ -32,13 +32,13 @@ class TaskController extends Controller
          */
         $task = $this->taskService->getById($id);
         $task->tags()->attach($tagId);
-        return redirect()->route('tasks.list');
+        return redirect()->route('tasks.attachTag');
     }
 
     public function getById(int $id)
     {
         $data = $this->taskService->getById($id);
-        return view('tasks.detail', ['model' => $data]);;
+        return view('tasks.detail', ['model' => $data]);
     }
 
     public function create()
@@ -50,7 +50,7 @@ class TaskController extends Controller
     {
         $data = $request->validated();
         $task = $this->taskService->create($data);
-        return redirect()->route('tasks.show', ['id' => $task->id]);
+        return redirect()->route('tasks.store', ['id' => $task->id]);
     }
 
     public function edit(int $id)
@@ -70,5 +70,6 @@ class TaskController extends Controller
     public function destroy(int $id)
     {
         $this->taskService->delete($id);
+        return redirect()->route('subtasks.list');
     }
 }
