@@ -3,8 +3,8 @@
 namespace App\Contracts\Services;
 
 use App\Models\BaseModel;
-use Ramsey\Collection\Collection;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 
 interface EntityServiceInterface
 {

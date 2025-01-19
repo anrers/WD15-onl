@@ -2,35 +2,45 @@
 
 namespace App\Services\Tasks;
 
-use App\Contracts\Services\EntityServiceInterface;
-use App\Models\BaseModel;
+use App\Contracts\Services\AbstractEntityServiceInterface;
+use app\Contracts\Services\Tasks\TaskServiceInterface;
 use App\Models\Tasks\Task;
 use Ramsey\Collection\Collection;
 
-class TaskService implements EntityServiceInterface
+class TaskService extends AbstractEntityServiceInterface implements TaskServiceInterface
 {
-
-    public function getById(int $id): ?BaseModel
+    function getModelClass(): string
     {
-        return Task::find($id);
+        return Task::class;
+    }
+    public function getById(int $id): ?Task
+    {
+        return $this->builder()->find($id);
 
     }
 
-    public function getAll(): Collection
+    public function create(array $data): ?Task
     {
-        $data = Task::all();
-
-        return view('tasks.list', compact('data'));
+        $task = new Task();
+        $task->name = $data['name'];
+        $task->description = $data['description'];
+        $task->dueDate = $data['dueDate'];
+        $task->save();
+        return $task;
     }
 
-    public function create(array $data): ?BaseModel
+    public function update(array $data, int $id): ?Task
     {
-        return view('tasks.create');
-    }
+        /**
+         * @var Task $task
+         */
 
-    public function update(array $data, int $id): ?BaseModel
-    {
-        // TODO: Implement update() method.
+        $task = $this->builder()->find($id);
+        $task->name = $data['name'];
+        $task->description = $data['description'];
+        $task->dueDate = $data['dueDate'];
+        $task->save();
+        return $task;
     }
 
     public function delete(int $id): bool
@@ -39,7 +49,7 @@ class TaskService implements EntityServiceInterface
          * @var Task $task
          */
 
-        $task = Task::find($id);
-        $task->delete();
+        $task = $this->builder()->find($id);
+        return $task->delete();
     }
 }

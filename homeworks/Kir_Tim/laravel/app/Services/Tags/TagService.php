@@ -3,27 +3,21 @@
 namespace App\Services\Tags;
 
 use App\Contracts\Services\AbstractEntityServiceInterface;
-use App\Contracts\Services\EntityServiceInterface;
-use App\Contracts\Services\TagServiceInterface;
-use App\Models\BaseModel;
-use Ramsey\Collection\Collection;
+use App\Contracts\Services\Tags\TagServiceInterface;
 use App\Models\Tags\Tag;
 
 
-class TagService extends AbstractEntityServiceInterface
+class TagService extends AbstractEntityServiceInterface implements TagServiceInterface
 {
-
-    public function getById(int $id): ?BaseModel
-    {
-        return Tag::find($id);
-
-    }
-
     function getModelClass(): string
     {
         return Tag::class;
     }
 
+    public function getById(int $id): ?Tag
+    {
+        return $this->builder()->find($id);
+    }
 
     public function create(array $data): ?Tag
     {
@@ -38,7 +32,7 @@ class TagService extends AbstractEntityServiceInterface
         /**
          * @var Tag $tag
          */
-        $tag = Tag::find($id);
+        $tag = $this->builder()->find($id);
         $tag->name = $data['name'];
         $tag->save();
         return $tag;
@@ -49,8 +43,7 @@ class TagService extends AbstractEntityServiceInterface
         /**
          * @var Tag $tag
          */
-
-        $tag = Tag::find($id);
+        $tag = $this->builder()->find($id);
         return $tag->delete();
     }
 }

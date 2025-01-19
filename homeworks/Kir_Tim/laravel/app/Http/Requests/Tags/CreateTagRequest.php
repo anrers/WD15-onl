@@ -19,7 +19,7 @@ class CreateTagRequest extends BaseRequest
     public function rules(): array
     {
         return [
-           'name' => 'required|string|unique:tags,name|min:2|max:255',
+           'name' => 'required|string|unique:Tags,name|min:2|max:255',
         ];
     }
 
