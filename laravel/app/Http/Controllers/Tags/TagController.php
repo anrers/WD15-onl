@@ -10,7 +10,7 @@ class TagController extends Controller
 {
     public function createView()
     {
-        return view('tags.create');
+        return view('Tags.create');
     }
 
     public function create(CreateTagRequest $request)
@@ -19,7 +19,7 @@ class TagController extends Controller
         $tag->name = $request->input('name');
         $tag->save();
 
-        return redirect('/tags');
+        return redirect('/Tags');
     }
 
     public function update(CreateTagRequest $request)
@@ -28,13 +28,13 @@ class TagController extends Controller
         $tag->name = $request->input('name');
         $tag->save();
 
-        return redirect('/tags');
+        return redirect('/Tags');
     }
 
     public function list()
     {
         $tags = Tag::all();
 
-        return view('tags.list', ['tags' => $tags]);
+        return view('Tags.list', ['Tags' => $tags]);
     }
 }
