@@ -24,21 +24,21 @@ class SubtaskController extends Controller
     {
         $data = $this->subtaskService->getAll();
 
-        return view('tasks.subtasks.list', compact('data'));
+        return view('subtasks.list', compact('data'));
     }
 
     public function show(int $id)
     {
         $data = $this->subtaskService->getById($id);
 
-        return view('tasks.subtasks.detail', ['model' => $data]);
+        return view('subtasks.detail', ['model' => $data]);
     }
 
     public function create()
     {
         $tasks = $this->subtaskService->getAll();
 
-        return view('tasks.subtasks.create', compact('tasks'));
+        return view('subtasks.create', compact('tasks'));
     }
 
     public function store(CreateSubtaskRequest $request)
@@ -46,14 +46,14 @@ class SubtaskController extends Controller
         $data = $request->validated();
         $subtask = $this->subtaskService->create($data);
 
-        return redirect()->route('subtasks.show', ['id' => $subtask->id]);
+        return redirect()->route('subtasks.detail', ['id' => $subtask->id]);
     }
 
     public function edit(int $id)
     {
         $subtask = $this->subtaskService->getById($id);
 
-        return view('tasks.subtasks.edit', ['model' => $subtask]);
+        return view('subtasks.edit', ['model' => $subtask]);
     }
 
     public function update(CreateSubtaskRequest $request, int $id)
@@ -61,12 +61,12 @@ class SubtaskController extends Controller
         $data = $request->validated();
         $subtask = $this->subtaskService->update($id, $data);
 
-        return redirect()->route('subtasks.show', ['id' => $subtask->id]);
+        return redirect()->route('subtasks.detail', ['id' => $subtask->id]);
     }
 
     public function destroy(int $id)
     {
         $this->subtaskService->delete($id);
-        return redirect()->route('subtasks.index');
+        return redirect()->route('subtasks.list');
     }
 }

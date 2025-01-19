@@ -11,24 +11,45 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/home', [UserController::class, 'home']);
 Route::get('/my', [MyController::class, 'my']);
-Route::get('/tasks', [TaskController::class, 'getAll']);
-Route::get('/test', [TaskController::class, 'test']);
 
 
-Route::get('/Tags/create', [TagController::class, 'createView']);
-Route::post('/Tags/create', [TagController::class, 'create']);
-Route::get('/Tags', [TagController::class, 'list']);
-Route::put('/Tags/{id}', [TagController::class, 'update']);
-Route::get('/Tags/{id}/edit', [TagController::class, 'edit']);
-Route::delete('/Tags/{id}', [TagController::class, 'destroy']);
+Route::prefix('/tags')
+    ->controller(TagController::class)
+    ->name('tags.')
+    ->group(function () {
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::get('/create', 'createView')->name('create');
+        Route::get('/', 'list')->name('list');
+        Route::post('/create', 'create')->name('create');
+        Route::put('/{id}', 'update')->name('update');
+        Route::delete('/{id}', 'destroy')->name('destroy');
+    });
 
+Route::prefix('/tasks')
+    ->controller(TaskController::class)
+    ->name('tasks.')
+    ->group(function () {
+        Route::get('/', 'list')->name('list');
+        Route::get('/create', 'create')->name('create');
+        Route::get('/{id}', 'getById')->name('detail');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::post('/{id}/tag/{tagId}', 'attachTag')->name('attachTag');
+        Route::post('/', 'store')->name('store');
+        Route::put('/{id}', 'update')->name('update');
+        Route::delete('/{id}', 'destroy')->name('destroy');
+    });
 
-Route::post('/tasks/{id}/tag/{tagId}', [TaskController::class, 'attachTag']);
-Route::get('/tasks/create', [TaskController::class, 'create']);
-Route::get('/tasks/{id}', [TaskController::class, 'getById']);
-Route::post('/tasks', [TaskController::class, 'store']);
-Route::get('/tasks/{id}/edit', [TaskController::class, 'edit']);
-Route::put('/tasks/{id}', [TaskController::class, 'update']);
-Route::delete('/tasks/{id}', [TaskController::class, 'destroy']);
+Route::prefix('/subtasks')
+    ->controller(SubtaskController::class)
+    ->name('subtasks.')
+    ->group(function () {
+        Route::get('/', 'list')->name('list');
+        Route::get('/create', 'create')->name('create');
+        Route::get('/{id}', 'getById')->name('detail');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::put('/{id}', 'update')->name('update');
+        Route::delete('/{id}', 'destroy')->name('destroy');
+    });

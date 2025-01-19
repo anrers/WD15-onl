@@ -18,7 +18,7 @@ class TagController extends Controller
     }
     public function createView()
     {
-        return view('Tags.create');
+        return view('tags.createView');
     }
 
     public function create(CreateTagRequest $request)
@@ -26,21 +26,21 @@ class TagController extends Controller
         $data = $request->validated();
         $tag = $this->tagService->create($data);
 
-        return redirect()->route('Tags.show', ['id' => $tag->id]);
+        return redirect()->route('tags.create', ['id' => $tag->id]);
     }
 
     public function list()
     {
         $tags = $this->tagService->getAll();
 
-      return  view('Tags.list', ['Tags' => $tags]);
+      return  view('tags.list', ['tags' => $tags]);
     }
 
     public function edit(int $id)
     {
         $tag = $this->tagService->getById($id);
 
-        return view('Tags.edit', ['model' => $tag]);
+        return view('tags.edit', ['model' => $tag]);
     }
 
     public function update(CreateTagRequest $request, int $id)
@@ -48,13 +48,13 @@ class TagController extends Controller
         $data = $request->validated();
         $tag = $this->tagService->update($data, $id);
 
-        return redirect('/Tags/' . $tag->id);
+        return redirect()->route('tags.update', ['id' => $tag->id]);
     }
 
     public function destroy(int $id)
     {
         $this->tagService->delete($id);
-        return redirect('/Tags');
+        return redirect()->route('tags.list');
     }
 
 
