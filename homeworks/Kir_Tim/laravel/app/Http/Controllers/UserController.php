@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function home()
     {
-        $data = User::query()->where('id','=',  1)->get();
+        $data = User::query()->where('id', '=', 1)->get();
 
         return $data;
     }

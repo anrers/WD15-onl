@@ -17,7 +17,4 @@ class Subtask extends BaseModel
     {
         return $this->belongsTo(Task::class, 'taskId');
     }
-
-
-
 }

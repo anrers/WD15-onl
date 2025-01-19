@@ -24,8 +24,8 @@ class TaskController extends Controller
 
 
         $task->tags()->syncWithoutDetaching([$tagId]);
-//        $tags = $task->tags()->get();
-//        $tags = Tag::find(1);
+//        $Tags = $task->Tags()->get();
+//        $Tags = Tag::find(1);
 
 
         return view('welcome');
@@ -40,7 +40,7 @@ class TaskController extends Controller
 
     public function create()
     {
-      return view('tasks.create');
+        return view('tasks.create');
     }
 
     public function store(CreateTaskRequest $request)
@@ -53,11 +53,12 @@ class TaskController extends Controller
 
         return redirect('/tasks/' . $task->id);
     }
+
     public function edit(int $id)
     {
-       $task = Task::find($id);
+        $task = Task::find($id);
 
-       return view('tasks.edit', ['model' => $task]);
+        return view('tasks.edit', ['model' => $task]);
     }
 
     public function update(CreateTaskRequest $request, $id)

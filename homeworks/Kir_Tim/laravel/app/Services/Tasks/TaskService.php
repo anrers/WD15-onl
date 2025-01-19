@@ -13,7 +13,6 @@ class TaskService implements EntityServiceInterface
     public function getById(int $id): ?BaseModel
     {
         return Task::find($id);
-
     }
 
     public function getAll(): Collection

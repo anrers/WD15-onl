@@ -1,6 +1,7 @@
 <?php
 /**
- * @var \Ramsey\Collection\Collection $tags ...*/
+ * @var \Ramsey\Collection\Collection $tags ...
+ */
 
 ?>
 

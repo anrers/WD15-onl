@@ -40,10 +40,10 @@ class Task extends BaseModel
     /** @use HasFactory<TaskFactory> */
     use HasFactory;
 
-public function subtasks(): HasMany
-{
-    return $this->hasMany(Subtask::class, 'taskId');
-}
+    public function subtasks(): HasMany
+    {
+        return $this->hasMany(Subtask::class, 'taskId');
+    }
 
     public function users(): BelongsTo
     {

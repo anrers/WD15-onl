@@ -18,16 +18,15 @@ Route::get('/tasks', [TaskController::class, 'getAll']);
 
 Route::get('/test', [TaskController::class, 'test']);
 
-Route::get('/tags/create', [TagController::class, 'createView']);
-Route::post('/tags/create', [TagController::class, 'create']);
+Route::get('/Tags/create', [TagController::class, 'createView']);
+Route::post('/Tags/create', [TagController::class, 'create']);
 
-Route::get('/tags', [TagController::class, 'list']);
+Route::get('/Tags', [TagController::class, 'list']);
 
 Route::post('/tasks/{id}/tag/{tagId}', [TaskController::class, 'attachTag']);
 
 Route::get('/tasks/create', [TaskController::class, 'create']);
 Route::get('/tasks/{id}', [TaskController::class, 'getById']);
-
 
 
 Route::post('/tasks', [TaskController::class, 'store']);

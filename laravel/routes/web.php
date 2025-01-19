@@ -13,10 +13,10 @@ Route::get('/', function () {
 Route::get('/home', [UserController::class, 'home']);
 
 
-Route::get('/tags/create', [TagController::class, 'createView']);
-Route::post('/tags/create', [TagController::class, 'create']);
-Route::get('/tags', [TagController::class, 'list']);
-Route::get('/tasks/{id}/tags/{tagId}', [TaskController::class, 'attachTag']);
+Route::get('/Tags/create', [TagController::class, 'createView']);
+Route::post('/Tags/create', [TagController::class, 'create']);
+Route::get('/Tags', [TagController::class, 'list']);
+Route::get('/tasks/{id}/Tags/{tagId}', [TaskController::class, 'attachTag']);
 
 Route::resource('/tasks', TaskResourceController::class);
 

@@ -3,6 +3,7 @@
 /**
  * @var Task $model
  */
+
 ?>
 
 <form action="/tasks/{{$model->id}}" method="post">

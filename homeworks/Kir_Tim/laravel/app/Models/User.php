@@ -38,7 +38,6 @@ use Illuminate\Notifications\Notifiable;
  */
 class User extends Authenticatable
 {
-
     public function tasks(): HasMany
     {
         return $this->hasMany(Task::class, 'userId');
