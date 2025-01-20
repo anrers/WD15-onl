@@ -13,6 +13,11 @@ class SubtaskSeeder extends Seeder
      */
     public function run(): void
     {
+        $subtask = new Subtask();
+        $subtask->name = 'subtask';
+        $subtask->task_id = 1;
+        $subtask->save();
+
         Subtask::factory()->count(10)->create();
     }
 }

@@ -1,16 +1,14 @@
 <?php
-
 /**
- * @var Illuminate\Database\Eloquent\Collection<Task> $data
+ * @var Illuminate\Database\Eloquent\Collection<Subtask> $data
  */
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasks List</title>
+    <title>Subtasks List</title>
     <style>
         body {
             background-color: #f4f4f4;
@@ -37,16 +35,12 @@
     </style>
 </head>
 <body>
-    <h1>Tasks</h1>
-    <a href="{{ route('tasks.create') }}">Create Task</a>
+    <h1>Subtasks</h1>
+    <a href="{{ route('subtasks.create') }}">Create Subtask</a>
     <ul>
-        @foreach($data as $task)
+        @foreach($data as $subtask)
             <li>
-                <strong>{{ $task->name }}</strong> (ID: {{ $task->id }})
-                <div>
-                    <p><strong>Due Date:</strong> {{ $task->dueDate }}</p>
-                    <p><strong>Description:</strong> {{ $task->description ?? 'No description' }}</p>
-                </div>
+                {{ $subtask->name }} (Task ID: {{ $subtask->task_id }})
             </li>
         @endforeach
     </ul>
