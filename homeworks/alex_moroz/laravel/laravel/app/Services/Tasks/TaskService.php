@@ -55,4 +55,17 @@ class TaskService extends AbstractEntityService implements TaskServiceInterface
         $task = $this->builder()->find($id);
         return $task->delete();
     }
+
+    public function complete(int $id): void
+    {
+        /**
+         * @var Task $task
+         */
+        $task = $this->builder()->find($id);
+        $task->status = true;
+        $task->executedAt = now();
+
+        //TODO: ??? добавление соответствующих tags
+        $task->save();
+    }
 }
