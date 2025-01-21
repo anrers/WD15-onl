@@ -27,9 +27,12 @@ restored,
 and replicating.
 
 Регистрация  наблюдателя (event и слушатель регистрировать не нужно)
-#[ObservedBy([TaskObserver::class])]
-или 
-You may register observers in the boot method of your application's AppServiceProvider class:
+1. #[ObservedBy([TaskObserver::class])] - перед объявлением класса
+2. свойство  protected $dispatchesEvents = [   // в классе
+           'saved'=>TaskCreatedEvent::class,
+       ];
+
+3. You may register observers in the boot method of your application's AppServiceProvider class:
 
 ...
 use App\Models\User;
