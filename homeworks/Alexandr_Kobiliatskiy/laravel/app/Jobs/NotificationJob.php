@@ -2,10 +2,11 @@
 
 namespace App\Jobs;
 
+use App\Notification\Notificator;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 
-class VideoConvertJob implements ShouldQueue
+class  NotificationJob implements ShouldQueue
 {
     use Queueable;
 
@@ -13,16 +14,19 @@ class VideoConvertJob implements ShouldQueue
      * Create a new job instance.
      */
     public function __construct(
-        public array $data
+        public string $msg,
     )
     {
+        //
     }
 
     /**
      * Execute the job.
      */
-    public function handle(): void
+    public function handle(
+        Notificator $notificator,
+    ): void
     {
-        sleep(10);
+        $notificator->send($this->msg);
     }
 }

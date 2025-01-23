@@ -51,4 +51,17 @@ class TaskService implements TaskServiceInterface
         return $task->delete();
 
     }
+
+
+    public function changeStatus(int $id): ?BaseModel
+    {
+        /**
+         * @var Task $task
+         */
+        $task = Task::find($id);
+        $task->status = 1;
+        $task->save();
+        return $task;
+    }
+
 }

@@ -18,10 +18,12 @@ Route::prefix('tasks')
     Route::get('/create', [TaskController::class, 'create'])->name('create');
     Route::post('/', [TaskController::class, 'store'])->name('store');
     Route::get('/', [TaskController::class, 'index'])->name('index');
+    Route::get('/{id}/completed', [TaskController::class, 'completed'])->name('completed');
     Route::get('/{id}', [TaskController::class, 'show'])->name('show');
     Route::get('/{id}/edit', [TaskController::class, 'edit'])->name('edit');
     Route::put('/{id}', [TaskController::class, 'update'])->name('update');
     Route::delete('/{id}', [TaskController::class, 'destroy'])->name('destroy');
+
 });
 
 Route::prefix('subtasks')

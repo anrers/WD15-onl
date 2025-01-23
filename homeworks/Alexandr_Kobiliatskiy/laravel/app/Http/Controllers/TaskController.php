@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\Services\Tasks\TaskServiceInterface;
 use App\Http\Requests\Tasks\CreateTaskRequest;
+use App\Jobs\NotificationJob;
 use App\Models\Tasks\Task;
 use App\Services\Tasks\TaskService;
 
@@ -62,6 +63,14 @@ class TaskController extends Controller
         return redirect()->route('tasks.index');
     }
 
+    public function completed(int $id)
+    {
+        $task = $this->taskService->getById($id);
+        $this->taskService->changeStatus($task->id);
+        $msg = "Задача {$task->name} была выполнена {$task->executedAt}";
+        NotificationJob::dispatch($msg)->onQueue('notifications');
+        return redirect()->route('tasks.index');
+    }
 
 
 
