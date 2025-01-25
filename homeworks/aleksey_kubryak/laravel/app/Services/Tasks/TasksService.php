@@ -25,6 +25,7 @@ class TasksService implements TaskServiceInterface
         $task->name = $data['name'];
         $task->description = $data['description'];
         $task->dueDate = $data['dueDate'];
+        $task->status = $data['status'] ?? false;
 
         $task->save();
 
@@ -38,9 +39,10 @@ class TasksService implements TaskServiceInterface
          */
         $task = Task::find($id);
 
-        $task->name = $data['name'];
-        $task->description = $data['description'];
-        $task->dueDate = $data['dueDate'];
+        $task->name = $data['name'] ?? $task->name;
+        $task->description = $data['description'] ?? $task->description;
+        $task->dueDate = $data['dueDate'] ?? $task->dueDate;
+        $task->status = $data['status'] ?? $task->status;
 
         $task->save();
 
@@ -53,6 +55,10 @@ class TasksService implements TaskServiceInterface
          * @var Task $task
          */
         $task = Task::find($id);
+
+        if (!$task) {
+            return false;
+        }
 
         return $task->delete();
     }

@@ -11,11 +11,12 @@ Route::controller(TaskController::class)->group(function(){
         Route::get('/create', 'create')->name('tasks.create');
         Route::post('/', 'store')->name('tasks.store');
 
-        Route::prefix('/{id}')->group(function() {
-            Route::get('/', 'show')->name('tasks.show')->where('id', '[0-9]+');
+        Route::prefix('/{id}')->where('id', '[0-9]+')->group(function() {
+            Route::get('/', 'show')->name('tasks.show');
             Route::get('/edit', 'edit')->name('tasks.edit');
             Route::put('/', 'update')->name('tasks.update');
             Route::delete('/', 'destroy')->name('tasks.destroy');
+            Route::put('/complete', 'complete')->name('tasks.complete');
         });
     });
 });
@@ -26,8 +27,8 @@ Route::controller(SubtaskController::class)->group(function(){
         Route::get('/create', 'create')->name('subtasks.create');
         Route::post('/', 'store')->name('subtasks.store');
 
-        Route::prefix('/{id}')->group(function() {
-            Route::get('/', 'show')->name('subtasks.show')->where('id', '[0-9]+');
+        Route::prefix('/{id}')->where('id', '[0-9]+')->group(function() {
+            Route::get('/', 'show')->name('subtasks.show');
             Route::get('/edit', 'edit')->name('subtasks.edit');
             Route::put('/', 'update')->name('subtasks.update');
             Route::delete('/', 'destroy')->name('subtasks.destroy');
