@@ -17,8 +17,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
-use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
 
 /**
  *
@@ -58,16 +56,7 @@ use Spatie\Sluggable\SlugOptions;
 class Task extends BaseModel
 {
     /** @use HasFactory<TaskFactory> */
-    use HasFactory, HasSlug;
-
-    public function getSlugOptions(): SlugOptions // при сохранении модели, https://github.com/spatie/laravel-sluggable
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('name')
-            ->saveSlugsTo('slug')
-            ->usingSeparator('_')
-            ->skipGenerateWhen(fn() => isset($this->slug));
-    }
+    use HasFactory;
 
     public function tags(): BelongsToMany
     {

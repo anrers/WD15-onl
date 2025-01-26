@@ -3,9 +3,20 @@
 namespace App\Observers;
 
 use App\Models\Tasks\Task;
+use \Str;
 
 class TaskObserver
 {
+    /**
+     * Handle the Task "saving" event.
+     */
+    public function saving(Task $task): void
+    {
+        if (empty($this->slug)) {
+            $task->slug = Str::slug($task->name, '_');
+        }
+    }
+
     /**
      * Handle the Task "created" event.
      */
