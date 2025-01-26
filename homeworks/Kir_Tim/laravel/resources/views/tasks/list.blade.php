@@ -1,12 +1,11 @@
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-    </tr>
-
-    @foreach($data as $task)
-        <tr>
-            <td>{{$task->id}}</td>
-            <td>{{$task->name}}</td>
-        </tr>
-@endforeach
+@section('title', 'Tasks')
+<x-layout.main>
+    <x-slot:h1>
+        <h1>Список задач</h1>
+    </x-slot:h1>
+    <ul>
+        @foreach($data as $task)
+            <li>{{$task->id}}</li>
+        @endforeach
+    </ul>
+</x-layout.main>

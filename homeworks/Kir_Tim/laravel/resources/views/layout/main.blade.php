@@ -8,7 +8,7 @@
     <title>@yield('title')</title>
 </head>
 <body>
-@yield('h1')
-@yield('body')
+{{ $h1 }}
+{{ $slot }}
 </body>
 </html>
