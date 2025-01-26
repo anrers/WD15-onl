@@ -8,6 +8,7 @@ use App\Events\Tasks\CompleteTaskEvent;
 use App\Jobs\FillEmptySlugJob;
 use App\Models\Tasks\Task;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Storage;
 use JetBrains\PhpStorm\NoReturn;
 
 class TaskService extends AbstractEntityService implements TaskServiceInterface
@@ -68,12 +69,10 @@ class TaskService extends AbstractEntityService implements TaskServiceInterface
         $task = $this->builder()->find($id);
         $task->status = true;
         $task->executedAt = now();
-        //TODO: ??? добавление соответствующих tags
 
         $task->save();
 
-        $task = $this->getById($id);
-        CompleteTaskEvent::dispatch($task); //TODO: gперенести в контроллер
+        CompleteTaskEvent::dispatch($task);
     }
 
     public function increasePoints(Task $task): void
@@ -96,6 +95,32 @@ class TaskService extends AbstractEntityService implements TaskServiceInterface
             $task->generateSlug();
             $task->update();
         }
+    }
+
+    public function attachImages(Task $task, array $images): void
+    {
+        $imagesData = $task->images ?? [];
+
+        foreach ($images as $image) {
+            $imagesData[] = Storage::disk('public')->putFile(
+                path: "/tasks/$task->id",
+                file: $image,
+            );
+        }
+
+        $task->images = $imagesData;
+        $task->save();
+    }
+
+    public function deleteImages(Task $task): void
+    {
+        if (!empty($task->images)) {
+            foreach ($task->images as $image) {
+                Storage::disk('public')->delete($image);
+            }
+        }
+        $task->images = [];
+        $task->save();
     }
 
     private function fill(Task $task, array $data): ?Task

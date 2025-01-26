@@ -20,6 +20,5 @@ Route::prefix('tasks')
         Route::get('{id}/subtasks', 'getSubtasks')->name('getSubtasks');
         Route::get('{id}/tags/{tagId}', 'attachTag')->name('attachTag');
         Route::get('{id}/complete', 'complete')->name('complete');
-
     })
     ->group($commonRoutes);

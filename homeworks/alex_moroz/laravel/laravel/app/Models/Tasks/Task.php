@@ -50,6 +50,8 @@ use Illuminate\Support\Carbon;
  * @property-read Collection<int, Tag> $tags
  * @property-read int|null $tags_count
  * @method static Builder<static>|Task whereSlug($value)
+ * @property string|null $images
+ * @method static Builder<static>|Task whereImages($value)
  * @mixin Eloquent
  */
 #[ObservedBy([TaskObserver::class])]
@@ -77,6 +79,7 @@ class Task extends BaseModel
     {
         return [
             'dueDate' => 'datetime:Y-m-d',
+            'images' => 'array',
         ];
     }
 
