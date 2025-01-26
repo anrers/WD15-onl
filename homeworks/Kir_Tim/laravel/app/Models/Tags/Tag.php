@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\tags;
+namespace App\Models\Tags;
 
 use App\Models\BaseModel;
 use Database\Factories\Tags\TagFactory;

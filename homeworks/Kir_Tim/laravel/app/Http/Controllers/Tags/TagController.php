@@ -20,14 +20,14 @@ class TagController extends Controller
         $tag->name = $request->input('name');
         $tag->save();
 
-        return redirect('/Tags');
+        return redirect('/tags');
     }
 
     public function list()
     {
         $tags = Tag::all();
 
-        return view('Tags.list', ['Tags' => $tags]);
+        return view('tags.list', ['tags' => $tags]);
     }
 
 }
