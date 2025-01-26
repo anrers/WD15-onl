@@ -13,10 +13,10 @@ class TaskService extends AbstractEntityServiceInterface implements TaskServiceI
     {
         return Task::class;
     }
+
     public function getById(int $id): ?Task
     {
         return $this->builder()->find($id);
-
     }
 
     public function create(array $data): ?Task
@@ -51,5 +51,16 @@ class TaskService extends AbstractEntityServiceInterface implements TaskServiceI
 
         $task = $this->builder()->find($id);
         return $task->delete();
+    }
+
+    public function complete(int $id): void
+    {
+        /**
+         * @var Task $task
+         */
+        $task = $this->builder()->find($id);
+        $task->status = true;
+        $task->executedAt = now();
+        $task->save();
     }
 }

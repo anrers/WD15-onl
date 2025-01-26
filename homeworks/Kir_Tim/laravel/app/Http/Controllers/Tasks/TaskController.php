@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Task\CreateTaskRequest;
 use App\Models\Tasks\Task;
 use App\Services\Tasks\TaskService;
+use App\Jobs\NotificationJob;
 use Illuminate\Support\Carbon;
 
 class TaskController extends Controller
@@ -71,5 +72,13 @@ class TaskController extends Controller
     {
         $this->taskService->delete($id);
         return redirect()->route('subtasks.list');
+    }
+
+    public function complete(int $id)
+    {
+        $this->taskService->complete($id);
+        $task=$this->taskService->getById($id);
+        NotificationJob::dispatch("Задача $task->name была выполнена в $task->executedAt")->onQueue('notifications');
+        return redirect()->route('tasks.list');
     }
 }

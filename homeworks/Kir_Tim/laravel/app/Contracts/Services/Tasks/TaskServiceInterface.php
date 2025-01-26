@@ -4,4 +4,6 @@ namespace App\Contracts\Services\Tasks;
 
 use App\Contracts\Services\EntityServiceInterface;
 
-interface TaskServiceInterface extends EntityServiceInterface {}
+interface TaskServiceInterface extends EntityServiceInterface {
+    public function complete(int $id): void;
+}

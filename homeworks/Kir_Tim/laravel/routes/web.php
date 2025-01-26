@@ -40,6 +40,7 @@ Route::prefix('/tasks')
         Route::post('/', 'store')->name('store');
         Route::put('/{id}', 'update')->name('update');
         Route::delete('/{id}', 'destroy')->name('destroy');
+        Route::get('{id}/complete', 'complete')->name('complete');
     });
 
 Route::prefix('/subtasks')
