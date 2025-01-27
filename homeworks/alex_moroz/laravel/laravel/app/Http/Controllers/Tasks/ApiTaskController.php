@@ -5,13 +5,11 @@ namespace App\Http\Controllers\Tasks;
 use App\Contracts\Services\Tasks\TaskServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Tasks\CreateTaskRequest;
-use App\Jobs\NotificationJob;
 use App\Models\Tasks\Task;
 use App\Services\Tasks\TaskService;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
-class TaskController extends Controller
+class ApiTaskController extends Controller
 {
     protected TaskServiceInterface $taskService;
 
@@ -20,52 +18,36 @@ class TaskController extends Controller
         $this->taskService = $taskService;
     }
 
-    public function index(): View
+    public function index()
     {
-        $data = $this->taskService->getAll();
-
-        return view('tasks.list', compact('data'));
+        return $this->taskService->getAll();
     }
 
-    public function show(int $id): View
+    public function show(int $id)
     {
-        $data = $this->taskService->getById($id);
-
-        return view('tasks.detail', ['model' => $data]);
+        return $this->taskService->getById($id);
     }
 
-    public function create(): View
-    {
-        return view('tasks.create');
-    }
-
-    public function store(CreateTaskRequest $request): RedirectResponse
+    public function store(CreateTaskRequest $request)
     {
         $data = $request->validated();
         $task = $this->taskService->create($data);
 
-        return redirect()->route('tasks.show', ['id' => $task->id]);
+        return response($task, 201);
     }
 
-    public function edit(int $id): View
-    {
-        $task = $this->taskService->getById($id);
-
-        return view('tasks.edit', ['model' => $task]);
-    }
-
-    public function update(CreateTaskRequest $request, int $id): RedirectResponse
+    public function update(CreateTaskRequest $request, int $id)
     {
         $data = $request->validated();
-        $task = $this->taskService->update($id, $data);
+        $this->taskService->update($id, $data);
 
-        return redirect()->route('tasks.show', ['id' => $task->id]);
+        return response(status: 200);
     }
 
-    public function destroy(int $id): RedirectResponse
+    public function destroy(int $id)
     {
         $this->taskService->delete($id);
-        return redirect()->route('tasks.index');
+        return response(status: 200);
     }
 
     public function attachTag(int $id, int $tagId): RedirectResponse
@@ -78,7 +60,7 @@ class TaskController extends Controller
         return redirect()->route('tasks.index');
     }
 
-    public function getSubtasks(int $id): View
+    public function getSubtasks(int $id)
     {
         /**
          * @var Task $task
@@ -88,10 +70,10 @@ class TaskController extends Controller
         return view('tasks.subtasks', compact('subtasks'));
     }
 
-    public function complete(int $id): RedirectResponse
+    public function complete(int $id)
     {
         $this->taskService->complete($id);
 
-        return redirect()->route('tasks.index');
+        return response(status: 200);
     }
 }
