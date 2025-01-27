@@ -69,7 +69,7 @@ use App\Models\Tasks\Task;
 </head>
 <body>
     <h1>Edit task</h1>
-    <form action="/tasks/{{ $model->id }}" method="post">
+    <form action="{{ route('tasks.update', $model->id) }}" method="post">
         @method('PUT')
         @csrf
         <div>
