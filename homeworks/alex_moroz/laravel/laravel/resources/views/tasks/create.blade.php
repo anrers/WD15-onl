@@ -1,18 +1,26 @@
-<form action="/tasks" method="post">
-    @csrf
-    <div>
-        <label id="name">Имя:</label>
-        <input type="text" name="name" id="name">
-    </div>
+@section('title', 'New task')
 
-    <div>
-        <label id="description">Описание:</label>
-        <textarea name="description" id="description"></textarea>
-    </div>
+<x-layout.component>
+    <x-slot:h1>
+        <h1>Создать задачу</h1>
+    </x-slot:h1>
 
-    <div>
-        <label id="dueDate">Срок:</label>
-        <input type="date" name="dueDate" id="dueDate">
-    </div>
-    <button type="submit" value="create">Cоздать</button>
-</form>
+    <form action="/tasks" method="post">
+        @csrf
+        <div>
+            <label id="name">Имя:</label>
+            <x-inputs.text :name="'name'" id="name"/>
+        </div>
+
+        <div>
+            <label id="description">Описание:</label>
+            <x-inputs.description :name="'description'" id="description"/>
+        </div>
+
+        <div>
+            <label id="dueDate">Срок:</label>
+            <x-inputs.date/>
+        </div>
+        <button type="submit" value="create">Cоздать</button>
+    </form>
+</x-layout.component>

@@ -1,5 +1,5 @@
-<?php
-/**
+@php
+    /**
  * @var Subtask $model
  */
 
@@ -9,23 +9,30 @@
 
 use App\Models\Tasks\Subtask;
 use Illuminate\Support\Collection;
+@endphp
 
-?>
-<form action="/subtasks" method="post">
-    @csrf
-    <div>
-        <label id="name">Имя:</label>
-        <input type="text" name="name" id="name">
-    </div>
+@section('title', 'Create subtask')
 
-    <div>
-        <label id="taskId">Задача:</label>
-        <select name="taskId">
-            @foreach($tasks as $task)
-                <option value={{$task->id}}>{{$task->name}}</option>
-            @endforeach
-        </select>
-    </div>
+<x-layout.component>
+    <x-slot:h1>
+        <h1>Создать подзадачу</h1>
+    </x-slot:h1>
+    <form action="/subtasks" method="post">
+        @csrf
+        <div>
+            <label id="name">Имя:</label>
+            <x-inputs.text :name="'name'" id="name"/>
+        </div>
 
-    <button type="submit" value="create">Cоздать</button>
-</form>
+        <div>
+            <label id="taskId">Задача:</label>
+            <select name="taskId">
+                @foreach($tasks as $task)
+                    <option value={{$task->id}}>{{$task->name}}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <button type="submit" value="create">Cоздать</button>
+    </form>
+</x-layout.component>
