@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Tags;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Tags\CreateTagRequest;
-use App\Models\Tags\Tag;
+use App\Models\tags\Tag;
+use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
@@ -19,22 +20,14 @@ class TagController extends Controller
         $tag->name = $request->input('name');
         $tag->save();
 
-        return redirect('/Tags');
-    }
-
-    public function update(CreateTagRequest $request)
-    {
-        $tag = new Tag();
-        $tag->name = $request->input('name');
-        $tag->save();
-
-        return redirect('/Tags');
+        return redirect('/tags');
     }
 
     public function list()
     {
         $tags = Tag::all();
 
-        return view('Tags.list', ['Tags' => $tags]);
+        return view('tags.list', ['tags' => $tags]);
     }
+
 }
