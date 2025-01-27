@@ -18,6 +18,7 @@ class CreateTaskRequest extends BaseRequest
             'name' => ['required', 'string', 'min:3', 'max:255'],
             'dueDate' => ['required', 'date', 'date_format:Y-m-d'],
             'description' => ['nullable', 'string', 'max:1000'],
+            'images' => ['nullable'],
         ];
     }
 }

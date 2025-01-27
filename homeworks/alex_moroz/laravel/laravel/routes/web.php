@@ -3,6 +3,8 @@
 use App\Http\Controllers\Tags\TagController;
 use App\Http\Controllers\Tasks\SubtaskController;
 use App\Http\Controllers\Tasks\TaskController;
+use App\Mail\TaskCompleteMail;
+use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -43,3 +45,10 @@ Route::prefix('subtasks')
     ->name('subtasks.')
     ->controller(SubtaskController::class)
     ->group($commonRoutes);
+
+Route::get('mail', function () {
+    $mail = new TaskCompleteMail("test message");
+    //$mail->attach(file_get_contents(__DIR__ . '/../storage/text.txt'));
+
+    Mail::to('test@test.com')->send($mail);
+});

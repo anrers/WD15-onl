@@ -18,4 +18,10 @@
     <div>Срок: {{$model->dueDate}}</div>
     <div>Статус: {{ $model->status ? 'Выполнена' : 'Ожидает выполнения' }}</div>
     <div>Дата выполнения: {{ $model->executedAt }}</div>
+    <div>
+        @foreach($images as $image)
+            <img src="{{ $image }}" alt="{{$model->id}}" style="max-height: 150px; max-width: 150px">
+        @endforeach
+    </div>
+
 </x-layout.component>
