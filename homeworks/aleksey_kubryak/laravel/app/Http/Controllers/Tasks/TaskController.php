@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Tasks\CreateTaskRequest;
 use App\Contracts\Services\Tasks\TaskServiceInterface;
 use App\Services\Tasks\TasksService;
+use App\Jobs\SendTaskCompletionNotification;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -68,5 +69,14 @@ class TaskController extends Controller
         $this->taskService->delete($id);
 
         return redirect('/tasks');
+    }
+
+    public function complete(int $id)
+    {
+        $task = $this->taskService->update($id, ['status' => true]);
+
+        SendTaskCompletionNotification::dispatch($task);
+
+        return redirect('/tasks/' . $task->id)->with('success', 'Успешно выполнено!');
     }
 }
