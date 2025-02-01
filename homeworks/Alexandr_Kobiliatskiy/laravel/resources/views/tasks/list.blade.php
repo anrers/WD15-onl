@@ -26,9 +26,13 @@
                     <div class="col-2">{{$task->name}}</div>
                     <div class="col-5">{{$task->description}}</div>
                     <div class="col-2">{{$task->dueDate}}</div>
-                    <div class="col-1 text-center">{{$task->status}}</div>
+                    @if($task->status == 0)
+                        <div class="col-1 text-center">Не готово</div>
+                 @else
+                        <div class="col-1 text-center">Готово</div>
+                @endif
                     <form class="col-1" action="/tasks/{{$task->id}}/completed" method="get">
-                        <div class="text-center"><button type="submit" class="btn">Готово</button></div>
+                        <div class="text-center"><button type="submit" class="btn">Отметка</button></div>
                     </form>
 
                 </div>

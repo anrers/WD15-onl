@@ -1,9 +1,11 @@
 <?php
 namespace App\Services\Tasks;
 use App\Contracts\Services\Tasks\TaskServiceInterface;
+use App\Events\Tasks\CompleteTaskEvent;
 use App\Models\BaseModel;
 use App\Models\Tasks\Task;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class TaskService implements TaskServiceInterface
 {
@@ -18,12 +20,14 @@ class TaskService implements TaskServiceInterface
         return Task::all();
     }
 
+
     public function create(array $data): ?BaseModel
     {
         $task = new Task();
         $task->name = $data['name'];
         $task->description = $data['description'];
         $task->dueDate = $data['dueDate'];
+        $task->slug = Str::slug($data['name']);
         $task->save();
         return $task;
     }
@@ -59,9 +63,19 @@ class TaskService implements TaskServiceInterface
          * @var Task $task
          */
         $task = Task::find($id);
-        $task->status = 1;
+        if ($task->status == 0) {
+            $task->status = 1;
+        } else {
+            $task->status = 0;
+        }
         $task->save();
+        CompleteTaskEvent::dispatch($task);
         return $task;
     }
+
+    public function increasePoints(Task $task)
+    {
+            //
+        }
 
 }
