@@ -5,8 +5,10 @@ namespace App\Models\Tasks;
 use App\Models\BaseModel;
 use App\Models\Tags\Tag;
 use App\Models\User;
+use App\Observers\TaskObserver;
 use Database\Factories\Tasks\TaskFactory;
 use Eloquent;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
@@ -44,8 +46,15 @@ use Illuminate\Support\Carbon;
  * @method static Builder<static>|Task whereStatus($value)
  * @method static Builder<static>|Task whereUpdatedAt($value)
  * @method static Builder<static>|Task whereUserId($value)
+ * @property string|null $slug
+ * @property-read Collection<int, Tag> $tags
+ * @property-read int|null $tags_count
+ * @method static Builder<static>|Task whereSlug($value)
+ * @property string|null $images
+ * @method static Builder<static>|Task whereImages($value)
  * @mixin Eloquent
  */
+#[ObservedBy([TaskObserver::class])]
 class Task extends BaseModel
 {
     /** @use HasFactory<TaskFactory> */
@@ -70,6 +79,7 @@ class Task extends BaseModel
     {
         return [
             'dueDate' => 'datetime:Y-m-d',
+            'images' => 'array',
         ];
     }
 
